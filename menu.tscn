@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxk1y4n5scojw"]
+
+[ext_resource type="Script" uid="uid://chsrvj7h267ke" path="res://pause_menue.gd" id="1_ouk20"]
+[ext_resource type="Texture2D" uid="uid://b5hqa1q3u00ce" path="res://WIN_20251125_22_03_15_Pro.jpg" id="2_mae5d"]
+
+[sub_resource type="Animation" id="Animation_ytr4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Win20251125220315Pro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Win20251125220315Pro:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.490318, 0.45295414)]
+}
+
+[sub_resource type="Animation" id="Animation_4hy44"]
+resource_name = "rotate"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Win20251125220315Pro:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 6.2831855, 6.2831855, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Win20251125220315Pro:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 3.5, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.490318, 0.45295414), Vector2(0.9460723, 0.32211512), Vector2(0.32451487, 0.51982737), Vector2(0.364, 0.39532867)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l48gv"]
+_data = {
+&"RESET": SubResource("Animation_ytr4m"),
+&"rotate": SubResource("Animation_4hy44")
+}
+
+[node name="Control" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.2831855
+script = ExtResource("1_ouk20")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -353.0
+offset_top = -442.0
+offset_right = 347.0
+offset_bottom = 458.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win20251125220315Pro" type="Sprite2D" parent="ColorRect"]
+position = Vector2(356.00012, 667.9998)
+scale = Vector2(0.490318, 0.45295414)
+texture = ExtResource("2_mae5d")
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 27.0
+offset_right = 555.0
+offset_bottom = 142.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 84
+text = "MENUE : 0"
+
+[node name="unpause" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 174.0
+offset_right = 577.0
+offset_bottom = 286.0
+text = "Unpause or press esc"
+
+[node name="main menue" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 352.0
+offset_right = 574.0
+offset_bottom = 464.0
+text = "main menue probably"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l48gv")
+}
+autoplay = "rotate"
+
+[connection signal="pressed" from="ColorRect/unpause" to="." method="_on_unpause_pressed"]

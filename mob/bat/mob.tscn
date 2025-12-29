@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnuqladgqwuk8"]
+
+[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://mob/bat/mob_script.gd" id="1_ih2ng"]
+[ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="1_pgttr"]
+[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://mob/bat/bat_model_bat_palette.png" id="3_g7bq0"]
+[ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="4_adr5o"]
+[ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="5_ux8ix"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ih2ng"]
+radius = 0.2790098
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok4bx"]
+resource_local_to_scene = true
+resource_name = "bat_mat"
+cull_mode = 2
+albedo_texture = ExtResource("3_g7bq0")
+roughness = 0.42727274
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6oj7c"]
+radius = 0.92455935
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g7bq0"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "game_controller", "death_sound", "hurt_sound")]
+gravity_scale = 0.0
+script = ExtResource("1_ih2ng")
+bat_model = NodePath("bat_model")
+animation_tree = NodePath("bat_model/AnimationTree")
+animation_player = NodePath("bat_model/AnimationPlayer")
+attack_timer = NodePath("attack_timer")
+height_check_areas = NodePath("height_check_areas")
+game_controller = NodePath("height_check_areas")
+death_sound = NodePath("death_sound")
+hurt_sound = NodePath("hurt_sound")
+metadata/mob = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ih2ng")
+
+[node name="bat_model" parent="." instance=ExtResource("1_pgttr")]
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="bat_model/Armature" index="0"]
+bones/0/position = Vector3(0, 0.01636047, 0)
+bones/1/rotation = Quaternion(0.0940077, 0.068632275, -0.6766636, 0.72703415)
+bones/2/rotation = Quaternion(0.120295614, 0.04528949, 0.34745052, 0.9288466)
+bones/3/rotation = Quaternion(0.16613507, 0.110285, 0.33173427, 0.92205685)
+bones/4/rotation = Quaternion(0.0940077, -0.068632275, 0.6766636, 0.72703415)
+bones/5/rotation = Quaternion(0.120295614, -0.04528949, -0.34745052, 0.9288466)
+bones/6/rotation = Quaternion(0.16613507, -0.110285, -0.33173427, 0.92205685)
+bones/8/rotation = Quaternion(3.6580836e-08, 0.6982091, 0.7158939, 2.2487916e-08)
+bones/11/rotation = Quaternion(2.2748415e-08, 0.6982091, 0.7158939, 3.5498697e-08)
+
+[node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")
+
+[node name="attack_area" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack_area"]
+shape = SubResource("SphereShape3D_6oj7c")
+
+[node name="attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="death_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_adr5o")
+
+[node name="hurt_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_ux8ix")
+
+[node name="height_check_areas" type="Node3D" parent="."]
+
+[node name="top_flying_area" type="Area3D" parent="height_check_areas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="height_check_areas/top_flying_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("BoxShape3D_g7bq0")
+debug_color = Color(0.87058824, 0, 0, 1)
+
+[node name="bottom_flying_area" type="Area3D" parent="height_check_areas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="height_check_areas/bottom_flying_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_g7bq0")
+debug_color = Color(0.87058824, 0, 0, 1)
+
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="area_entered" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_entered"]
+[connection signal="area_exited" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_exited"]
+[connection signal="area_entered" from="height_check_areas/bottom_flying_area" to="." method="_on_bottom_flying_area_area_entered"]
+[connection signal="area_exited" from="height_check_areas/bottom_flying_area" to="." method="_on_bottom_flying_area_area_exited"]
+
+[editable path="bat_model"]

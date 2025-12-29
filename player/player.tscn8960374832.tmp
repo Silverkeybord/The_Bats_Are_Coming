@@ -1,0 +1,686 @@
+[gd_scene load_steps=17 format=3 uid="uid://chb3pxm0scfyx"]
+
+[ext_resource type="PackedScene" uid="uid://chjrhhjvxun3r" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://da56tvn384nn6" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="PackedScene" uid="uid://b8mmrsy51ssx1" path="res://player/projectile/bullet.tscn" id="2_yw30f"]
+[ext_resource type="Texture2D" uid="uid://cuyh8hew637ju" path="res://player/reticle.png" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://bi6ansiu0g7gi" path="res://player/gun_shoot.wav" id="5_qjkh3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yw30f"]
+bg_color = Color(0.99999994, 0.04050286, 0.022352692, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.57700837, 0.5770084, 0.5770081, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjkh3"]
+bg_color = Color(0, 0.9098039, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shop:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-891, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shop:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shop:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yw30f"]
+resource_name = "close_shop"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shop:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.033333335, -901.0752, -891, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shop:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.16666667, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shop:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+resource_name = "open_shop"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shop:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-891, -0.25, 0, 0.06666667, 887.3078, 0, -0.26666665, -2.4405956, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shop:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shop:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_boad6"]
+_data = {
+&"RESET": SubResource("Animation_qjkh3"),
+&"close_shop": SubResource("Animation_yw30f"),
+&"open_shop": SubResource("Animation_g6k8r")
+}
+
+[sub_resource type="Animation" id="Animation_rgyib"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("effects_nodes/black_overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("effects_nodes/black_overlay:color:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_hg6s5"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("effects_nodes/black_overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("effects_nodes/black_overlay:color:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.06666667, 0.9607389, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("effects_nodes/black_overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("effects_nodes/black_overlay:color:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, -0.005548537, 0, -0.46666664, -7.0252456e-05, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hg6s5"]
+_data = {
+&"RESET": SubResource("Animation_rgyib"),
+&"fade_in": SubResource("Animation_hg6s5"),
+&"fade_out": SubResource("Animation_boad6")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("bullet_spawn", "player_cam", "shooting_timer", "coins_label", "effect_animations", "gun_shoot_audiostream", "hp_bar", "hp_text_display", "shop_animations", "damage_button", "damage_cost_label", "damage_value_label", "firerate_button", "firerate_cost_label", "firerate_value_label", "health_button", "health_cost_label", "health_value_label", "bullet_scale_button", "bullet_scale_cost_label", "bullet_scale_value_label", "durability_button", "durability_cost_label", "durability_value_label")]
+script = ExtResource("1_rkbax")
+bullet_scene = ExtResource("2_yw30f")
+bullet_spawn = NodePath("Camera3D/gun_model/bullet_spawn")
+player_cam = NodePath("Camera3D")
+shooting_timer = NodePath("Timer")
+coins_label = NodePath("coins_label")
+effect_animations = NodePath("effects_animations")
+gun_shoot_audiostream = NodePath("AudioStreamPlayer")
+hp_bar = NodePath("hp_bar")
+hp_text_display = NodePath("hp_bar/hp_display")
+shop_animations = NodePath("shop_animations")
+damage_button = NodePath("shop/ColorRect/gun_damage/damage_button")
+damage_cost_label = NodePath("shop/ColorRect/gun_damage/cost")
+damage_value_label = NodePath("shop/ColorRect/gun_damage/value")
+firerate_button = NodePath("shop/ColorRect/firerate/firerate_button")
+firerate_cost_label = NodePath("shop/ColorRect/firerate/cost")
+firerate_value_label = NodePath("shop/ColorRect/firerate/value")
+health_button = NodePath("shop/ColorRect/more_hp/health_button")
+health_cost_label = NodePath("shop/ColorRect/more_hp/cost")
+health_value_label = NodePath("shop/ColorRect/more_hp/value")
+bullet_scale_button = NodePath("shop/ColorRect/bigger_bullet/bullet_scale_button")
+bullet_scale_cost_label = NodePath("shop/ColorRect/bigger_bullet/cost")
+bullet_scale_value_label = NodePath("shop/ColorRect/bigger_bullet/value")
+durability_button = NodePath("shop/ColorRect/druability/durability_button")
+durability_cost_label = NodePath("shop/ColorRect/druability/cost")
+durability_value_label = NodePath("shop/ColorRect/druability/value")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="gun_model" parent="Camera3D" instance=ExtResource("1_oul6g")]
+transform = Transform3D(-0.19992577, -0.00029005486, -0.0054407716, -0.0002723582, 0.19999874, -0.0006541695, 0.0054416843, -0.0006465177, -0.19992493, 0.40378076, -0.17118919, -0.3913274)
+
+[node name="bullet_spawn" type="Marker3D" parent="Camera3D/gun_model"]
+transform = Transform3D(0.9998437, 0.0030332725, 0.017446423, -0.003489457, 0.9996514, 0.026176946, -0.017360946, -0.026233729, 0.999505, -0.0045466423, 0.042095184, 0.57081246)
+
+[node name="Reticle" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_g1dw6")
+expand_mode = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="coins_label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.011979166
+anchor_top = 0.02037037
+anchor_right = 0.20260416
+anchor_bottom = 0.10185185
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Coins:"
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_bar" type="ProgressBar" parent="."]
+offset_left = 1497.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 92.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yw30f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qjkh3")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="hp_display" type="Label" parent="hp_bar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.9975186
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 40
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="shop" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -891.0
+offset_right = -891.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="shop"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013020833
+anchor_top = 0.13333334
+anchor_right = 0.4296875
+anchor_bottom = 0.9814815
+color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="shop" type="Label" parent="shop/ColorRect"]
+layout_mode = 0
+offset_right = 801.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Goofy ahh shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gun_damage" type="Control" parent="shop/ColorRect"]
+layout_mode = 1
+anchor_top = -0.033842795
+anchor_bottom = -0.033842795
+offset_top = 138.0
+offset_right = 800.0
+offset_bottom = 258.0
+metadata/_edit_use_anchors_ = true
+
+[node name="damage_button" type="Button" parent="shop/ColorRect/gun_damage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006666667
+anchor_top = 0.17582418
+anchor_right = 0.248
+anchor_bottom = 0.8296703
+text = "buy"
+metadata/_edit_lock_ = true
+
+[node name="description" type="Label" parent="shop/ColorRect/gun_damage"]
+layout_mode = 0
+anchor_right = 0.11400001
+anchor_bottom = 0.32200003
+offset_left = 294.0
+offset_top = 26.0
+offset_right = 495.5
+offset_bottom = 34.395996
+theme_override_font_sizes/font_size = 48
+text = "GUN DmAgE"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="cost" type="Label" parent="shop/ColorRect/gun_damage"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 90.0
+offset_right = 351.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+
+[node name="value" type="Label" parent="shop/ColorRect/gun_damage"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 90.0
+offset_right = 650.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+
+[node name="firerate" type="Control" parent="shop/ColorRect"]
+layout_mode = 1
+anchor_top = 0.1091703
+anchor_bottom = 0.1091703
+offset_top = 142.0
+offset_right = 800.0
+offset_bottom = 262.0
+metadata/_edit_use_anchors_ = true
+
+[node name="firerate_button" type="Button" parent="shop/ColorRect/firerate"]
+layout_mode = 0
+anchor_left = 0.006666667
+anchor_top = 0.17582418
+anchor_right = 0.248
+anchor_bottom = 0.8296703
+text = "buy"
+metadata/_edit_lock_ = true
+
+[node name="description" type="Label" parent="shop/ColorRect/firerate"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11400001
+anchor_bottom = 0.32200003
+offset_left = 294.0
+offset_top = 26.0
+offset_right = 495.5
+offset_bottom = 34.395996
+theme_override_font_sizes/font_size = 48
+text = "fire rate"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="cost" type="Label" parent="shop/ColorRect/firerate"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 91.0
+offset_right = 351.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+metadata/_edit_lock_ = true
+
+[node name="value" type="Label" parent="shop/ColorRect/firerate"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 90.0
+offset_right = 650.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+
+[node name="more_hp" type="Control" parent="shop/ColorRect"]
+layout_mode = 1
+anchor_top = 0.2532751
+anchor_bottom = 0.2532751
+offset_top = 146.0
+offset_right = 800.0
+offset_bottom = 266.0
+metadata/_edit_use_anchors_ = true
+
+[node name="health_button" type="Button" parent="shop/ColorRect/more_hp"]
+layout_mode = 0
+anchor_left = 0.006666667
+anchor_top = 0.17582418
+anchor_right = 0.248
+anchor_bottom = 0.8296703
+text = "buy"
+metadata/_edit_lock_ = true
+
+[node name="description" type="Label" parent="shop/ColorRect/more_hp"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11400001
+anchor_bottom = 0.32200003
+offset_left = 294.0
+offset_top = 26.0
+offset_right = 495.5
+offset_bottom = 34.395996
+theme_override_font_sizes/font_size = 48
+text = "moor HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="cost" type="Label" parent="shop/ColorRect/more_hp"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 91.0
+offset_right = 351.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+metadata/_edit_lock_ = true
+
+[node name="value" type="Label" parent="shop/ColorRect/more_hp"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 90.0
+offset_right = 650.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+
+[node name="bigger_bullet" type="Control" parent="shop/ColorRect"]
+layout_mode = 1
+anchor_left = -0.00125
+anchor_top = 0.41375545
+anchor_right = -0.00125
+anchor_bottom = 0.6080786
+offset_left = 1.0
+offset_top = 134.0
+offset_right = 801.0
+offset_bottom = 76.0
+metadata/_edit_use_anchors_ = true
+
+[node name="bullet_scale_button" type="Button" parent="shop/ColorRect/bigger_bullet"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006666667
+anchor_top = 0.17582418
+anchor_right = 0.248
+anchor_bottom = 0.8296703
+text = "buy"
+metadata/_edit_lock_ = true
+
+[node name="description" type="Label" parent="shop/ColorRect/bigger_bullet"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11400001
+anchor_bottom = 0.32200003
+offset_left = 294.0
+offset_top = 26.0
+offset_right = 495.5
+offset_bottom = 34.395996
+theme_override_font_sizes/font_size = 48
+text = "biG Bullet
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="cost" type="Label" parent="shop/ColorRect/bigger_bullet"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 91.0
+offset_right = 351.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+metadata/_edit_lock_ = true
+
+[node name="value" type="Label" parent="shop/ColorRect/bigger_bullet"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 90.0
+offset_right = 650.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+
+[node name="druability" type="Control" parent="shop/ColorRect"]
+layout_mode = 1
+anchor_left = -0.00125
+anchor_top = 0.5556769
+anchor_right = -0.00125
+anchor_bottom = 0.75
+offset_left = 1.0
+offset_top = 134.0
+offset_right = 801.0
+offset_bottom = 76.0
+metadata/_edit_use_anchors_ = true
+
+[node name="durability_button" type="Button" parent="shop/ColorRect/druability"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006666667
+anchor_top = 0.17582418
+anchor_right = 0.248
+anchor_bottom = 0.8296703
+text = "buy"
+metadata/_edit_lock_ = true
+
+[node name="description" type="Label" parent="shop/ColorRect/druability"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11400001
+anchor_bottom = 0.32200003
+offset_left = 294.0
+offset_top = 26.0
+offset_right = 495.5
+offset_bottom = 34.395996
+theme_override_font_sizes/font_size = 48
+text = "Durabillaty yEs"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="cost" type="Label" parent="shop/ColorRect/druability"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 91.0
+offset_right = 351.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+metadata/_edit_lock_ = true
+
+[node name="value" type="Label" parent="shop/ColorRect/druability"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 90.0
+offset_right = 650.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+
+[node name="close_button" type="Button" parent="shop"]
+layout_mode = 0
+anchor_left = 0.371875
+anchor_top = 0.16203703
+anchor_right = 0.41510418
+anchor_bottom = 0.2324074
+offset_top = 1.5258789e-05
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="shop"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 972.0
+offset_right = 723.0
+offset_bottom = 1044.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "Press ESC to unlock mouse"
+
+[node name="shop_animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_boad6")
+}
+
+[node name="effects_animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hg6s5")
+}
+
+[node name="effects_nodes" type="Node" parent="."]
+
+[node name="black_overlay" type="ColorRect" parent="effects_nodes"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qjkh3")
+
+[connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/more_hp/health_button" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/bigger_bullet/bullet_scale_button" to="." method="_on_bullet_scale_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/druability/durability_button" to="." method="_on_durability_button_pressed"]
+[connection signal="pressed" from="shop/close_button" to="." method="_on_close_button_pressed"]

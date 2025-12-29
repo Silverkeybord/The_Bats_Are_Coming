@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8mmrsy51ssx1"]
+
+[ext_resource type="PackedScene" uid="uid://ckf2kgsemos3w" path="res://player/projectile/projectile_3d.tscn" id="1_dnrv1"]
+[ext_resource type="Script" uid="uid://c345bpap2j5po" path="res://player/projectile/bullet.gd" id="1_la33l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p5v2n"]
+radius = 0.24353321
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vwje"]
+radius = 0.2421875
+height = 6.7348633
+
+[node name="bullet" type="Area3D"]
+transform = Transform3D(-0.2, 0, 3.019916e-08, 0, 0.2, 0, -3.019916e-08, 0, -0.2, 0, 0, 0)
+top_level = true
+script = ExtResource("1_la33l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_p5v2n")
+
+[node name="projectile3D" parent="." instance=ExtResource("1_dnrv1")]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 1.509958e-07, -1.509958e-07, -1.509958e-07, -4.371139e-08, -1, -1.509958e-07, 1, -4.3711367e-08, 4.693135e-07, -1.0348373e-07, 3.1081228)
+shape = SubResource("CapsuleShape3D_5vwje")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

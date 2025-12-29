@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://4toi7ndrm7or"]
+
+[ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://mob/spawner/spawner.gd" id="1_3fqj6"]
+[ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://mob/spawner/spawner_model.tscn" id="1_qnmfe"]
+[ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://mob/bat/mob.tscn" id="2_goea1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3fqj6"]
+radius = 1.1071879
+
+[sub_resource type="Animation" id="Animation_xsv3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner_model/Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.6370839, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spawner_model:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_hmc1o"]
+resource_name = "rise_and_fall"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner_model:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, 0.3, -0.5, 0, 0.5, 0, 0, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+
+[sub_resource type="Animation" id="Animation_goea1"]
+resource_name = "spinning_propellers"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spawner_model/Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.6370839, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qm1pi"]
+_data = {
+&"RESET": SubResource("Animation_xsv3d"),
+&"rise_and_fall": SubResource("Animation_hmc1o"),
+&"spinning_propellers": SubResource("Animation_goea1")
+}
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_goea1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xsv3d"]
+animation = &"spinning_propellers"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hmc1o"]
+animation = &"rise_and_fall"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c3vhu"]
+nodes/output/position = Vector2(920, 380)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hmc1o")
+nodes/Animation/position = Vector2(440, 240)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xsv3d")
+"nodes/Animation 2/position" = Vector2(400, 440)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_goea1")
+nodes/Add2/position = Vector2(680, 320)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2"]
+
+[node name="StaticBody3D" type="StaticBody3D" node_paths=PackedStringArray("mob_spawn", "spawn_timer")]
+script = ExtResource("1_3fqj6")
+mob_scene = ExtResource("2_goea1")
+mob_spawn = NodePath("Marker3D")
+spawn_timer = NodePath("Timer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3fqj6")
+
+[node name="spawner_model" parent="." instance=ExtResource("1_qnmfe")]
+
+[node name="Top" parent="spawner_model" index="2"]
+transform = Transform3D(-0.06623902, 0, 0.9978037, 0, 1, 0, -0.9978037, 0, -0.06623902, 0, 0.78395706, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qm1pi")
+}
+autoplay = "spinning_propellers"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_c3vhu")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Add2/add_amount = 1.0
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="spawner_model"]
