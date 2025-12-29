@@ -7,12 +7,18 @@ const MIN_RANDOM_VECTOR3_VALUE: int = 5
 const MAX_RANDOM_VECTOR3_VALUE: int = 10
 const BAT_VERTICLE_SPEED: float = 0.5
 const BAT_SCORE: int = 1
-const ATTACK_INTERVAL: int = 2
 const VERTICLE_SPEED: float = 4
 
 var set_speed: float
 var in_attack_range: bool = false
 var can_attack: bool = true
+var flying_height: float
+var damage: int
+var hp: int
+var value: int
+var speed: float
+var attack_interval: float
+var bat_texture: Texture
 
 # used to make the bat fly the correct distance above the ground
 var too_high: bool
@@ -24,6 +30,7 @@ var too_low: bool
 @export var animation_player: AnimationPlayer
 @export var attack_timer: Timer
 @export var height_check_areas: Node3D
+@export var bat_mesh: MeshInstance3D
 
 @export_group("out of scene exports")
 @export var player: CharacterBody3D
@@ -34,15 +41,18 @@ var too_low: bool
 @export var hurt_sound: AudioStreamPlayer3D
 
 @export_group("stats")
-@export var flying_height: float = 8
-@export var damage: int = 1
-@export var hp: int = 5
-@export var value: int
+@export var type: String
 
 
 func _ready() -> void:
-	set_speed = randf_range(MIN_SPEED, MAX_SPEED)
-	attack_timer.wait_time = ATTACK_INTERVAL
+	var bat_info = Global.ENEMY_INFO[type]
+	damage = bat_info["damage"]
+	hp = bat_info["health"]
+	speed = bat_info["speed"]
+	flying_height = bat_info["flight_height"]
+	attack_interval = bat_info["attack_interval"]
+	bat_mesh.texture = bat_info["texture"]
+	
 	height_check_areas.position.y = -flying_height
 
 
@@ -53,12 +63,10 @@ func _physics_process(delta: float) -> void:
 		position += -transform.basis.z * set_speed * delta
 	
 	if too_high:
-		print("lower")
-		position.y -= VERTICLE_SPEED
+		position.y -= VERTICLE_SPEED * delta
 	
 	if too_low:
-		print("rise")
-		position.y += VERTICLE_SPEED
+		position.y += VERTICLE_SPEED * delta
 
 
 func take_damage(player_damage: int):

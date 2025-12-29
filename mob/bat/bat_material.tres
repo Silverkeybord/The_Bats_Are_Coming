@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dreaexe3fojt3"]
 
-[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://mob/bat/bat_model_bat_palette.png" id="1_5napd"]
+[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="1_5napd"]
 
 [resource]
 resource_local_to_scene = true

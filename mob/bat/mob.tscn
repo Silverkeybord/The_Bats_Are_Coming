@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://mob/bat/mob_script.gd" id="1_ih2ng"]
 [ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="1_pgttr"]
-[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://mob/bat/bat_model_bat_palette.png" id="3_g7bq0"]
+[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="3_g7bq0"]
 [ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="4_adr5o"]
 [ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="5_ux8ix"]
 
@@ -22,7 +22,7 @@ radius = 0.92455935
 [sub_resource type="BoxShape3D" id="BoxShape3D_g7bq0"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "game_controller", "death_sound", "hurt_sound")]
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "game_controller", "death_sound", "hurt_sound")]
 gravity_scale = 0.0
 script = ExtResource("1_ih2ng")
 bat_model = NodePath("bat_model")
@@ -30,6 +30,7 @@ animation_tree = NodePath("bat_model/AnimationTree")
 animation_player = NodePath("bat_model/AnimationPlayer")
 attack_timer = NodePath("attack_timer")
 height_check_areas = NodePath("height_check_areas")
+bat_mesh = NodePath("bat_model/Armature/Skeleton3D/bat")
 game_controller = NodePath("height_check_areas")
 death_sound = NodePath("death_sound")
 hurt_sound = NodePath("hurt_sound")
@@ -42,15 +43,15 @@ shape = SubResource("SphereShape3D_ih2ng")
 transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, 0.01636047, 0)
-bones/1/rotation = Quaternion(0.0940077, 0.068632275, -0.6766636, 0.72703415)
-bones/2/rotation = Quaternion(0.120295614, 0.04528949, 0.34745052, 0.9288466)
-bones/3/rotation = Quaternion(0.16613507, 0.110285, 0.33173427, 0.92205685)
-bones/4/rotation = Quaternion(0.0940077, -0.068632275, 0.6766636, 0.72703415)
-bones/5/rotation = Quaternion(0.120295614, -0.04528949, -0.34745052, 0.9288466)
-bones/6/rotation = Quaternion(0.16613507, -0.110285, -0.33173427, 0.92205685)
-bones/8/rotation = Quaternion(3.6580836e-08, 0.6982091, 0.7158939, 2.2487916e-08)
-bones/11/rotation = Quaternion(2.2748415e-08, 0.6982091, 0.7158939, 3.5498697e-08)
+bones/0/position = Vector3(0, 0.014039617, 0)
+bones/1/rotation = Quaternion(0.21341798, -0.018149283, -0.59329903, 0.77596366)
+bones/2/rotation = Quaternion(0.100325614, 0.046040274, 0.41440246, 0.9033746)
+bones/3/rotation = Quaternion(-0.0128213195, 0.04500891, 0.33906332, 0.93959886)
+bones/4/rotation = Quaternion(0.21341798, 0.018149283, 0.59329903, 0.77596366)
+bones/5/rotation = Quaternion(0.100325614, -0.046040274, -0.41440246, 0.9033746)
+bones/6/rotation = Quaternion(-0.0128213195, -0.04500891, -0.33906332, 0.93959886)
+bones/8/rotation = Quaternion(3.258359e-08, 0.57596135, 0.81747705, 1.9055415e-08)
+bones/11/rotation = Quaternion(2.6290296e-08, 0.57596135, 0.81747705, 4.827461e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")

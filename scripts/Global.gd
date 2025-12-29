@@ -389,33 +389,46 @@ const ENEMY_INFO: Dictionary = {
 		"damage": 1,
 		"speed": 3,
 		"health": 10,
-		"flight_height": 8
+		"flight_height": 1.5,
+		"attack_interval": 1.5,
+		"texture": preload("res://textres/normal_palette.png")
 	},
 	"fast": {
 		"damage": 2,
 		"speed": 5,
 		"health": 5,
-		"flight_height": 1.7
+		"flight_height": 1.7,
+		"attack_interval": 0.8,
+		"texture": preload("res://textres/fast_palette.png")
 	},
 	"heavy": {
 		"damage": 4,
 		"speed": 2,
 		"health": 25,
-		"flight_height": 1.3
+		"flight_height": 1.3,
+		"attack_interval": 2.5,
+		"texture": preload("res://textres/heavy_palette.png")
 	},
 	"sky": {
 		"damage": 5,
 		"speed": 3,
 		"health": 15,
-		"flight_height": 3
+		"flight_height": 3,
+		"attack_interval": 1.2,
+		"texture": preload("res://textres/sky_palette.png")
 	},
 	"transparent": {
 		"damage": 5,
 		"speed": 3,
 		"health": 25,
-		"flight_height": 1.3
+		"flight_height": 1.3,
+		"attack_interval": 1.8,
+		"texture": preload("res://textres/transparent_palette.png")
 	}
 }
+const ENEMY_KEYS: Array = [
+	"normal", "fast", "heavy", "sky", "transparent"
+]
 
 var damage_level: int = 0
 var firerate_level: int = 0
@@ -435,6 +448,7 @@ var current_wave: int = 1
 var spawning_enemies: bool = false
 var mob_stat_mult: int
 var mutation_probabilities: Dictionary
+
 
 func _lock_mouse_movement() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

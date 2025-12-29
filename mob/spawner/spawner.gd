@@ -16,10 +16,22 @@ func start_spawning() -> void:
 
 func _on_timer_timeout() -> void:
 	if Global.can_spawn_enemies and enabled:
+		var weight = randf()
+		var add: int = 0
+		var selection: String
+		for x in Global.ENEMY_KEYS:
+			add += Global.mutation_probabilities[x]
+			selection = x
+		
+			if weight <= add:
+				break
+		
+		
 		var new_mob = mob_scene.instantiate()
 		new_mob.player = player
 		new_mob.game_controller = game_controller
 		new_mob.position = mob_spawn.global_position
+		new_mob.type = selection
 		add_sibling(new_mob)
 		
 		spawn_timer.wait_time = spawn_interval + randf()
