@@ -26,10 +26,22 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "blue",
+"res://scripts/": "gray",
+"res://sounds/": "green",
+"res://textres/": "yellow"
+}
+
 [global_group]
 
 enemies=""
 bat_flight_plane=""
+player=""
+coins=""
+spawners=""
 
 [input]
 

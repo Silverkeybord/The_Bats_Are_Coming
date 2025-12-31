@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://3pfuogrxfj18"]
+
+[ext_resource type="Script" uid="uid://lwulas5u6tem" path="res://scripts/coin.gd" id="1_i64fm"]
+[ext_resource type="AudioStream" uid="uid://c2l8ueigvxrj1" path="res://sounds/SFX/retro-coin-4-236671.mp3" id="2_11l1o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6qpsl"]
+
+[sub_resource type="Animation" id="Animation_pdq0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v7riw"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.5, 0, 0.2, -0.5, 0, 0.5, 0, 0, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.5, 0, 0.2, -0.5, 0, 0.5, 0, 0, -0.5, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w14il"]
+_data = {
+&"RESET": SubResource("Animation_pdq0q"),
+&"spin": SubResource("Animation_v7riw")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_h4etq"]
+size = Vector3(0.2, 0.6, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4fra"]
+albedo_color = Color(0.8666667, 0.7607843, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d5gmh"]
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t63x"]
+albedo_color = Color(0.9963239, 0.9922176, 3.080368e-06, 1)
+bent_normal_enabled = true
+
+[node name="Area3D" type="Area3D" node_paths=PackedStringArray("pickup_sound", "mesh")]
+script = ExtResource("1_i64fm")
+pickup_sound = NodePath("coin sound")
+mesh = NodePath("mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6qpsl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w14il")
+}
+autoplay = "spin"
+
+[node name="coin sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_11l1o")
+
+[node name="mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesh"]
+mesh = SubResource("BoxMesh_h4etq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o4fra")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_d5gmh")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0t63x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

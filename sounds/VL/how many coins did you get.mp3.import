@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c41ornqiqyown"
+path="res://.godot/imported/how many coins did you get.mp3-537abbb5fc3489809b4f898639adecd7.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/how many coins did you get.mp3"
+dest_files=["res://.godot/imported/how many coins did you get.mp3-537abbb5fc3489809b4f898639adecd7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

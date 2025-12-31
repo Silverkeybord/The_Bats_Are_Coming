@@ -1,12 +1,12 @@
 extends Area3D
 
-const SPEED: int = 80 # meters / s
+const SPEED: int = 60 # meters / s
 const RANGE: int = 200 # distance travled before despawn
 const BULLET_SCALE_FACTOR: float = 0.2
 
 var travled_distance: float = 0.0
-var damage = Global.damage
-var durability = Global.durability
+var damage: int  = Global.damage
+var durability: int = Global.durability
 
 
 func _ready() -> void:
@@ -26,5 +26,7 @@ func _on_body_entered(body: Node3D) -> void:
 		durability -= 1
 		body.take_damage(damage)
 		
-		if durability >= 0:
+		if durability <= 0:
 			queue_free()
+	elif not body in get_tree().get_nodes_in_group("player"):
+		queue_free()

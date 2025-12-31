@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ct4271057gj8d"
+path="res://.godot/imported/10 left good going.mp3-e447a87ba3d4f7245b6f11e7609538c5.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/10 left good going.mp3"
+dest_files=["res://.godot/imported/10 left good going.mp3-e447a87ba3d4f7245b6f11e7609538c5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

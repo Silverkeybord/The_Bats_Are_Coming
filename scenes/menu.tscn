@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxk1y4n5scojw"]
 
-[ext_resource type="Script" uid="uid://chsrvj7h267ke" path="res://pause_menue.gd" id="1_ouk20"]
+[ext_resource type="Script" uid="uid://chsrvj7h267ke" path="res://scripts/pause_menue.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://b5hqa1q3u00ce" path="res://WIN_20251125_22_03_15_Pro.jpg" id="2_mae5d"]
 
 [sub_resource type="Animation" id="Animation_ytr4m"]
@@ -65,9 +65,9 @@ _data = {
 &"rotate": SubResource("Animation_4hy44")
 }
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" groups=["player"]]
 process_mode = 3
-visible = false
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,5 +127,51 @@ libraries = {
 &"": SubResource("AnimationLibrary_l48gv")
 }
 autoplay = "rotate"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1205.0001
+offset_top = 915.9998
+offset_right = 2009.0001
+offset_bottom = 1091.9983
+theme_override_font_sizes/font_size = 24
+text = "bats health scale with current wave with 
+Global.base_stat_mult = 1 + 
+(Global.current_wave / Global.WAVE_MULT_DIVIDER)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = -117.99983
+offset_top = 943.0
+offset_right = 686.0002
+offset_bottom = 1118.9985
+theme_override_font_sizes/font_size = 24
+text = "dont surf the bat outside the map"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = -65.99997
+offset_top = 190.0
+offset_right = 738.0
+offset_bottom = 365.99854
+theme_override_font_sizes/font_size = 24
+text = "dont get flung upwards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1248.0
+offset_top = 300.9998
+offset_right = 2052.0
+offset_bottom = 476.99832
+theme_override_font_sizes/font_size = 24
+text = "game might be bad ik :)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="ColorRect/unpause" to="." method="_on_unpause_pressed"]

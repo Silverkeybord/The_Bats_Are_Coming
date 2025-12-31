@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0cwv528153vi"]
+
+[ext_resource type="Script" uid="uid://dgq5dkif06cba" path="res://scripts/coin_spawner.gd" id="1_vj2fh"]
+[ext_resource type="PackedScene" uid="uid://3pfuogrxfj18" path="res://scenes/coin.tscn" id="2_l4oej"]
+
+[node name="Marker3D" type="Marker3D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_vj2fh")
+coin_scene = ExtResource("2_l4oej")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

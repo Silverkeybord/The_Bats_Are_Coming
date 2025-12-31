@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://4toi7ndrm7or"]
 
-[ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://mob/spawner/spawner.gd" id="1_3fqj6"]
+[ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://scripts/spawner.gd" id="1_3fqj6"]
 [ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://mob/spawner/spawner_model.tscn" id="1_qnmfe"]
 [ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://mob/bat/mob.tscn" id="2_goea1"]
 
@@ -82,6 +82,7 @@ animation = &"spinning_propellers"
 animation = &"rise_and_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c3vhu"]
+graph_offset = Vector2(-28.204102, 277.1534)
 nodes/output/position = Vector2(920, 380)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_hmc1o")
 nodes/Animation/position = Vector2(440, 240)
@@ -91,11 +92,11 @@ nodes/Add2/node = SubResource("AnimationNodeAdd2_goea1")
 nodes/Add2/position = Vector2(680, 320)
 node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2"]
 
-[node name="StaticBody3D" type="StaticBody3D" node_paths=PackedStringArray("mob_spawn", "spawn_timer")]
+[node name="StaticBody3D" type="StaticBody3D" node_paths=PackedStringArray("spawn_timer", "mob_spawn")]
 script = ExtResource("1_3fqj6")
-mob_scene = ExtResource("2_goea1")
-mob_spawn = NodePath("Marker3D")
 spawn_timer = NodePath("Timer")
+mob_spawn = NodePath("Marker3D")
+mob_scene = ExtResource("2_goea1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_3fqj6")
@@ -109,7 +110,7 @@ transform = Transform3D(-0.06623902, 0, 0.9978037, 0, 1, 0, -0.9978037, 0, -0.06
 libraries = {
 &"": SubResource("AnimationLibrary_qm1pi")
 }
-autoplay = "spinning_propellers"
+autoplay = "rise_and_fall"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_c3vhu")

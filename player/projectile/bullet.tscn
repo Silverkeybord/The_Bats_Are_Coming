@@ -7,8 +7,8 @@
 radius = 0.24353321
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vwje"]
-radius = 0.2421875
-height = 6.7348633
+radius = 0.25
+height = 1.3328247
 
 [node name="bullet" type="Area3D"]
 transform = Transform3D(-0.2, 0, 3.019916e-08, 0, 0.2, 0, -3.019916e-08, 0, -0.2, 0, 0, 0)
@@ -22,7 +22,7 @@ shape = SubResource("SphereShape3D_p5v2n")
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 1.509958e-07, -1.509958e-07, -1.509958e-07, -4.371139e-08, -1, -1.509958e-07, 1, -4.3711367e-08, 4.693135e-07, -1.0348373e-07, 3.1081228)
+transform = Transform3D(1, 1.509958e-07, -1.509958e-07, -1.509958e-07, -4.371139e-08, -1, -1.509958e-07, 1, -4.3711367e-08, 6.074733e-08, 1.4791005e-08, 0.40231255)
 shape = SubResource("CapsuleShape3D_5vwje")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

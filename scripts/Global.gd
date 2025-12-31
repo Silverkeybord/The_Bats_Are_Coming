@@ -1,7 +1,7 @@
 extends Node
 
-const GRAVITY: float = -20 # meters per second per second
-const WAVE_MULT_DIVIDER: float = 6.0
+const GRAVITY: float = -22 # meters per second per second
+const WAVE_MULT_DIVIDER: float = 10.0
 const SHOP_INFO: Dictionary = {
 	"damage" : {
 		"levels": 6,
@@ -75,7 +75,7 @@ const SHOP_INFO: Dictionary = {
 			"0": 1,
 			"1": 2,
 			"2": 3,
-			"3": 4,
+			"3": 5,
 			"4": 10
 		}
 	},
@@ -98,13 +98,13 @@ const SHOP_INFO: Dictionary = {
 }
 const WAVE_INFO: Dictionary = {
 	"wave66": {
-		"amount": 100,
+		"amount": 1,
 		"interval": 1,
 		"mutation_probilities": {
 			"normal": 0.,
 			"fast": 0.,
 			"heavy": 0.,
-			"sky": 1,
+			"sky": 0.99,
 			"transparent": 0.
 		}
 	},
@@ -386,73 +386,91 @@ const WAVE_INFO: Dictionary = {
 }
 const ENEMY_INFO: Dictionary = {
 	"normal": {
+		"value": 1,
 		"damage": 1,
 		"speed": 3,
-		"health": 10,
-		"flight_height": 1.5,
+		"health": 5,
+		"flight_height": 1,
 		"attack_interval": 1.5,
 		"texture": preload("res://textres/normal_palette.png")
 	},
 	"fast": {
+		"value": 2,
 		"damage": 2,
-		"speed": 5,
-		"health": 5,
-		"flight_height": 1.7,
+		"speed": 6,
+		"health": 3,
+		"flight_height": 1.5,
 		"attack_interval": 0.8,
-		"texture": preload("res://textres/fast_palette.png")
+		"texture": preload("res://textres/fast_palette.png"),
+		"scale": Vector3(0.8, 0.8, 0.8)
 	},
 	"heavy": {
+		"value": 3,
 		"damage": 4,
-		"speed": 2,
+		"speed": 2.5,
 		"health": 25,
-		"flight_height": 1.3,
+		"flight_height": 0.4,
 		"attack_interval": 2.5,
-		"texture": preload("res://textres/heavy_palette.png")
+		"texture": preload("res://textres/heavy_palette.png"),
+		"scale": Vector3(2, 2, 2)
 	},
 	"sky": {
-		"damage": 5,
-		"speed": 3,
+		"value": 4,
+		"damage": 2,
+		"speed": 4.5,
 		"health": 15,
-		"flight_height": 3,
-		"attack_interval": 1.2,
-		"texture": preload("res://textres/sky_palette.png")
+		"flight_height": 6,
+		"attack_interval": 0.8,
+		"texture": preload("res://textres/sky_palette.png"),
 	},
 	"transparent": {
+		"value": 5,
 		"damage": 5,
 		"speed": 3,
 		"health": 25,
-		"flight_height": 1.3,
+		"flight_height": 1,
 		"attack_interval": 1.8,
-		"texture": preload("res://textres/transparent_palette.png")
+		"texture": preload("res://textres/transparent_palette.png"),
 	}
 }
 const ENEMY_KEYS: Array = [
 	"normal", "fast", "heavy", "sky", "transparent"
 ]
+const AVAIBLE_SELECTABLE_WAVES: Array = [1, 5, 10, 15, 20, 25]
+
+var lock_movement: bool = false
 
 var damage_level: int = 0
 var firerate_level: int = 0
 var hp_level: int = 0
 var scale_level: int = 0
-var durabilty_level: int = 0
+var durabilty_level: int = 1
 
-var damage: int = 1
+var damage: int = 100
 var durability: int = 1
 var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
+var player_died: bool = false
 var coins: int = 0
 
 var mobs_left: int
 var can_spawn_enemies: bool = true
 var current_wave: int = 1
-var spawning_enemies: bool = false
+var spawned_enemies: int
+var total_enemies: int
 var mob_stat_mult: int
 var mutation_probabilities: Dictionary
+var base_stat_mult: float
+
+var highest_wave: int = 1
+var selected_wave: int = 66
 
 
 func _lock_mouse_movement() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	lock_movement = false
 
 
 func _unlock_mouse_movement() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	lock_movement = true

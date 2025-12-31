@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7f2j2wn653vp"
+path="res://.godot/imported/one big bat ain_t it.mp3-20cb9ecfbc26bc88d5b24c5e7fe4d86b.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/one big bat ain_t it.mp3"
+dest_files=["res://.godot/imported/one big bat ain_t it.mp3-20cb9ecfbc26bc88d5b24c5e7fe4d86b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,21 +3,26 @@ extends CharacterBody3D
 const V_CAMERA_MAX: float = deg_to_rad(80)
 const V_CAMERA_MIN: float = deg_to_rad(-80)
 const SPEED: float = 7 # ingame meters per second
-const MAX_JUMP_VELOCITY: int = 7
+const INITIAL_JUMP_VELOCITY: float = 7.0
+const JUMP_HOLD_ACCELERATION: float = 40.0
+const MAX_JUMP_VELOCITY: float = 8.0
 const AIM_DISTANCE: float = 200 # used insted of raycasting
 const COINS_TEXT: String = "Coins: "
 const VALUE_TEXT: String = "Value: "
 const MAX_LEVEL_TEXT: String = "MaX LeVeL :)"
+const WAVE_VISUAL_TEXT: String = "Wave "
 const RESPAWN_POSITION: Vector3 = Vector3(0, 5, 0)
 const RESPAWN_CAMERA_ROTATION: Vector3 = Vector3(0, 0, 0)
 const WORLD_DAMAGE: int = 100
-const COTOTE_TIME: float = 0.3
+const COYOTE_TIME: float = 0.15
 
 var h_sensitivity: float = 0.25
 var v_sensitivity: float = 0.005
-var jump_strength: float = 3
 var can_increase_jump_strength: bool = true
+var holding_jump: bool = false
+var initial_jump_done: bool = false
 
+var coyote_timer: float = 0
 var max_hp: float = 10.0
 var hp: float = 10.0
 var damage: int = 1
@@ -25,6 +30,7 @@ var firerate: float = 0.25
 var durability: int = 1
 var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
+@export_group("in scene exports")
 @export var bullet_scene: PackedScene
 @export var bullet_spawn: Marker3D
 @export var player_cam: Camera3D
@@ -32,6 +38,8 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 @export var coins_label: Label
 @export var effect_animations: AnimationPlayer
 @export var gun_shoot_audiostream: AudioStreamPlayer
+
+@export_group("out of scene exports")
 @export var game_controller: Node3D
 
 @export_group("hp bar")
@@ -65,6 +73,10 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 @export var durability_button: Button
 @export var durability_cost_label: Label
 @export var durability_value_label: Label
+
+@export_group("Wave Selection")
+@export var wave_buttons: Node
+@export var wave_label: Label
 
 
 func _ready() -> void:
@@ -109,7 +121,7 @@ func _initial_shop_ui() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Global.can_spawn_enemies:
+	if not Global.lock_movement:
 		# back and fourth movement
 		var input_direction_2D = Input.get_vector(
 			"left", "right", "forward", "back"
@@ -122,19 +134,36 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
-		# jumping 
+		# -- jumping -- 
+		# longer you hold the higher you will jump after the initial boost of
+		# jumping, there is also the coyote time using delta subtraction
 		if Input.is_action_pressed("space") and can_increase_jump_strength:
-			velocity.y += jump_strength
+			if not initial_jump_done:
+				velocity.y = INITIAL_JUMP_VELOCITY
+				initial_jump_done = true
+				holding_jump = true
+			else:
+				velocity.y += JUMP_HOLD_ACCELERATION * delta
+		
 		
 		if Input.is_action_just_released("space"):
 			can_increase_jump_strength = false
+			holding_jump = false
+		
 		
 		if velocity.y >= MAX_JUMP_VELOCITY:
 			can_increase_jump_strength = false
 	
+	
 	if not is_on_floor():
 		velocity.y += Global.GRAVITY * delta
+		coyote_timer -= delta
+		
+		if not holding_jump and coyote_timer <= 0:
+			can_increase_jump_strength = false
 	else:
+		coyote_timer = COYOTE_TIME
+		initial_jump_done = false
 		can_increase_jump_strength = true
 	
 	move_and_slide()
@@ -142,8 +171,8 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_pressed("shoot") and 
-		shooting_timer.is_stopped() and 
-		Global.can_spawn_enemies):
+		shooting_timer.is_stopped() and
+		not Global.lock_movement):
 		_shoot_bullet()
 	
 	coins_label.text = COINS_TEXT + str(Global.coins)
@@ -152,7 +181,7 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not Global.lock_movement:
 		rotation_degrees.y -= event.relative.x * h_sensitivity
 		player_cam.rotation.x -= event.relative.y * v_sensitivity
 		player_cam.rotation.x = clamp(
@@ -206,11 +235,12 @@ func _update_hp() -> void:
 	hp_text_display.text = str(hp) + "/" + str(max_hp)
 	
 	if hp <= 0:
+		Global.player_died = true
 		effect_animations.play("fade_in")
 		
 		var enemies = get_tree().get_nodes_in_group("enemies")
 		for x in enemies:
-			x.die()
+			x.die(false)
 		
 		await effect_animations.animation_finished
 		_died()
@@ -222,9 +252,17 @@ func _died() -> void:
 	hp = max_hp
 	velocity = Vector3.ZERO
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	for x in enemies:
-		x.queue_free()
+	var coins = get_tree().get_nodes_in_group("coins")
 	
+	for enemy in enemies:
+		enemy.die(false)
+	
+	for coin in coins:
+		coin.queue_free()
+	
+	_check_wave_selection_unlocks()
+	game_controller.reset_wave_display()
+	Global.current_wave = Global.selected_wave
 	Global.can_spawn_enemies = false
 	effect_animations.play("fade_out")
 	shop_animations.play("open_shop")
@@ -348,6 +386,53 @@ func _on_durability_button_pressed() -> void:
 func _on_close_button_pressed() -> void:
 	shop_animations.play("close_shop")
 	set_physics_process(true)
-	Global.can_spawn_enemies = true
 	Global._lock_mouse_movement()
 	game_controller.start_new_run()
+
+
+# --------------------------- wave selection funcions
+func _check_wave_selection_unlocks() -> void:
+	var unlocked_selectable_waves: int = 0
+	var buttons: Array = wave_buttons.get_children()
+	
+	for x in Global.AVAIBLE_SELECTABLE_WAVES:
+		if Global.highest_wave >= x:
+			unlocked_selectable_waves += 1
+		
+		else: 
+			break
+	
+	for x in buttons:
+		if unlocked_selectable_waves > 0:
+			x.disabled = false
+			unlocked_selectable_waves -= 1
+
+
+func _on_wave_1_pressed() -> void:
+	Global.selected_wave = 1
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_wave_5_pressed() -> void:
+	Global.selected_wave = 5
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_wave_10_pressed() -> void:
+	Global.selected_wave = 10
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_wave_15_pressed() -> void:
+	Global.selected_wave = 15
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_wave_20_pressed() -> void:
+	Global.selected_wave = 20
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_wave_25_pressed() -> void:
+	Global.selected_wave = 25
+	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)

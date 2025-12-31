@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnuqladgqwuk8"]
+[gd_scene load_steps=12 format=3 uid="uid://bnuqladgqwuk8"]
 
-[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://mob/bat/mob_script.gd" id="1_ih2ng"]
+[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://scripts/mob_script.gd" id="1_ih2ng"]
 [ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="1_pgttr"]
+[ext_resource type="PackedScene" uid="uid://c148jwmfcy6qw" path="res://scenes/sky_bat_projectile.tscn" id="2_adr5o"]
 [ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="3_g7bq0"]
 [ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="4_adr5o"]
 [ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="5_ux8ix"]
@@ -13,16 +14,20 @@ radius = 0.2790098
 resource_local_to_scene = true
 resource_name = "bat_mat"
 cull_mode = 2
+depth_draw_mode = 1
 albedo_texture = ExtResource("3_g7bq0")
 roughness = 0.42727274
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6oj7c"]
-radius = 0.92455935
+[sub_resource type="SphereShape3D" id="SphereShape3D_adr5o"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g7bq0"]
+radius = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g7bq0"]
-size = Vector3(0.2, 0.2, 0.2)
+size = Vector3(0.2, 0.1, 0.2)
 
-[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "game_controller", "death_sound", "hurt_sound")]
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_area_collision", "move_area_collision", "game_controller", "death_sound", "hurt_sound")]
 gravity_scale = 0.0
 script = ExtResource("1_ih2ng")
 bat_model = NodePath("bat_model")
@@ -31,6 +36,10 @@ animation_player = NodePath("bat_model/AnimationPlayer")
 attack_timer = NodePath("attack_timer")
 height_check_areas = NodePath("height_check_areas")
 bat_mesh = NodePath("bat_model/Armature/Skeleton3D/bat")
+rigid_body_collisionshape = NodePath("CollisionShape3D")
+attack_area_collision = NodePath("attack_area/CollisionShape3D")
+move_area_collision = NodePath("stop_movment_area/CollisionShape3D")
+sky_bat_projectile = ExtResource("2_adr5o")
 game_controller = NodePath("height_check_areas")
 death_sound = NodePath("death_sound")
 hurt_sound = NodePath("hurt_sound")
@@ -40,33 +49,38 @@ metadata/mob = false
 shape = SubResource("SphereShape3D_ih2ng")
 
 [node name="bat_model" parent="." instance=ExtResource("1_pgttr")]
-transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, 0.014039617, 0)
-bones/1/rotation = Quaternion(0.21341798, -0.018149283, -0.59329903, 0.77596366)
-bones/2/rotation = Quaternion(0.100325614, 0.046040274, 0.41440246, 0.9033746)
-bones/3/rotation = Quaternion(-0.0128213195, 0.04500891, 0.33906332, 0.93959886)
-bones/4/rotation = Quaternion(0.21341798, 0.018149283, 0.59329903, 0.77596366)
-bones/5/rotation = Quaternion(0.100325614, -0.046040274, -0.41440246, 0.9033746)
-bones/6/rotation = Quaternion(-0.0128213195, -0.04500891, -0.33906332, 0.93959886)
-bones/8/rotation = Quaternion(3.258359e-08, 0.57596135, 0.81747705, 1.9055415e-08)
-bones/11/rotation = Quaternion(2.6290296e-08, 0.57596135, 0.81747705, 4.827461e-08)
+bones/0/position = Vector3(0, 0.0006822855, 0)
+bones/1/rotation = Quaternion(0.15919147, 0.02303382, -0.5928814, 0.78906214)
+bones/2/rotation = Quaternion(0.0049152053, 0.002178205, 0.388851, 0.92128503)
+bones/3/rotation = Quaternion(-0.11544417, 0.013244328, 0.2979502, 0.9474824)
+bones/4/rotation = Quaternion(0.15919147, -0.02303382, 0.5928814, 0.78906214)
+bones/5/rotation = Quaternion(0.0049152053, -0.002178205, -0.388851, 0.92128503)
+bones/6/rotation = Quaternion(-0.11544417, -0.013244328, -0.2979502, 0.9474824)
+bones/8/rotation = Quaternion(2.8945239e-08, 0.5437252, 0.8392634, 2.0279192e-08)
+bones/11/rotation = Quaternion(2.5034598e-08, 0.54372525, 0.8392634, 4.318192e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")
 
 [node name="attack_area" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attack_area"]
-shape = SubResource("SphereShape3D_6oj7c")
+shape = SubResource("SphereShape3D_adr5o")
+
+[node name="stop_movment_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stop_movment_area"]
+shape = SubResource("SphereShape3D_g7bq0")
 
 [node name="attack_timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="death_sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_adr5o")
+volume_db = -11.429
 
 [node name="hurt_sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_ux8ix")
@@ -89,6 +103,8 @@ debug_color = Color(0.87058824, 0, 0, 1)
 
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="stop_movment_area" to="." method="_on_stop_movment_area_body_entered"]
+[connection signal="body_exited" from="stop_movment_area" to="." method="_on_stop_movment_area_body_exited"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_entered"]
 [connection signal="area_exited" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_exited"]

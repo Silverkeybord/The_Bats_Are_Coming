@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqtawnd5bqqgc"
+path="res://.godot/imported/24 more waves.mp3-85ab4840f6fee4f8f70df71c02b7c80e.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/24 more waves.mp3"
+dest_files=["res://.godot/imported/24 more waves.mp3-85ab4840f6fee4f8f70df71c02b7c80e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

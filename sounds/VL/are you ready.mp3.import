@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c51pr7nil7nn8"
+path="res://.godot/imported/are you ready.mp3-57aef683aaedc0fdf75696baaf185f61.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/are you ready.mp3"
+dest_files=["res://.godot/imported/are you ready.mp3-57aef683aaedc0fdf75696baaf185f61.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
