@@ -19,8 +19,10 @@ func _pause_or_unpause() -> void:
 	
 	if new_paused:
 		Global._unlock_mouse_movement()
+			
 	else:
-		Global._lock_mouse_movement()
+		if not Global.shop_open:
+			Global._lock_mouse_movement()
 
 
 func _on_unpause_pressed() -> void:

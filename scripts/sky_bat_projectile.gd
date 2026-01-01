@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const RANDOM_HOLD_TIME: float = 0.2
+const RANDOM_HOLD_TIME := 0.2
 
 @export var damage: int
 @export var player_pos: Vector3

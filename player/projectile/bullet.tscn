@@ -1,28 +1,35 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8mmrsy51ssx1"]
 
 [ext_resource type="PackedScene" uid="uid://ckf2kgsemos3w" path="res://player/projectile/projectile_3d.tscn" id="1_dnrv1"]
-[ext_resource type="Script" uid="uid://c345bpap2j5po" path="res://player/projectile/bullet.gd" id="1_la33l"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_p5v2n"]
-radius = 0.24353321
+[ext_resource type="Script" uid="uid://c345bpap2j5po" path="res://scripts/bullet.gd" id="1_la33l"]
+[ext_resource type="AudioStream" uid="uid://bi6ansiu0g7gi" path="res://player/gun_shoot.wav" id="3_ijt2n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vwje"]
-radius = 0.25
-height = 1.3328247
+radius = 0.35
+height = 2.3786592
 
-[node name="bullet" type="Area3D"]
+[node name="bullet" type="Area3D" node_paths=PackedStringArray("shoot_stream_player", "collision_shape")]
 transform = Transform3D(-0.2, 0, 3.019916e-08, 0, 0.2, 0, -3.019916e-08, 0, -0.2, 0, 0, 0)
 top_level = true
 script = ExtResource("1_la33l")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_p5v2n")
+shoot_stream_player = NodePath("AudioStreamPlayer")
+collision_shape = NodePath("CollisionShape3D2")
 
 [node name="projectile3D" parent="." instance=ExtResource("1_dnrv1")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 1.509958e-07, -1.509958e-07, -1.509958e-07, -4.371139e-08, -1, -1.509958e-07, 1, -4.3711367e-08, 6.074733e-08, 1.4791005e-08, 0.40231255)
+transform = Transform3D(1, 1.509958e-07, -1.509958e-07, -1.509958e-07, -4.371139e-08, -1, -1.509958e-07, 1, -4.3711367e-08, 1.3674267e-07, -7.208696e-09, 0.905607)
 shape = SubResource("CapsuleShape3D_5vwje")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="bullet_despawn_buffer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ijt2n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="bullet_despawn_buffer" to="." method="_on_bullet_despawn_buffer_timeout"]

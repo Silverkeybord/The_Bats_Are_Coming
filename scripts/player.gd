@@ -1,34 +1,38 @@
 extends CharacterBody3D
 
-const V_CAMERA_MAX: float = deg_to_rad(80)
-const V_CAMERA_MIN: float = deg_to_rad(-80)
-const SPEED: float = 7 # ingame meters per second
-const INITIAL_JUMP_VELOCITY: float = 7.0
-const JUMP_HOLD_ACCELERATION: float = 40.0
-const MAX_JUMP_VELOCITY: float = 8.0
-const AIM_DISTANCE: float = 200 # used insted of raycasting
-const COINS_TEXT: String = "Coins: "
-const VALUE_TEXT: String = "Value: "
-const MAX_LEVEL_TEXT: String = "MaX LeVeL :)"
-const WAVE_VISUAL_TEXT: String = "Wave "
-const RESPAWN_POSITION: Vector3 = Vector3(0, 5, 0)
-const RESPAWN_CAMERA_ROTATION: Vector3 = Vector3(0, 0, 0)
-const WORLD_DAMAGE: int = 100
-const COYOTE_TIME: float = 0.15
+const V_CAMERA_MAX := deg_to_rad(80)
+const V_CAMERA_MIN := deg_to_rad(-80)
 
-var h_sensitivity: float = 0.25
-var v_sensitivity: float = 0.005
-var can_increase_jump_strength: bool = true
-var holding_jump: bool = false
-var initial_jump_done: bool = false
+const PLAYER_SPEED := 7.0
+const INITIAL_JUMP_VELOCITY := 7.0
+const JUMP_HOLD_ACCELERATION := 40.0
+const MAX_JUMP_VELOCITY := 8.0
+const COYOTE_TIME := 0.15
 
-var coyote_timer: float = 0
-var max_hp: float = 10.0
-var hp: float = 10.0
-var damage: int = 1
-var firerate: float = 0.25
-var durability: int = 1
-var bullet_scale: Vector3 = Vector3(1, 1, 1)
+const COINS_TEXT := "Coins: "
+const VALUE_TEXT := "Value: "
+const MAX_LEVEL_TEXT := "MaX LeVeL :)"
+const WAVE_VISUAL_TEXT := "Wave "
+
+const RESPAWN_POSITION := Vector3(0, 5, 0)
+const RESPAWN_CAMERA_ROTATION := Vector3(0, 0, 0)
+
+const AIM_DISTANCE := 200
+const WORLD_DAMAGE := 100
+
+var h_sensitivity := 0.25
+var v_sensitivity := 0.005
+var can_increase_jump_strength := true
+var holding_jump := false
+var initial_jump_done := false
+
+var coyote_timer := 0.0
+var max_hp := 10.0
+var hp := 10.0
+var damage := 1
+var firerate := 0.25
+var durability := 1
+var bullet_scale := Vector3(1, 1, 1)
 
 @export_group("in scene exports")
 @export var bullet_scene: PackedScene
@@ -37,7 +41,7 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 @export var shooting_timer: Timer
 @export var coins_label: Label
 @export var effect_animations: AnimationPlayer
-@export var gun_shoot_audiostream: AudioStreamPlayer
+@export var hp_var: ProgressBar
 
 @export_group("out of scene exports")
 @export var game_controller: Node3D
@@ -131,8 +135,8 @@ func _physics_process(delta: float) -> void:
 			)
 		var direction = transform.basis * input_direction_3D
 		
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * PLAYER_SPEED
+		velocity.z = direction.z * PLAYER_SPEED
 		
 		# -- jumping -- 
 		# longer you hold the higher you will jump after the initial boost of
@@ -210,8 +214,7 @@ func _shoot_bullet() -> void:
 	var new_bullet = bullet_scene.instantiate()
 	add_sibling(new_bullet)  # Adds as sibling to player
 	new_bullet.global_position = bullet_spawn.global_position
-	gun_shoot_audiostream.play()
-	
+
 	# Aim bullet at raycast hit point (or max distance if no hit)
 	var target_point = result.position if result else ray_origin + ray_direction * AIM_DISTANCE
 	new_bullet.look_at(target_point, Vector3.UP)
@@ -226,7 +229,7 @@ func _on_world_borders_body_entered(body: Node3D) -> void:
 
 
 func _on_start_fade_body_entered(body: Node3D) -> void:
-	if body == self:
+	if body == self and hp <= WORLD_DAMAGE:
 		effect_animations.play("fade_in")
 
 
@@ -236,12 +239,10 @@ func _update_hp() -> void:
 	
 	if hp <= 0:
 		Global.player_died = true
+		
+		Global.clear_coins_and_mobs()
+		
 		effect_animations.play("fade_in")
-		
-		var enemies = get_tree().get_nodes_in_group("enemies")
-		for x in enemies:
-			x.die(false)
-		
 		await effect_animations.animation_finished
 		_died()
 
@@ -251,19 +252,12 @@ func _died() -> void:
 	player_cam.rotation = RESPAWN_CAMERA_ROTATION
 	hp = max_hp
 	velocity = Vector3.ZERO
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	var coins = get_tree().get_nodes_in_group("coins")
-	
-	for enemy in enemies:
-		enemy.die(false)
-	
-	for coin in coins:
-		coin.queue_free()
 	
 	_check_wave_selection_unlocks()
 	game_controller.reset_wave_display()
 	Global.current_wave = Global.selected_wave
 	Global.can_spawn_enemies = false
+	Global.shop_open = true
 	effect_animations.play("fade_out")
 	shop_animations.play("open_shop")
 	
@@ -329,6 +323,8 @@ func _on_health_button_pressed() -> void:
 	health_value_label.text = VALUE_TEXT + str(new_value)
 	max_hp = new_value
 	hp = max_hp
+	hp_bar.max_value = max_hp
+	hp_bar.value = max_hp
 	
 	var max_level = health_info["levels"]
 	if Global.hp_level == max_level:
@@ -386,13 +382,14 @@ func _on_durability_button_pressed() -> void:
 func _on_close_button_pressed() -> void:
 	shop_animations.play("close_shop")
 	set_physics_process(true)
+	Global.shop_open = false
 	Global._lock_mouse_movement()
 	game_controller.start_new_run()
 
 
 # --------------------------- wave selection funcions
 func _check_wave_selection_unlocks() -> void:
-	var unlocked_selectable_waves: int = 0
+	var unlocked_selectable_waves := 0
 	var buttons: Array = wave_buttons.get_children()
 	
 	for x in Global.AVAIBLE_SELECTABLE_WAVES:

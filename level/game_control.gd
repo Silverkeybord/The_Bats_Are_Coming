@@ -6,14 +6,28 @@ enum maps {
 	MAP3
 }
 
-const WAVE_TEXT: String = "wave"
-const VISUAL_WAVE_TEXT: String = "Wave: "
-const VISUAL_MOBS_TEXT: String = "Mobs: "
-const TIME_BEFORE_TEXT_CHANGE: float = 0.5
+const WAVE_TEXT := "wave"
+const VISUAL_WAVE_TEXT := "Wave: "
+const VISUAL_MOBS_TEXT := "Mobs: "
+const TIME_BEFORE_TEXT_CHANGE := 0.5
+const map_1_waves := [1, 5]
+const map_2_waves := [10, 15]
+const map_3_waves := [20, 25]
+const map_2_threshlond := 10
+const map_3_threshlond := 20
+
+const GROUP_SPAWNERS := "spawners"
+const GROUP_COIN_SPAWNERS := "coin_spawners"
+const KEY_MUTATION_PROB := "mutation_probilities"
 
 var active_spawners: Node3D
 var active_coin_spawners: Node3D
 var active_map = maps.MAP2
+
+@export_group("map exports")
+@export var change_map_animations: AnimationPlayer
+@export var bat_flight_plane_2: Area3D
+@export var bat_flight_plane_3: Area3D
 
 @export_group("spawners")
 @export var map_1_spawners: Node3D
@@ -37,30 +51,24 @@ func _ready() -> void:
 
 
 func start_new_run() -> void:
-	Global.current_wave = Global.selected_wave
+	if Global.player_died:
+		Global.current_wave = Global.selected_wave
+	
 	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
 	Global.player_died = false
 	
-	for spawners in get_tree().get_nodes_in_group("spawners"):
-		spawners.enabled = false
+	# disables all enabled spawners
+	for spawner in get_tree().get_nodes_in_group("spawners"):
+		if spawner.enabled:
+			spawner.enabled = false
 	
-	match active_map:
-		maps.MAP1:
-			active_spawners = map_1_spawners
-			active_coin_spawners = map_1_coin_spawners
-		maps.MAP2:
-			active_spawners = map_2_spawners
-			active_coin_spawners = map_2_coin_spawners
-		maps.MAP3:
-			active_spawners = map_3_spawners
-			active_coin_spawners = map_3_coin_spawners
+	for coin_spawners in get_tree().get_nodes_in_group("coin_spawners"):
+		if coin_spawners.enabled:
+			coin_spawners.enabled = false
 	
-	var spawners = active_spawners.get_children()
-	var coin_spawners = active_coin_spawners.get_children()
+	_set_active_map_and_spawners()
+	
 	var current_wave_text = WAVE_TEXT + str(Global.current_wave)
-	
-	for spawner in spawners:
-		spawner.enabled = true
 	
 	Global.mutation_probabilities = (
 		Global.WAVE_INFO[current_wave_text]["mutation_probilities"])
@@ -73,22 +81,67 @@ func start_new_run() -> void:
 	next_animations_wave.text = str(Global.current_wave)
 	previous_animations_wave.text = str(Global.current_wave - 1)
 	
+	# sets main mob and wave text while they cant be seen and changes map
+	# if on the correct threshold
 	wave_visuals_animations.play("next_wave")
+	
+	if Global.current_wave == map_2_threshlond:
+		Global.clear_coins_and_mobs()
+		change_map_animations.play("map1-map2")
+		
+	elif Global.current_wave == map_3_threshlond:
+		change_map_animations.play("map2-map3")
+		Global.clear_coins_and_mobs()
+		
+	
 	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
 	main_wave_label.text = VISUAL_WAVE_TEXT + str(Global.current_wave)
 	Global.mobs_left = Global.WAVE_INFO[current_wave_text]["amount"]
 	mob_counter.text = VISUAL_MOBS_TEXT + str(Global.mobs_left)
 	
-	
 	await wave_visuals_animations.animation_finished
 	
+	# enables the current maps spawners 
+	var spawners = active_spawners.get_children()
+	var coin_spawners = active_coin_spawners.get_children()
+	
 	for coin_spawner in coin_spawners:
+		coin_spawner.enabled = true
 		coin_spawner.start_timer()
 	
 	for spawner in spawners:
-		if spawner:
-			spawner.spawn_interval = Global.WAVE_INFO[current_wave_text]["interval"]
-			spawner.start_spawning()
+		spawner.enabled = true
+		spawner.spawn_interval = Global.WAVE_INFO[current_wave_text]["interval"]
+		spawner.start_spawning()
+
+
+func _set_active_map_and_spawners() -> void:
+	if Global.current_wave in map_1_waves:
+		active_map = maps.MAP1
+	elif Global.current_wave in map_2_waves:
+		active_map = maps.MAP2
+	elif Global.current_wave in map_3_waves:
+		active_map = maps.MAP3
+	
+	match active_map:
+		maps.MAP1:
+			active_spawners = map_1_spawners
+			active_coin_spawners = map_1_coin_spawners
+			bat_flight_plane_2.set_deferred("monitorable", false)
+			bat_flight_plane_3.set_deferred("monitorable", false)
+
+		maps.MAP2:
+			active_spawners = map_2_spawners
+			active_coin_spawners = map_2_coin_spawners
+			bat_flight_plane_2.set_deferred("monitorable", true)
+			bat_flight_plane_3.set_deferred("monitorable", false)
+
+		maps.MAP3:
+			active_spawners = map_3_spawners
+			active_coin_spawners = map_3_coin_spawners
+			bat_flight_plane_2.set_deferred("monitorable", false)
+			bat_flight_plane_3.set_deferred("monitorable", true)
+
 
 
 func mob_died() -> void:

@@ -1,17 +1,20 @@
 extends Node
 
-const GRAVITY: float = -22 # meters per second per second
-const WAVE_MULT_DIVIDER: float = 10.0
+const GRAVITY := -22 # meters per second per second
+const WAVE_MULT_DIVIDER := 10.0
 const SHOP_INFO: Dictionary = {
 	"damage" : {
-		"levels": 6,
+		"levels": 9,
 		"cost" : {
 			"1": 10,
 			"2": 25,
 			"3": 50,
 			"4": 100,
 			"5": 250,
-			"6": 1000
+			"6": 500,
+			"7": 550,
+			"8": 1000,
+			"9": 2500
 		},
 		"value" : {
 			"0": 1,
@@ -20,27 +23,30 @@ const SHOP_INFO: Dictionary = {
 			"3": 4,
 			"4": 5,
 			"5": 8,
-			"6": 10
+			"6": 10,
+			"7": 12,
+			"8": 15,
+			"9": 20,
 		}
 	},
 	"firerate" : {
 		"levels": 4,
 		"cost" : {
 			"1": 100,
-			"2": 250,
-			"3": 500,
-			"4": 1000,
+			"2": 500,
+			"3": 1000,
+			"4": 2500,
 		},
 		"value" : {
 			"0": 0.25,
 			"1": 0.2,
 			"2": 0.15,
-			"3": 0.1,
-			"4": 0.05,
+			"3": 0.12,
+			"4": 0.09,
 		}
 	},
 	"health" : {
-		"levels": 8,
+		"levels": 9,
 		"cost" : {
 			"1": 10,
 			"2": 25,
@@ -49,7 +55,8 @@ const SHOP_INFO: Dictionary = {
 			"5": 250,
 			"6": 500,
 			"7": 750,
-			"8": 1000
+			"8": 1000,
+			"9": 2500,
 		},
 		"value" : {
 			"0": 10,
@@ -60,7 +67,8 @@ const SHOP_INFO: Dictionary = {
 			"5": 50,
 			"6": 75,
 			"7": 100,
-			"8": 150
+			"8": 150,
+			"9": 250
 		}
 	},
 	"bullet_scale" : {
@@ -68,15 +76,15 @@ const SHOP_INFO: Dictionary = {
 		"cost" : {
 			"1": 100,
 			"2": 500,
-			"3": 1000,
-			"4": 19999,
+			"3": 2500,
+			"4": 12500,
 		},
 		"value" : {
 			"0": 1,
 			"1": 2,
 			"2": 3,
-			"3": 5,
-			"4": 10
+			"3": 4,
+			"4": 5
 		}
 	},
 	"durability" : {
@@ -84,8 +92,8 @@ const SHOP_INFO: Dictionary = {
 		"cost" : {
 			"1": 250,
 			"2": 1000,
-			"3": 2500,
-			"4": 14999,
+			"3": 4000,
+			"4": 16000,
 		},
 		"value" : {
 			"0": 1,
@@ -98,22 +106,22 @@ const SHOP_INFO: Dictionary = {
 }
 const WAVE_INFO: Dictionary = {
 	"wave66": {
-		"amount": 1,
+		"amount": 100,
 		"interval": 1,
 		"mutation_probilities": {
-			"normal": 0.,
-			"fast": 0.,
-			"heavy": 0.,
-			"sky": 0.99,
-			"transparent": 0.
+			"normal": 0.2,
+			"fast": 0.2,
+			"heavy": 0.2,
+			"sky": 0.2,
+			"transparent": 0.2
 		}
 	},
 	"wave1": {
 		"amount": 10,
 		"interval": 9,
 		"mutation_probilities": {
-			"normal": 0.98,
-			"fast": 0.02,
+			"normal": 1,
+			"fast": 0.,
 			"heavy": 0.,
 			"sky": 0.,
 			"transparent": 0.
@@ -124,8 +132,8 @@ const WAVE_INFO: Dictionary = {
 		"interval": 9,
 		"mutation_probilities": {
 			"normal": 0.96,
-			"fast": 0.02,
-			"heavy": 0.02,
+			"fast": 0.04,
+			"heavy": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -438,32 +446,37 @@ const ENEMY_KEYS: Array = [
 ]
 const AVAIBLE_SELECTABLE_WAVES: Array = [1, 5, 10, 15, 20, 25]
 
-var lock_movement: bool = false
+var one_time_voice_lines: Dictionary = {
+	"enterd_game": false
+}
 
-var damage_level: int = 0
-var firerate_level: int = 0
-var hp_level: int = 0
-var scale_level: int = 0
-var durabilty_level: int = 1
+var lock_movement := false
+var shop_open := false
 
-var damage: int = 100
-var durability: int = 1
+var damage_level := 0
+var firerate_level := 0
+var hp_level := 0
+var scale_level := 0
+var durabilty_level := 0
+
+var damage := 1
+var durability := 1
 var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
-var player_died: bool = false
-var coins: int = 0
+var player_died := true
+var coins := 100000
 
 var mobs_left: int
-var can_spawn_enemies: bool = true
-var current_wave: int = 1
+var can_spawn_enemies := true
+var current_wave := 1
 var spawned_enemies: int
 var total_enemies: int
 var mob_stat_mult: int
 var mutation_probabilities: Dictionary
 var base_stat_mult: float
 
-var highest_wave: int = 1
-var selected_wave: int = 66
+var highest_wave := 20
+var selected_wave := 10
 
 
 func _lock_mouse_movement() -> void:
@@ -474,3 +487,14 @@ func _lock_mouse_movement() -> void:
 func _unlock_mouse_movement() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	lock_movement = true
+
+
+func clear_coins_and_mobs() -> void:
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	var coins_alive = get_tree().get_nodes_in_group("coins")
+	
+	for coin in coins_alive:
+		coin.queue_free()
+	
+	for enemy in enemies:
+		enemy.die(false)

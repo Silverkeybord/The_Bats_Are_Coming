@@ -1,20 +1,20 @@
 extends RigidBody3D
 
-const RAGDOLL_TIME: int = 4
-const MIN_RANDOM_VECTOR3_VALUE: int = 5
-const MAX_RANDOM_VECTOR3_VALUE: int = 10
-const BAT_VERTICLE_SPEED: float = 2
-const BAT_SCORE: int = 1
-const VERTICLE_SPEED: float = 1
-const RANDOM_FLYING_HEIGHT: float = 0.2
-const RANDOM_SPEED: float = 0.5
-const ATTACK_AREA_RADIUS: float = 4.0
-const MOVE_AREA_RADIUS: float = 0.4
-const SKY_BAT_PROJECTILE_Y_OFFSET: float = 0.5
+const RAGDOLL_TIME := 4
+const MIN_RANDOM_VECTOR3_VALUE := 5
+const MAX_RANDOM_VECTOR3_VALUE := 10
+const BAT_SCORE := 1
+const VERTICLE_SPEED := 2
+const RANDOM_FLYING_HEIGHT_OFFSET := 0.2
+const RANDOM_SPEED := 0.5
+const ATTACK_AREA_RADIUS := 4.0
+const MOVE_AREA_RADIUS := 0.4
+const SKY_BAT_PROJECTILE_Y_OFFSET := 0.5
+const LOWEST_POINT := -5
 
-var in_attack_range: bool = false
-var can_move: bool = true
-var can_attack: bool = true
+var in_attack_range := false
+var can_move := true
+var can_attack := true
 var flying_height: float
 var damage: int
 var hp: int
@@ -24,8 +24,9 @@ var attack_interval: float
 var bat_texture: Texture
 
 # used to make the bat fly the correct distance above the ground
-var too_high: bool = true
-var too_low: bool = false
+var too_high := true
+var too_low := false
+var should_rise := false
 
 @export_group("in scene exports")
 @export var bat_model: Node3D
@@ -35,8 +36,8 @@ var too_low: bool = false
 @export var height_check_areas: Node3D
 @export var bat_mesh: MeshInstance3D
 @export var rigid_body_collisionshape: CollisionShape3D
-@export var attack_area_collision: CollisionShape3D
-@export var move_area_collision: CollisionShape3D
+@export var attack_collisionshape: CollisionShape3D
+@export var move_collisionshape: CollisionShape3D
 
 @export_group("out of scene exports")
 @export var sky_bat_projectile: PackedScene
@@ -56,7 +57,7 @@ var too_low: bool = false
 func _ready() -> void:
 	var bat_info = Global.ENEMY_INFO[type]
 	
-	value = bat_info["value"]
+	value = round(bat_info["value"] * Global.base_stat_mult)
 	damage = round(bat_info["damage"] * Global.base_stat_mult)
 	hp = round(bat_info["health"] * Global.base_stat_mult)
 	
@@ -64,7 +65,8 @@ func _ready() -> void:
 	speed += randf_range(-RANDOM_SPEED, RANDOM_SPEED)
 	
 	flying_height = bat_info["flight_height"] 
-	flying_height += randf_range(-RANDOM_FLYING_HEIGHT, RANDOM_FLYING_HEIGHT)
+	flying_height += randf_range(-RANDOM_FLYING_HEIGHT_OFFSET,
+		 RANDOM_FLYING_HEIGHT_OFFSET)
 	
 	attack_interval = bat_info["attack_interval"]
 	
@@ -83,35 +85,41 @@ func _ready() -> void:
 	
 	elif type == "sky":
 		# height is multiplyd by 2 because of the round ends of the capsul 
-		attack_area_collision.shape = CapsuleShape3D.new()
-		attack_area_collision.shape.radius = ATTACK_AREA_RADIUS
-		attack_area_collision.shape.height = flying_height + ATTACK_AREA_RADIUS * 2
-		attack_area_collision.position.y = -(
-			attack_area_collision.shape.height / 2 - ATTACK_AREA_RADIUS)
+		attack_collisionshape.shape = CapsuleShape3D.new()
+		attack_collisionshape.shape.radius = ATTACK_AREA_RADIUS
+		attack_collisionshape.shape.height = flying_height + ATTACK_AREA_RADIUS * 2
+		attack_collisionshape.position.y = -(
+			attack_collisionshape.shape.height / 2 - ATTACK_AREA_RADIUS)
 		
-		move_area_collision.shape = CapsuleShape3D.new()
-		move_area_collision.shape.radius = MOVE_AREA_RADIUS
-		move_area_collision.shape.height = flying_height + MOVE_AREA_RADIUS * 2
-		move_area_collision.position.y = -(
-			move_area_collision.shape.height / 2 - MOVE_AREA_RADIUS)
-		
+		move_collisionshape.shape = CapsuleShape3D.new()
+		move_collisionshape.shape.radius = MOVE_AREA_RADIUS
+		move_collisionshape.shape.height = flying_height + MOVE_AREA_RADIUS * 2
+		move_collisionshape.position.y = -(
+			move_collisionshape.shape.height / 2 - MOVE_AREA_RADIUS)
 	
 	height_check_areas.position.y = -flying_height 
 
 
 func _physics_process(delta: float) -> void:
-	look_at(Vector3(player.position.x, position.y, player.position.z))
+	var target_pos := Vector3(
+	player.global_position.x,
+	global_position.y,
+	player.global_position.z
+	)
+	if not position == target_pos:
+		look_at(Vector3(player.position.x, position.y, player.position.z))
 	
-	if can_move:
+	#controls up or down movement and snaps if below a threshold
+	if can_move and not should_rise:
 		position += -transform.basis.z * speed * delta
 	
-	#print("the mob is to high is: ", too_high)
-	#print("the mob is to low is: ", too_low)
-	if too_high:
+	if too_low or should_rise:
+		position.y += VERTICLE_SPEED * delta
+	elif too_high:
 		position.y -= VERTICLE_SPEED * delta
 	
-	if too_low:
-		position.y += VERTICLE_SPEED * delta
+	if position.y <= LOWEST_POINT:
+		linear_velocity = Vector3.ZERO
 
 
 func take_damage(player_damage: int):
@@ -177,9 +185,6 @@ func _on_stop_movment_area_body_exited(body: Node3D) -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	if not can_attack or type != "sky":
-		return
-	
 	if type == "sky":
 		var new_projectile = sky_bat_projectile.instantiate()
 		add_sibling(new_projectile)
@@ -189,28 +194,41 @@ func _on_attack_timer_timeout() -> void:
 		new_projectile.player_pos = player.position
 		
 	else:
-		player.hp -= damage
+		if player.hp - damage < 0:
+			player.hp = 0
+		else:
+			player.hp -= damage
 	
 	if in_attack_range:
 		attack_timer.start()
 
 
-# height contorl functions
+# height control functions
 func _on_top_flying_area_area_entered(area: Area3D) -> void:
-	if area.is_in_group("bat_flight_plane"):
+	if area in get_tree().get_nodes_in_group("bat_flight_plane"):
 		too_low = true
 
 
 func _on_top_flying_area_area_exited(area: Area3D) -> void:
-	if area.is_in_group("bat_flight_plane"):
+	if area in get_tree().get_nodes_in_group("bat_flight_plane"):
 		too_low = false
 
 
 func _on_bottom_flying_area_area_entered(area: Area3D) -> void:
-	if area.is_in_group("bat_flight_plane"):
+	if area in get_tree().get_nodes_in_group("bat_flight_plane"):
 		too_high = false
 
 
 func _on_bottom_flying_area_area_exited(area: Area3D) -> void:
-	if area.is_in_group("bat_flight_plane"):
+	if area in get_tree().get_nodes_in_group("bat_flight_plane"):
 		too_high = true
+
+
+func _on_rise_area_body_entered(body: Node3D) -> void:
+	if body is CSGBox3D:
+		should_rise = true
+
+
+func _on_rise_area_body_exited(body: Node3D) -> void:
+	if body is CSGBox3D:
+		should_rise = false

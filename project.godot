@@ -41,7 +41,8 @@ enemies=""
 bat_flight_plane=""
 player=""
 coins=""
-spawners=""
+spawners="they spawn the enemies"
+coin_spawners="they spawn the coins"
 
 [input]
 

@@ -3,12 +3,16 @@ extends Marker3D
 @export var coin_scene: PackedScene 
 @export var timer: Timer
 @export var coin_spawn_node: Node 
-@export var enabled: bool = false
-@export var value: int = 10
-@export var spawn_interval: int = 5
-@export var SPAWN_PROBIBLITY: float = 0.1
+@export var enabled := false
+@export var value := 10
+@export var spawn_interval := 10
+@export var SPAWN_PROBIBLITY := 0.1
 
 var coin: Area3D
+
+
+func _ready() -> void:
+	add_to_group("coin_spawners")
 
 
 func start_timer() -> void:

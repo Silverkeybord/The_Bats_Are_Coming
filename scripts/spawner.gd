@@ -1,12 +1,14 @@
 extends StaticBody3D
 
+const RANDOM_SPAWN_OFFSET := 0.2 
+
 @export_group("in_scene_exports")
 @export var spawn_timer: Timer
 @export var mob_spawn: Marker3D
 
 @export_group("values")
 @export var spawn_interval: int
-@export var enabled: bool = true
+@export var enabled := true
 
 @export_group("external_exports")
 @export var mob_scene: PackedScene
@@ -15,8 +17,17 @@ extends StaticBody3D
 @export var enemy_spawn_node: Node
 
 
+func _ready() -> void:
+	add_to_group("spawners")
+
+
 func start_spawning() -> void:
-	spawn_timer.wait_time = spawn_interval + (randf() * [1, -1].pick_random())
+	await get_tree().create_timer(
+		randf_range(-RANDOM_SPAWN_OFFSET, RANDOM_SPAWN_OFFSET)).timeout
+	_on_timer_timeout()
+	
+	spawn_timer.wait_time = spawn_interval + (
+		randf_range(-RANDOM_SPAWN_OFFSET, RANDOM_SPAWN_OFFSET))
 	spawn_timer.start()
 
 
@@ -28,7 +39,7 @@ func _on_timer_timeout() -> void:
 			Global.can_spawn_enemies = false
 		
 		var weight = randf()
-		var add: float = 0
+		var add := 0.0
 		var selection: String
 
 		for x in Global.ENEMY_KEYS:
@@ -46,7 +57,8 @@ func _on_timer_timeout() -> void:
 		new_mob.type = selection
 		enemy_spawn_node.add_child(new_mob)
 		
-		spawn_timer.wait_time = spawn_interval + randf()
+		spawn_timer.wait_time = spawn_interval + (
+			randf_range(-RANDOM_SPAWN_OFFSET, RANDOM_SPAWN_OFFSET))
 		
 		new_mob.add_to_group("enemies")
  
