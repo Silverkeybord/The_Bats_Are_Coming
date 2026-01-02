@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dksrgu1b3rc88"
+path="res://.godot/imported/first death.mp3-f94610f2f26f0404139fd2229dcc2c74.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/first death.mp3"
+dest_files=["res://.godot/imported/first death.mp3-f94610f2f26f0404139fd2229dcc2c74.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

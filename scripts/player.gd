@@ -19,6 +19,7 @@ const RESPAWN_CAMERA_ROTATION := Vector3(0, 0, 0)
 
 const AIM_DISTANCE := 200
 const WORLD_DAMAGE := 100
+const HURT_THRESHOLD := 2.0 # the amount hp id divided by before showing
 
 var h_sensitivity := 0.25
 var v_sensitivity := 0.005
@@ -42,6 +43,7 @@ var bullet_scale := Vector3(1, 1, 1)
 @export var coins_label: Label
 @export var effect_animations: AnimationPlayer
 @export var hp_var: ProgressBar
+@export var hurt_image: TextureRect
 
 @export_group("out of scene exports")
 @export var game_controller: Node3D
@@ -180,6 +182,8 @@ func _process(_delta: float) -> void:
 		_shoot_bullet()
 	
 	coins_label.text = COINS_TEXT + str(Global.coins)
+	
+	hurt_image.modulate.a = clamp(1.0 - (hp / max_hp) * HURT_THRESHOLD, 0.0, 1.0)
 	
 	_update_hp()
 

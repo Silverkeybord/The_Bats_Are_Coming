@@ -106,14 +106,15 @@ const SHOP_INFO: Dictionary = {
 }
 const WAVE_INFO: Dictionary = {
 	"wave66": {
-		"amount": 100,
+		"amount": 10,
 		"interval": 1,
 		"mutation_probilities": {
-			"normal": 0.2,
-			"fast": 0.2,
-			"heavy": 0.2,
-			"sky": 0.2,
-			"transparent": 0.2
+			"normal": 0.,
+			"fast": 0.,
+			"heavy": 0.,
+			"shooter": 0.99,
+			"sky": 0.,
+			"transparent": 0.
 		}
 	},
 	"wave1": {
@@ -123,6 +124,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 1,
 			"fast": 0.,
 			"heavy": 0.,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -134,6 +136,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.96,
 			"fast": 0.04,
 			"heavy": 0.,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -145,6 +148,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.94,
 			"fast": 0.04,
 			"heavy": 0.02,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -156,6 +160,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.92,
 			"fast": 0.04,
 			"heavy": 0.04,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -167,6 +172,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.90,
 			"fast": 0.06,
 			"heavy": 0.04,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -176,8 +182,9 @@ const WAVE_INFO: Dictionary = {
 		"interval": 6,
 		"mutation_probilities": {
 			"normal": 0.88,
-			"fast": 0.6,
-			"heavy": 0.4,
+			"fast": 0.08,
+			"heavy": 0.04,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -188,7 +195,8 @@ const WAVE_INFO: Dictionary = {
 		"mutation_probilities": {
 			"normal": 0.86,
 			"fast": 0.06,
-			"heavy": 0.06,
+			"heavy": 0.02,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -200,6 +208,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.84,
 			"fast": 0.15,
 			"heavy": 0.01,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -211,6 +220,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.82,
 			"fast": 0.03,
 			"heavy": 0.15,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -222,6 +232,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.8,
 			"fast": 0.1,
 			"heavy": 0.1,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -233,7 +244,8 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.78,
 			"fast": 0.06,
 			"heavy": 0.06,
-			"sky": 0.04,
+			"shooter": 0.1,
+			"sky": 0.,
 			"transparent": 0.
 		}
 	},
@@ -242,20 +254,22 @@ const WAVE_INFO: Dictionary = {
 		"interval": 4,
 		"mutation_probilities": {
 			"normal": 0.76,
-			"fast": 0.06,
-			"heavy": 0.06,
-			"sky": 0.06,
+			"fast": 0.09,
+			"heavy": 0.09,
+			"shooter": 0.06,
+			"sky": 0.0,
 			"transparent": 0.
 		}
 	},
 	"wave13": {
-		"amount": 25,
+		"amount": 10,
 		"interval": 4,
 		"mutation_probilities": {
 			"normal": 0.74,
-			"fast": 0.5,
-			"heavy": 0.5,
-			"sky": 0.16,
+			"fast": 0.04,
+			"heavy": 0.04,
+			"shooter": 0.1,
+			"sky": 0.08,
 			"transparent": 0.
 		}
 	},
@@ -266,6 +280,7 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.72,
 			"fast": 0.24,
 			"heavy": 0.02,
+			"shooter": 0.,
 			"sky": 0.02,
 			"transparent": 0.
 		}
@@ -274,9 +289,10 @@ const WAVE_INFO: Dictionary = {
 		"amount": 35,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.7,
+			"normal": 0.68,
 			"fast": 0.1,
-			"heavy": 0.1,
+			"heavy": 0.02,
+			"shooter": 0.1,
 			"sky": 0.1,
 			"transparent": 0.
 		}
@@ -285,9 +301,10 @@ const WAVE_INFO: Dictionary = {
 		"amount": 25,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.68,
+			"normal": 0.64,
 			"fast": 0.1,
-			"heavy": 0.12,
+			"heavy": 0.06,
+			"shooter": 0.1,
 			"sky": 0.1,
 			"transparent": 0.
 		}
@@ -296,21 +313,23 @@ const WAVE_INFO: Dictionary = {
 		"amount": 25,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.66,
-			"fast": 0.1,
-			"heavy": 0.1,
-			"sky": 0.14,
+			"normal": 0.60,
+			"fast": 0.16,
+			"heavy": 0.,
+			"shooter": 0.08,
+			"sky": 0.06,
 			"transparent": 0.
 		}
 	},
 	"wave18": {
-		"amount": 25,
+		"amount": 15,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.64,
-			"fast": 0.08,
-			"heavy": 0.2,
-			"sky": 0.08,
+			"normal": 0.2,
+			"fast": 0.,
+			"heavy": 0.,
+			"shooter": 0.4,
+			"sky": 0.4,
 			"transparent": 0.
 		}
 	},
@@ -318,22 +337,24 @@ const WAVE_INFO: Dictionary = {
 		"amount": 25,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.60,
+			"normal": 0.56,
 			"fast": 0.2,
 			"heavy": 0.2,
-			"sky": 0.1,
+			"shooter": 0.05,
+			"sky": 0.05,
 			"transparent": 0.
 		}
 	},
 	"wave20": {
-		"amount": 45,
+		"amount": 30,
 		"interval": 3,
 		"mutation_probilities": {
-			"normal": 0.56,
-			"fast": 0.1,
-			"heavy": 0.1,
+			"normal": 0.50,
+			"fast": 0.05,
+			"heavy": 0.05,
+			"shooter": 0.1,
 			"sky": 0.1,
-			"transparent": 0.14
+			"transparent": 0.2
 		}
 	},
 	"wave21": {
@@ -342,8 +363,9 @@ const WAVE_INFO: Dictionary = {
 		"mutation_probilities": {
 			"normal": 0.52,
 			"fast": 0.1,
-			"heavy": 0.15,
-			"sky": 0.1,
+			"heavy": 0.1,
+			"shooter": 0.07,
+			"sky": 0.08,
 			"transparent": 0.13
 		}
 	},
@@ -354,8 +376,9 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.48,
 			"fast": 0.1,
 			"heavy": 0.1,
+			"shooter": 0.06,
 			"sky": 0.1,
-			"transparent": 0.22
+			"transparent": 0.16
 		}
 	},
 	"wave23": {
@@ -363,10 +386,11 @@ const WAVE_INFO: Dictionary = {
 		"interval": 3,
 		"mutation_probilities": {
 			"normal": 0.44,
-			"fast": 0.15,
-			"heavy": 0.15,
-			"sky": 0.15,
-			"transparent": 0.16
+			"fast": 0.1,
+			"heavy": 0.05,
+			"shooter": 0.2,
+			"sky": 0.1,
+			"transparent": 0.11
 		}
 	},
 	"wave24": {
@@ -374,20 +398,22 @@ const WAVE_INFO: Dictionary = {
 		"interval": 2,
 		"mutation_probilities": {
 			"normal": 0.40,
-			"fast": 0.,
+			"fast": 0.5,
 			"heavy": 0.05,
-			"sky": 0.25,
-			"transparent": 0.25
+			"shooter": 0.1,
+			"sky": 0.2,
+			"transparent": 0.2
 		}
 	},
 	"wave25": {
 		"amount": 100,
 		"interval": 1.5,
 		"mutation_probilities": {
-			"normal": 0.2,
-			"fast": 0.2,
-			"heavy": 0.2,
-			"sky": 0.2,
+			"normal": 0.16,
+			"fast": 0.16,
+			"heavy": 0.16,
+			"shooter": 0.16,
+			"sky": 0.16,
 			"transparent": 0.2
 		}
 	}
@@ -439,10 +465,19 @@ const ENEMY_INFO: Dictionary = {
 		"flight_height": 1,
 		"attack_interval": 1.8,
 		"texture": preload("res://textres/transparent_palette.png"),
+	},
+	"shooter": {
+		"value": 3,
+		"damage": 2,
+		"speed": 4,
+		"health": 10,
+		"flight_height": 2,
+		"attack_interval": 1.5,
+		"texture": preload("res://textres/shooter_palette.png"),
 	}
 }
 const ENEMY_KEYS: Array = [
-	"normal", "fast", "heavy", "sky", "transparent"
+	"normal", "fast", "heavy", "shooter", "sky", "transparent"
 ]
 const AVAIBLE_SELECTABLE_WAVES: Array = [1, 5, 10, 15, 20, 25]
 
@@ -450,9 +485,7 @@ var one_time_voice_lines: Dictionary = {
 	"enterd_game": false
 }
 
-var lock_movement := false
-var shop_open := false
-
+# shop upgrades and values
 var damage_level := 0
 var firerate_level := 0
 var hp_level := 0
@@ -463,9 +496,13 @@ var damage := 1
 var durability := 1
 var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
+# player information
 var player_died := true
 var coins := 100000
+var lock_movement := false
+var shop_open := false
 
+# current wave info
 var mobs_left: int
 var can_spawn_enemies := true
 var current_wave := 1
@@ -475,8 +512,9 @@ var mob_stat_mult: int
 var mutation_probabilities: Dictionary
 var base_stat_mult: float
 
-var highest_wave := 20
-var selected_wave := 10
+# wave information
+var highest_wave := 1
+var selected_wave := 1
 
 
 func _lock_mouse_movement() -> void:
@@ -497,4 +535,4 @@ func clear_coins_and_mobs() -> void:
 		coin.queue_free()
 	
 	for enemy in enemies:
-		enemy.die(false)
+		enemy.die(self)

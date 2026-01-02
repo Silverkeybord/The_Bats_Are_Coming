@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://chb3pxm0scfyx"]
+[gd_scene load_steps=17 format=3 uid="uid://chb3pxm0scfyx"]
 
 [ext_resource type="PackedScene" uid="uid://chjrhhjvxun3r" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da56tvn384nn6" path="res://scripts/player.gd" id="1_rkbax"]
-[ext_resource type="PackedScene" uid="uid://b8mmrsy51ssx1" path="res://player/projectile/bullet.tscn" id="2_yw30f"]
+[ext_resource type="PackedScene" uid="uid://b8mmrsy51ssx1" path="res://scenes/bullet.tscn" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://cnoapfkxro84e" path="res://scripts/voice_lines.gd" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://dg2tf0gwkwdac" path="res://assests/hurt.png" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -196,7 +198,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -269,7 +271,7 @@ _data = {
 &"fade_out": SubResource("Animation_boad6")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("bullet_spawn", "player_cam", "shooting_timer", "coins_label", "effect_animations", "gun_shoot_audiostream", "hp_var", "hp_bar", "hp_text_display", "shop_animations", "damage_button", "damage_cost_label", "damage_value_label", "firerate_button", "firerate_cost_label", "firerate_value_label", "health_button", "health_cost_label", "health_value_label", "bullet_scale_button", "bullet_scale_cost_label", "bullet_scale_value_label", "durability_button", "durability_cost_label", "durability_value_label", "wave_buttons", "wave_label")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("bullet_spawn", "player_cam", "shooting_timer", "coins_label", "effect_animations", "hp_var", "hurt_image", "hp_bar", "hp_text_display", "shop_animations", "damage_button", "damage_cost_label", "damage_value_label", "firerate_button", "firerate_cost_label", "firerate_value_label", "health_button", "health_cost_label", "health_value_label", "bullet_scale_button", "bullet_scale_cost_label", "bullet_scale_value_label", "durability_button", "durability_cost_label", "durability_value_label", "wave_buttons", "wave_label")]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_rkbax")
@@ -279,8 +281,8 @@ player_cam = NodePath("Camera3D")
 shooting_timer = NodePath("Timer")
 coins_label = NodePath("coins_label")
 effect_animations = NodePath("effects_animations")
-gun_shoot_audiostream = NodePath("")
 hp_var = NodePath("hp_bar")
+hurt_image = NodePath("Hurt")
 hp_bar = NodePath("hp_bar")
 hp_text_display = NodePath("hp_bar/hp_display")
 shop_animations = NodePath("shop_animations")
@@ -781,7 +783,6 @@ libraries = {
 [node name="effects_nodes" type="Node" parent="."]
 
 [node name="black_overlay" type="ColorRect" parent="effects_nodes"]
-visible = false
 z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -794,6 +795,13 @@ color = Color(0, 0, 0, 1)
 
 [node name="voice_line_player" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7571836, 0.72308564)
+script = ExtResource("4_dqkch")
+
+[node name="Hurt" type="TextureRect" parent="."]
+modulate = Color(0.99999434, 0.49142903, 0.4498309, 1)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_qlg0r")
 
 [connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
 [connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]

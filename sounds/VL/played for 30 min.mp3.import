@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7qroxc0mf34w"
+path="res://.godot/imported/played for 30 min.mp3-bf82c7472c7f43a3c2b4cfc65330ba27.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/played for 30 min.mp3"
+dest_files=["res://.godot/imported/played for 30 min.mp3-bf82c7472c7f43a3c2b4cfc65330ba27.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

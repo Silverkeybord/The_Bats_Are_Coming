@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scripts/Global.gd"
+VoiceLines="*res://scripts/voice_lines.gd"
 
 [display]
 
@@ -29,6 +30,7 @@ window/stretch/aspect="ignore"
 [file_customization]
 
 folder_colors={
+"res://assests/": "red",
 "res://scenes/": "blue",
 "res://scripts/": "gray",
 "res://sounds/": "green",

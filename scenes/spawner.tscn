@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://4toi7ndrm7or"]
 
 [ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://scripts/spawner.gd" id="1_3fqj6"]
-[ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://mob/spawner/spawner_model.tscn" id="1_qnmfe"]
-[ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://mob/bat/mob.tscn" id="2_goea1"]
+[ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://scenes/spawner_model.tscn" id="1_qnmfe"]
+[ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://scenes/mob.tscn" id="2_goea1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3fqj6"]
 radius = 1.1071879

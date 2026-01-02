@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bn6c8qljx3jul"
+path="res://.godot/imported/played for 1h.mp3-cb0ac1455946e3c28a555505c82ab8f2.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/played for 1h.mp3"
+dest_files=["res://.godot/imported/played for 1h.mp3-cb0ac1455946e3c28a555505c82ab8f2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

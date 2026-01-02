@@ -1,7 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://dp7sxe5xl5shk"]
+[gd_scene load_steps=41 format=3 uid="uid://dp7sxe5xl5shk"]
 
 [ext_resource type="Script" uid="uid://ityxmd8yap7a" path="res://level/game_control.gd" id="1_l5ub2"]
-[ext_resource type="PackedScene" uid="uid://chb3pxm0scfyx" path="res://player/player.tscn" id="1_vu7ft"]
+[ext_resource type="PackedScene" uid="uid://chb3pxm0scfyx" path="res://scenes/player.tscn" id="1_vu7ft"]
 [ext_resource type="Texture2D" uid="uid://bos7rridjkps1" path="res://level/checkboard.png" id="2_hfkki"]
 [ext_resource type="PackedScene" uid="uid://cxk1y4n5scojw" path="res://scenes/menu.tscn" id="2_to0a4"]
 [ext_resource type="Material" uid="uid://c0x4onlgqxge5" path="res://material's/yellow.tres" id="3_bk1rt"]
@@ -319,6 +319,90 @@ albedo_texture = ExtResource("2_hfkki")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="Animation" id="Animation_fxr6r"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map3:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("maps/map1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("maps/map1:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_famlx"]
 resource_name = "map1-map2"
 tracks/0/type = "bezier"
@@ -368,8 +452,69 @@ tracks/3/keys = {
 "values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fxr6r"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_agxqc"]
+resource_name = "map2-map3"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70.59489, -70, -0.26666665, 1.7649918, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map3:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.26666665, -1.7649944, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a43n5"]
+resource_name = "map2-map1"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -377,9 +522,9 @@ tracks/0/path = NodePath("maps/map1:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-70, -0.19999999, 0.48672485, 0.1, 70, 0, -0.26666665, -1.6666659, 0, -55.229416),
+"times": PackedFloat32Array(-0.03333333, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -388,9 +533,9 @@ tracks/1/path = NodePath("maps/map2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-70, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.26666665, -1.8633227, 0.1, -70, -70, -0.23333335, 2.5516205, 0, 0.39179993),
+"times": PackedFloat32Array(-0.03333333, 1)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -399,10 +544,10 @@ tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -411,16 +556,215 @@ tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -5, 0)]
+"values": [Vector3(0, -70, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vlpid"]
+resource_name = "map1-map3"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map1:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70, -70, -0.19999999, 0.48672485, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map3:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.3333333, -2.4532933, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfejc"]
+resource_name = "map3-map2"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-70, -0.26666665, 1.7649918, 0.1, 70, 0, -0.26666665, -2.354965, 0.1, -70.59489),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map3:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.26666665, -1.7649944, 0.1, -70, -70, -0.26666665, 1.5683365, 0.06666667, 69.80826),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rm35f"]
+resource_name = "map3-map1"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-70, -0.26666665, 1.7649918, 0.1, 70),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map3:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.26666665, -1.7649944, 0.1, -70, -70, -0.26666665, 1.5683365, 0.06666667, 69.80826),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map1:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(-70, 0, 0, 0.06666667, 70.10325, 0, -0.26666665, -2.64995, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_agxqc"]
 _data = {
 &"RESET": SubResource("Animation_fxr6r"),
-&"map1-map2": SubResource("Animation_famlx")
+&"map1-map2": SubResource("Animation_famlx"),
+&"map1-map3": SubResource("Animation_vlpid"),
+&"map2-map1": SubResource("Animation_a43n5"),
+&"map2-map3": SubResource("Animation_agxqc"),
+&"map3-map1": SubResource("Animation_rm35f"),
+&"map3-map2": SubResource("Animation_wfejc")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxr6r"]
@@ -448,9 +792,11 @@ mob_counter = NodePath("wave_visuals2D/mobs_left")
 [node name="Player" parent="consistant_nodes" node_paths=PackedStringArray("game_controller") groups=["player"] instance=ExtResource("1_vu7ft")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 game_controller = NodePath("../..")
+metadata/_edit_lock_ = true
 
 [node name="world_borders" type="StaticBody3D" parent="consistant_nodes"]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
 transform = Transform3D(-4.371139e-08, -8.742278e-08, -1, 0, -1, 8.742278e-08, -1, 3.821371e-15, 4.371139e-08, 0, 1, 75)
@@ -480,6 +826,7 @@ debug_color = Color(1, 1, 1, 0.41960785)
 [node name="start_fade" type="Area3D" parent="consistant_nodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/start_fade"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
@@ -489,6 +836,7 @@ debug_color = Color(0, 0, 0, 0.41960785)
 [node name="death_area" type="Area3D" parent="consistant_nodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/death_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
@@ -499,6 +847,7 @@ debug_color = Color(0, 0, 0, 0.41960785)
 transform = Transform3D(1.7763568e-15, -1, -5.9604645e-08, -4.371139e-08, -5.9604645e-08, 1, -1, 8.2904493e-16, -4.371139e-08, 0, 30, 0)
 visible = false
 fov = 106.2
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="consistant_nodes"]
 environment = ExtResource("3_famlx")
@@ -508,6 +857,7 @@ transform = Transform3D(1, 0, 0, 0, 0.6006017, 0.7995484, 0, -0.7995484, 0.60060
 light_color = Color(0.4083453, 0.4083453, 0.4083453, 1)
 light_energy = 3.0
 shadow_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="menu" parent="consistant_nodes" instance=ExtResource("2_to0a4")]
 
@@ -527,6 +877,7 @@ shape = SubResource("BoxShape3D_to0a4")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="map2" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
+visible = false
 monitoring = false
 monitorable = false
 
@@ -619,7 +970,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, 17)
 shape = SubResource("BoxShape3D_q5el7")
 
 [node name="map3" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
-visible = false
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bat_flight_plane/map3"]
@@ -718,6 +1068,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(20, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform6" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 7.5)
@@ -726,6 +1077,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(20, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform5" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.5, -5, 0)
@@ -734,6 +1086,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(10, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform7" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -5, 0)
@@ -742,6 +1095,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(10, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform2" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -5, -25)
@@ -750,6 +1104,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(10, 10, 14)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform8" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -5, -19.5)
@@ -758,6 +1113,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(27, 10, 7)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform9" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28, -5, -3)
@@ -766,6 +1122,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(8, 10, 8)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform11" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.5, -5, 10.5)
@@ -774,6 +1131,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform12" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.5, -5, 15.5)
@@ -782,6 +1140,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform13" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.5, -5, 23.5)
@@ -790,6 +1149,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform14" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.5, -5, 25.5)
@@ -798,6 +1158,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform15" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -5, 14.5)
@@ -806,6 +1167,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 5)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform16" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, -5, 22.5)
@@ -814,6 +1176,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(17, 10, 7)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform19" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, -5, 29.5)
@@ -822,6 +1185,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(3, 10, 4)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform17" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15, -5, 15.5)
@@ -830,6 +1194,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(3, 10, 6)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform21" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22.5, -5, 19)
@@ -838,6 +1203,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(4, 10, 21)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform18" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.5, -5, 27.5)
@@ -846,6 +1212,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(7, 10, 9)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform23" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29, -5, 29.5)
@@ -854,6 +1221,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(3, 10, 8)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform22" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, -5, 22.5)
@@ -862,6 +1230,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(3, 10, 10)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform24" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.5, -5, 26)
@@ -870,6 +1239,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(4, 10, 3)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform20" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.5, -5, 22.5)
@@ -878,6 +1248,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(3, 10, 3)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform10" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, -5, -1.5)
@@ -886,6 +1257,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 10, 6)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform3" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -5, -8)
@@ -894,6 +1266,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(10, 10, 14)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="platform4" type="CSGBox3D" parent="maps/map1/platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -5, -26)
@@ -902,6 +1275,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(8, 10, 8)
 material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
 
 [node name="bridges" type="MeshInstance3D" parent="maps/map1"]
 
@@ -912,6 +1286,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform31" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, -0.5, 7)
@@ -920,6 +1295,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform34" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21, -0.5, 7)
@@ -928,6 +1304,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform11" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, -13)
@@ -936,6 +1313,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform14" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -944,6 +1322,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform13" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, -18)
@@ -952,6 +1331,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform16" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -0.5, -13)
@@ -960,6 +1340,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform17" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -0.5, -10)
@@ -968,6 +1349,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform19" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.5, -1)
@@ -976,6 +1358,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform24" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.5, 15)
@@ -984,6 +1367,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform25" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, 19)
@@ -992,6 +1376,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform26" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -0.5, 21)
@@ -1000,6 +1385,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform27" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -0.5, 20)
@@ -1008,6 +1394,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform20" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -0.5, -1)
@@ -1016,6 +1403,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform18" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -0.5, -8.5)
@@ -1024,6 +1412,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform21" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -0.5, 4.5)
@@ -1032,6 +1421,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform22" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -0.5, 16.5)
@@ -1040,6 +1430,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform23" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, -0.5, 10.5)
@@ -1048,6 +1439,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform28" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -0.5, 18.5)
@@ -1056,6 +1448,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform29" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, -0.5, 24.5)
@@ -1064,6 +1457,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform30" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 26.5)
@@ -1072,6 +1466,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform15" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.5, -21)
@@ -1080,6 +1475,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform35" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.5, -13)
@@ -1088,6 +1484,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform12" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -0.5, -15.5)
@@ -1096,6 +1493,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 2)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform6" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -0.5, -6)
@@ -1104,6 +1502,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform7" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, -7)
@@ -1112,6 +1511,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform32" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, 4.5)
@@ -1120,6 +1520,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform33" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, 11.5)
@@ -1128,6 +1529,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 5)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform8" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -0.5, -18.5)
@@ -1136,6 +1538,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform9" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -0.5, -18.5)
@@ -1144,6 +1547,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 4)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="platform10" type="CSGBox3D" parent="maps/map1/bridges"]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 19.133976, -0.5, -25.5)
@@ -1152,6 +1556,7 @@ collision_layer = 3
 collision_mask = 3
 size = Vector3(2, 1, 6)
 material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="spawners" type="Node3D" parent="maps/map1"]
 
@@ -1819,15 +2224,715 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
 coin_spawn_node = NodePath("../../../../coins")
 
 [node name="map3" type="Node3D" parent="maps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
 
 [node name="platforms" type="MeshInstance3D" parent="maps/map3"]
 
+[node name="platform" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform33" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -5, -34)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform34" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -5, -30)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform35" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -5, -26)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform36" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -4.5, -22)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 11, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform37" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -5, -28)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform38" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -5, -24)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform39" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -4.5, -20)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 11, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform40" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4, -16)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 12, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform15" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform18" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 33)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform16" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform19" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -5, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 10, 11)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform21" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -4.5, 19.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 11, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform22" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -4, 22.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 12, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform23" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -3.5, 16.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 13, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform24" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -3, 10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 14, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform25" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -2.5, 13.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 15, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform26" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -2, 8.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 16, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform20" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -5, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 10, 11)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform27" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -5, 11.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 10, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform28" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -5, 11.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 10, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform30" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -5, -10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 10, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform31" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -5, -10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 10, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform29" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -5, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 10, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform32" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -4, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 12, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform17" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -5, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 10, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform11" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 3, 12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 26, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform12" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 3, -12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 26, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform13" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 3, 12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 26, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform14" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 3, -12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 26, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform10" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 0, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 20, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform4" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 11, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform8" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 13, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform9" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 13, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform5" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 11, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform2" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 12, 12)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform6" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -3, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 14, 20)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform7" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -3, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 14, 20)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform3" type="CSGBox3D" parent="maps/map3/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 12, 12)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
 [node name="bridges" type="MeshInstance3D" parent="maps/map3"]
+
+[node name="platform5" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform6" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform7" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform17" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 13)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform24" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform32" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 17.464466, 2, -17.535534)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform33" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 21, 3.5, -14)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform34" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 24.535534, 5, -10.464466)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform35" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 28.035534, 6.5, -6.964466)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform36" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 31.217514, 8, -3.7824855)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 1, 3)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform18" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 18)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform20" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 41)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform19" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 18)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform21" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform22" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 24)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform23" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 19)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform28" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -0.5, -20)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform29" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform30" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21, -0.5, -33)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform31" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, -0.5, -39)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform25" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 0.5, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform26" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, 3.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform27" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, -2.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform8" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform9" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform10" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform11" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform12" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform13" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform15" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 9, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform16" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 9, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
+
+[node name="platform14" type="CSGBox3D" parent="maps/map3/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("3_bk1rt")
+metadata/_edit_lock_ = true
 
 [node name="spawners" type="Node3D" parent="maps/map3"]
 
+[node name="StaticBody3D" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 19, -12.5)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
+[node name="StaticBody3D2" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 29)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
+[node name="StaticBody3D3" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 3, 0.5)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
+[node name="StaticBody3D4" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -30)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
+[node name="StaticBody3D5" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 19, 12.5)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
+[node name="StaticBody3D6" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 13, 0)
+player = NodePath("../../../../consistant_nodes/Player")
+game_controller = NodePath("../../../..")
+enemy_spawn_node = NodePath("../../../../enemies")
+
 [node name="coin_spawners" type="Node3D" parent="maps/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70, 0)
+
+[node name="Marker3D" parent="maps/map3/coin_spawners" node_paths=PackedStringArray("coin_spawn_node") instance=ExtResource("8_xkvjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 11, 0)
+coin_spawn_node = NodePath("../../../../coins")
+
+[node name="Marker3D2" parent="maps/map3/coin_spawners" node_paths=PackedStringArray("coin_spawn_node") instance=ExtResource("8_xkvjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 41)
+coin_spawn_node = NodePath("../../../../coins")
+
+[node name="Marker3D3" parent="maps/map3/coin_spawners" node_paths=PackedStringArray("coin_spawn_node") instance=ExtResource("8_xkvjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 2, 0)
+coin_spawn_node = NodePath("../../../../coins")
+
+[node name="Marker3D4" parent="maps/map3/coin_spawners" node_paths=PackedStringArray("coin_spawn_node") instance=ExtResource("8_xkvjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -34)
+coin_spawn_node = NodePath("../../../../coins")
 
 [node name="change_map_animations" type="AnimationPlayer" parent="maps"]
 root_node = NodePath("../..")

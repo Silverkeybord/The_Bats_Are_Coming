@@ -3,13 +3,27 @@ extends RigidBody3D
 const RAGDOLL_TIME := 4
 const MIN_RANDOM_VECTOR3_VALUE := 5
 const MAX_RANDOM_VECTOR3_VALUE := 10
-const BAT_SCORE := 1
-const VERTICLE_SPEED := 2
+const VERTICLE_SPEED := 3
 const RANDOM_FLYING_HEIGHT_OFFSET := 0.2
 const RANDOM_SPEED := 0.5
-const ATTACK_AREA_RADIUS := 4.0
-const MOVE_AREA_RADIUS := 0.4
+const HALF_PLAYER_HEIGH := 1.25
+
+# bat types
+const FAST_TYPE_KEY := "fast"
+const HEAVY_TYPE_KEY := "heavy"
+const SKY_TYPE_KEY := "sky"
+const SHOOTER_TYPE_KEY := "shooter"
+const TRANSPARENT_TYPE_KEY := "transparent"
+
+# sky bat area properties
+const SKY_ATTACK_AREA_RADIUS := 4.0
+const SKY_MOVE_AREA_RADIUS := 0.4
 const SKY_BAT_PROJECTILE_Y_OFFSET := 0.5
+
+# shooter bat area properties
+const SHOOTER_ATTACK_AREA_RADIUS := 8
+const SHOOTER_MOVE_AREA_RADIUS := 7
+
 const LOWEST_POINT := -5
 
 var in_attack_range := false
@@ -38,9 +52,11 @@ var should_rise := false
 @export var rigid_body_collisionshape: CollisionShape3D
 @export var attack_collisionshape: CollisionShape3D
 @export var move_collisionshape: CollisionShape3D
+@export var shooter_projectile_spawn: Marker3D
 
 @export_group("out of scene exports")
 @export var sky_bat_projectile: PackedScene
+@export var shooter_bat_projectile: PackedScene
 @export var player: CharacterBody3D
 @export var game_controller: Node3D
 
@@ -76,26 +92,30 @@ func _ready() -> void:
 		bat_mesh.set_surface_override_material(0, bat_mat)
 		bat_mat.albedo_texture = bat_info["texture"]
 	
-	if type == "heavy" or type == "fast":
+	if type == HEAVY_TYPE_KEY or type == FAST_TYPE_KEY:
 		bat_model.scale = Global.ENEMY_INFO[type]["scale"]
 		rigid_body_collisionshape.scale = Global.ENEMY_INFO[type]["scale"]
 		
-	elif type == "transparent":
+	elif type == TRANSPARENT_TYPE_KEY:
 		bat_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 	
-	elif type == "sky":
+	elif type == SKY_TYPE_KEY:
 		# height is multiplyd by 2 because of the round ends of the capsul 
 		attack_collisionshape.shape = CapsuleShape3D.new()
-		attack_collisionshape.shape.radius = ATTACK_AREA_RADIUS
-		attack_collisionshape.shape.height = flying_height + ATTACK_AREA_RADIUS * 2
+		attack_collisionshape.shape.radius = SKY_ATTACK_AREA_RADIUS
+		attack_collisionshape.shape.height = flying_height + SKY_ATTACK_AREA_RADIUS * 2
 		attack_collisionshape.position.y = -(
-			attack_collisionshape.shape.height / 2 - ATTACK_AREA_RADIUS)
+			attack_collisionshape.shape.height / 2 - SKY_ATTACK_AREA_RADIUS)
 		
 		move_collisionshape.shape = CapsuleShape3D.new()
-		move_collisionshape.shape.radius = MOVE_AREA_RADIUS
-		move_collisionshape.shape.height = flying_height + MOVE_AREA_RADIUS * 2
+		move_collisionshape.shape.radius = SKY_MOVE_AREA_RADIUS
+		move_collisionshape.shape.height = flying_height + SKY_MOVE_AREA_RADIUS * 2
 		move_collisionshape.position.y = -(
-			move_collisionshape.shape.height / 2 - MOVE_AREA_RADIUS)
+			move_collisionshape.shape.height / 2 - SKY_MOVE_AREA_RADIUS)
+	
+	elif type == SHOOTER_TYPE_KEY:
+		attack_collisionshape.shape.radius = SHOOTER_ATTACK_AREA_RADIUS
+		move_collisionshape.shape.radius = SHOOTER_MOVE_AREA_RADIUS
 	
 	height_check_areas.position.y = -flying_height 
 
@@ -131,10 +151,10 @@ func take_damage(player_damage: int):
 	hurt_sound.play()
 	
 	if hp <= 0:
-		die(true)
+		die(self)
 
 
-func die(killed: bool) -> void: # if killed by bullets is true
+func die(called_node: Node) -> void: # if killed by bullets is true
 	rigid_body_collisionshape.set_deferred("disabled", true)
 	can_attack = false
 	gravity_scale = 1
@@ -145,10 +165,9 @@ func die(killed: bool) -> void: # if killed by bullets is true
 	
 	animation_tree.active = false
 	animation_player.play("custom/fadeout")
-	if not Global.player_died:
-		death_sound.play()
 	
-	if killed:
+	if called_node == self:
+		death_sound.play()
 		Global.coins += value
 	
 	await get_tree().create_timer(RAGDOLL_TIME).timeout
@@ -192,7 +211,17 @@ func _on_attack_timer_timeout() -> void:
 			position.x, position.y - SKY_BAT_PROJECTILE_Y_OFFSET, position.z)
 		new_projectile.damage = damage
 		new_projectile.player_pos = player.position
-		
+	
+	elif type == "shooter":
+		var new_projectile = shooter_bat_projectile.instantiate()
+		add_sibling(new_projectile)
+		new_projectile.position = shooter_projectile_spawn.global_position
+		new_projectile.look_at(Vector3(
+			player.position.x, 
+			player.position.y + HALF_PLAYER_HEIGH, 
+			player.position.z))
+		new_projectile.damage = damage
+	
 	else:
 		if player.hp - damage < 0:
 			player.hp = 0

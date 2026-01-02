@@ -20,9 +20,14 @@ const GROUP_SPAWNERS := "spawners"
 const GROUP_COIN_SPAWNERS := "coin_spawners"
 const KEY_MUTATION_PROB := "mutation_probilities"
 
+const INTRO_FADEOUT := "fade_out"
+
+const VL_INTRO_KEY := "intro"
+
 var active_spawners: Node3D
 var active_coin_spawners: Node3D
-var active_map = maps.MAP2
+var active_map = maps.MAP1
+var current_map = maps.MAP1
 
 @export_group("map exports")
 @export var change_map_animations: AnimationPlayer
@@ -47,6 +52,11 @@ var active_map = maps.MAP2
 
 func _ready() -> void:
 	await get_tree().process_frame
+	await VoiceLines.play_vl(VL_INTRO_KEY)
+	
+	var player = get_tree().get_first_node_in_group("player")
+	player.effect_animations.play(INTRO_FADEOUT)
+	
 	start_new_run()
 
 
@@ -85,13 +95,39 @@ func start_new_run() -> void:
 	# if on the correct threshold
 	wave_visuals_animations.play("next_wave")
 	
-	if Global.current_wave == map_2_threshlond:
+	if Global.current_wave in map_1_waves:
 		Global.clear_coins_and_mobs()
-		change_map_animations.play("map1-map2")
+		if current_map != maps.MAP1:
+			
+			if current_map == maps.MAP2:
+				change_map_animations.play("map2-map1")
+			elif current_map == maps.MAP3:
+				change_map_animations.play("map3-map1")
+				
+			current_map = maps.MAP1
+	
+	if Global.current_wave in map_2_waves:
+		Global.clear_coins_and_mobs()
+		if current_map != maps.MAP2:
+			
+			if current_map == maps.MAP1:
+				change_map_animations.play("map1-map2")
+			elif current_map == maps.MAP3:
+				change_map_animations.play("map3-map2")
+				
+			current_map = maps.MAP2
 		
-	elif Global.current_wave == map_3_threshlond:
+	elif Global.current_wave in map_3_waves:
 		change_map_animations.play("map2-map3")
 		Global.clear_coins_and_mobs()
+		if current_map != maps.MAP3:
+			
+			if current_map == maps.MAP1:
+				change_map_animations.play("map1-map3")
+			elif current_map == maps.MAP2:
+				change_map_animations.play("map2-map3")
+			
+			current_map = maps.MAP3
 		
 	
 	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
@@ -141,7 +177,6 @@ func _set_active_map_and_spawners() -> void:
 			active_coin_spawners = map_3_coin_spawners
 			bat_flight_plane_2.set_deferred("monitorable", false)
 			bat_flight_plane_3.set_deferred("monitorable", true)
-
 
 
 func mob_died() -> void:

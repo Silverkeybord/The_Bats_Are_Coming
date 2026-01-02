@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnuqladgqwuk8"]
+[gd_scene load_steps=14 format=3 uid="uid://bnuqladgqwuk8"]
 
-[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://scripts/mob_script.gd" id="1_ih2ng"]
-[ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="1_pgttr"]
-[ext_resource type="PackedScene" uid="uid://c148jwmfcy6qw" path="res://scenes/sky_bat_projectile.tscn" id="2_adr5o"]
-[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="3_g7bq0"]
-[ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="4_adr5o"]
-[ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="5_ux8ix"]
+[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://scripts/mob_script.gd" id="1_h8ps3"]
+[ext_resource type="PackedScene" uid="uid://c148jwmfcy6qw" path="res://scenes/sky_bat_projectile.tscn" id="2_ebxvl"]
+[ext_resource type="PackedScene" uid="uid://cgwj8s7jrwp72" path="res://scenes/shooter_bat_projectile.tscn" id="3_ebxvl"]
+[ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="3_wpivu"]
+[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="4_nao87"]
+[ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="5_i71wu"]
+[ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="6_m0xve"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ih2ng"]
 radius = 0.35
@@ -15,13 +16,13 @@ resource_local_to_scene = true
 resource_name = "bat_mat"
 cull_mode = 2
 depth_draw_mode = 1
-albedo_texture = ExtResource("3_g7bq0")
+albedo_texture = ExtResource("4_nao87")
 roughness = 0.42727274
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_adr5o"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_h8ps3"]
 radius = 1.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_g7bq0"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ebxvl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g7bq0"]
 size = Vector3(1, 0.1, 1)
@@ -29,9 +30,9 @@ size = Vector3(1, 0.1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_adr5o"]
 size = Vector3(0.2, 0.2, 1)
 
-[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "game_controller", "death_sound", "hurt_sound")]
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "shooter_projectile_spawn", "game_controller", "death_sound", "hurt_sound")]
 gravity_scale = 0.0
-script = ExtResource("1_ih2ng")
+script = ExtResource("1_h8ps3")
 bat_model = NodePath("bat_model")
 animation_tree = NodePath("bat_model/AnimationTree")
 animation_player = NodePath("bat_model/AnimationPlayer")
@@ -41,7 +42,9 @@ bat_mesh = NodePath("bat_model/Armature/Skeleton3D/bat")
 rigid_body_collisionshape = NodePath("CollisionShape3D")
 attack_collisionshape = NodePath("attack_area/CollisionShape3D")
 move_collisionshape = NodePath("stop_movment_area/CollisionShape3D")
-sky_bat_projectile = ExtResource("2_adr5o")
+shooter_projectile_spawn = NodePath("shooter_projectile_spawn")
+sky_bat_projectile = ExtResource("2_ebxvl")
+shooter_bat_projectile = ExtResource("3_ebxvl")
 game_controller = NodePath("height_check_areas")
 death_sound = NodePath("death_sound")
 hurt_sound = NodePath("hurt_sound")
@@ -51,47 +54,47 @@ metadata/mob = false
 visible = false
 shape = SubResource("SphereShape3D_ih2ng")
 
-[node name="bat_model" parent="." instance=ExtResource("1_pgttr")]
+[node name="bat_model" parent="." instance=ExtResource("3_wpivu")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.023600003, 0)
-bones/1/rotation = Quaternion(-0.040854175, 0.18797126, -0.6454151, 0.73921394)
-bones/2/rotation = Quaternion(-0.18743144, -0.053492345, 0.26912802, 0.94317454)
-bones/3/rotation = Quaternion(-0.1660907, 0.01122242, 0.21273836, 0.9628242)
-bones/4/rotation = Quaternion(-0.040854175, -0.18797126, 0.6454151, 0.73921394)
-bones/5/rotation = Quaternion(-0.18743144, 0.053492345, -0.26912802, 0.94317454)
-bones/6/rotation = Quaternion(-0.1660907, -0.01122242, -0.21273836, 0.9628242)
-bones/8/rotation = Quaternion(3.492372e-08, 0.60226685, 0.7982948, 2.0986773e-08)
-bones/11/rotation = Quaternion(3.6303838e-08, 0.60226685, 0.7982948, 4.657063e-08)
+bones/0/position = Vector3(0, 0.023599999, 0)
+bones/1/rotation = Quaternion(0.16987346, 0.00401692, -0.64632475, 0.7439027)
+bones/2/rotation = Quaternion(0.17363562, 0.074478716, 0.3868569, 0.9025771)
+bones/3/rotation = Quaternion(0.15137416, 0.109721094, 0.35825026, 0.9147153)
+bones/4/rotation = Quaternion(0.16987346, -0.00401692, 0.64632475, 0.7439027)
+bones/5/rotation = Quaternion(0.17363562, -0.074478716, -0.3868569, 0.9025771)
+bones/6/rotation = Quaternion(0.15137416, -0.109721094, -0.35825026, 0.9147153)
+bones/8/rotation = Quaternion(3.7269547e-08, 0.6647223, 0.7470906, 2.2434625e-08)
+bones/11/rotation = Quaternion(2.2608514e-08, 0.6647223, 0.7470906, 4.201655e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")
 
 [node name="attack_area" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attack_area"]
-shape = SubResource("SphereShape3D_adr5o")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014716387, 0.0049643517, 0.020637155)
+shape = SubResource("SphereShape3D_h8ps3")
 
 [node name="stop_movment_area" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stop_movment_area"]
-shape = SubResource("SphereShape3D_g7bq0")
+shape = SubResource("SphereShape3D_ebxvl")
 
 [node name="attack_timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="death_sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_adr5o")
+stream = ExtResource("5_i71wu")
 volume_db = -16.0
 pitch_scale = 0.95
 
 [node name="hurt_sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_ux8ix")
+stream = ExtResource("6_m0xve")
 
 [node name="height_check_areas" type="Node3D" parent="."]
+visible = false
 
 [node name="top_flying_area" type="Area3D" parent="height_check_areas"]
 
@@ -114,6 +117,9 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2449856, -0.52985066)
 shape = SubResource("BoxShape3D_adr5o")
 debug_color = Color(0.8745098, 0, 0.9764706, 1)
+
+[node name="shooter_projectile_spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]

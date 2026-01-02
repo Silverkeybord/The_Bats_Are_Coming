@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c148jwmfcy6qw"]
 
 [ext_resource type="Script" uid="uid://sur5vsarglr6" path="res://scripts/sky_bat_projectile.gd" id="1_6etly"]
-[ext_resource type="Material" uid="uid://chvorqjxttqst" path="res://textres/sky_bat_projectile.tres" id="2_6etly"]
+[ext_resource type="Material" uid="uid://chvorqjxttqst" path="res://material's/sky_bat_projectile.tres" id="2_6etly"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m8t2b"]
 radius = 0.6
