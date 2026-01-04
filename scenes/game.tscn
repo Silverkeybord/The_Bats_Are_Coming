@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dp7sxe5xl5shk"]
+[gd_scene load_steps=59 format=3 uid="uid://dp7sxe5xl5shk"]
 
 [ext_resource type="Script" uid="uid://ityxmd8yap7a" path="res://level/game_control.gd" id="1_l5ub2"]
 [ext_resource type="PackedScene" uid="uid://chb3pxm0scfyx" path="res://scenes/player.tscn" id="1_vu7ft"]
@@ -63,6 +63,61 @@ size = Vector3(3, 12, 6)
 size = Vector3(7, 11, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xkvjb"]
+size = Vector3(6, 2, 11.900001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tnpc"]
+size = Vector3(3, 1.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtaks"]
+size = Vector3(12, 3.5, 7.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvpfn"]
+size = Vector3(5, 4, 26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dinhu"]
+size = Vector3(7, 3, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvuet"]
+size = Vector3(22, 2, 5.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trtic"]
+size = Vector3(27, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ir15t"]
+size = Vector3(10, 9, 21)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ca42v"]
+size = Vector3(12, 14, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rysoc"]
+size = Vector3(14, 10.5, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ssvqc"]
+size = Vector3(5.1, 8, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_264po"]
+size = Vector3(10, 27, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1kice"]
+size = Vector3(6, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5newe"]
+size = Vector3(7, 2, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37s47"]
+size = Vector3(8, 3, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bt5mj"]
+size = Vector3(8, 5, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1j6l"]
+size = Vector3(9, 4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl11u"]
+size = Vector3(9, 6, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhx41"]
+size = Vector3(10, 2, 10)
 
 [sub_resource type="Animation" id="Animation_8jqrf"]
 length = 0.001
@@ -452,65 +507,65 @@ tracks/3/keys = {
 "values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_agxqc"]
-resource_name = "map2-map3"
+[sub_resource type="Animation" id="Animation_vlpid"]
+resource_name = "map1-map3"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/path = NodePath("maps/map1:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70.59489, -70, -0.26666665, 1.7649918, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70, -70, -0.19999999, 0.48672485, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("maps/map3:position:y")
+tracks/1/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.26666665, -1.7649944, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("maps/map1:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -70, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map3:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.3333333, -2.4532933, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_a43n5"]
@@ -574,69 +629,8 @@ tracks/4/keys = {
 "values": [Vector3(0, -70, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vlpid"]
-resource_name = "map1-map3"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("maps/map1:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70, -70, -0.19999999, 0.48672485, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("maps/map3:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.3333333, -2.4532933, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("maps/map2:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -70, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wfejc"]
-resource_name = "map3-map2"
+[sub_resource type="Animation" id="Animation_agxqc"]
+resource_name = "map2-map3"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -644,8 +638,8 @@ tracks/0/path = NodePath("maps/map2:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-70, -0.26666665, 1.7649918, 0.1, 70, 0, -0.26666665, -2.354965, 0.1, -70.59489),
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -70.59489, -70, -0.26666665, 1.7649918, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -655,8 +649,8 @@ tracks/1/path = NodePath("maps/map3:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.26666665, -1.7649944, 0.1, -70, -70, -0.26666665, 1.5683365, 0.06666667, 69.80826),
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-70, -0.25, 0, 0.06666667, 69.80826, 0, -0.26666665, -1.7649944, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "value"
@@ -756,6 +750,67 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1)
 }
 
+[sub_resource type="Animation" id="Animation_wfejc"]
+resource_name = "map3-map2"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("maps/map2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-70, -0.26666665, 1.7649918, 0.1, 70, 0, -0.26666665, -2.354965, 0.1, -70.59489),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("maps/map3:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.26666665, -1.7649944, 0.1, -70, -70, -0.26666665, 1.5683365, 0.06666667, 69.80826),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("maps/map1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -70, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("maps/map_change_platform/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("maps/map_change_platform/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5, 0), Vector3(0, 5, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_agxqc"]
 _data = {
 &"RESET": SubResource("Animation_fxr6r"),
@@ -768,7 +823,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxr6r"]
-size = Vector3(150, 10, 150)
+size = Vector3(150, 9.97, 150)
 
 [node name="Game_controller" type="Node3D" node_paths=PackedStringArray("change_map_animations", "bat_flight_plane_2", "bat_flight_plane_3", "map_1_spawners", "map_2_spawners", "map_3_spawners", "map_1_coin_spawners", "map_2_coin_spawners", "map_3_coin_spawners", "wave_visuals_animations", "main_wave_label", "next_animations_wave", "previous_animations_wave", "mob_counter")]
 script = ExtResource("1_l5ub2")
@@ -970,13 +1025,122 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, 17)
 shape = SubResource("BoxShape3D_q5el7")
 
 [node name="map3" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
+visible = false
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 3.1292439e-07)
 shape = SubResource("BoxShape3D_xkvjb")
-disabled = true
-debug_color = Color(0, 0.6392157, 0.3882353, 1)
+debug_color = Color(0.5844885, 0.55194396, 0, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1, 3.1292439e-07)
+shape = SubResource("BoxShape3D_xkvjb")
+debug_color = Color(0.5844885, 0.55194396, 0, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -3.5)
+shape = SubResource("BoxShape3D_0tnpc")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.5)
+shape = SubResource("BoxShape3D_0tnpc")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -9.3)
+shape = SubResource("BoxShape3D_vtaks")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 9.25)
+shape = SubResource("BoxShape3D_vtaks")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
+shape = SubResource("BoxShape3D_kvpfn")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 0)
+shape = SubResource("BoxShape3D_kvpfn")
+debug_color = Color(0.8352941, 1, 0, 1)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.5, 0)
+shape = SubResource("BoxShape3D_dinhu")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15)
+shape = SubResource("BoxShape3D_dinhu")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -15.75)
+shape = SubResource("BoxShape3D_kvuet")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -21.5)
+shape = SubResource("BoxShape3D_trtic")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(0.25881898, 0.9659258, 0, -0.9659258, 0.25881898, 0, 0, 0, 1, 14.817839, 1.1485869, 0)
+shape = SubResource("BoxShape3D_ir15t")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 0, 0, 1, 30.042162, 3.2773156, 0)
+shape = SubResource("BoxShape3D_ca42v")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 4.75, 0)
+shape = SubResource("BoxShape3D_rysoc")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 20.97769, 3.8854375, 0)
+shape = SubResource("BoxShape3D_ssvqc")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(0.70710677, 0.6830128, 0.18301263, 0, 0.25881895, -0.96592593, -0.70710677, 0.6830128, 0.18301263, 23.151897, 1.1192589, -11.848104)
+shape = SubResource("BoxShape3D_264po")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0.5, 19.5)
+shape = SubResource("BoxShape3D_1kice")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1, 22)
+shape = SubResource("BoxShape3D_5newe")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 1.5, 17)
+shape = SubResource("BoxShape3D_37s47")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.5, 14)
+shape = SubResource("BoxShape3D_bt5mj")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 2, 10)
+shape = SubResource("BoxShape3D_e1j6l")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 8.5)
+shape = SubResource("BoxShape3D_pl11u")
+debug_color = Color(0.92941177, 0, 1, 1)
+
+[node name="CollisionShape3D24" type="CollisionShape3D" parent="bat_flight_plane/map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, 0.5)
+shape = SubResource("BoxShape3D_bhx41")
 
 [node name="wave_visuals2D" type="Node" parent="."]
 

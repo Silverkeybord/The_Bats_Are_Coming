@@ -114,13 +114,21 @@ offset_right = 577.0
 offset_bottom = 286.0
 text = "Unpause or press esc"
 
-[node name="main menue" type="Button" parent="ColorRect"]
+[node name="save" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 107.0
 offset_top = 352.0
+offset_right = 314.45502
+offset_bottom = 464.0
+text = "save"
+
+[node name="load" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 358.55902
+offset_top = 352.0
 offset_right = 574.0
 offset_bottom = 464.0
-text = "main menue probably"
+text = "load"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -130,14 +138,17 @@ autoplay = "rotate"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1205.0001
-offset_top = 915.9998
-offset_right = 2009.0001
-offset_bottom = 1091.9983
+offset_left = 1197.0001
+offset_top = 884.9998
+offset_right = 2001.0
+offset_bottom = 1103.9998
 theme_override_font_sizes/font_size = 24
-text = "bats health scale with current wave with 
+text = "bats health, damage, and value 
+scale with current wave with 
 Global.base_stat_mult = 1 + 
-(Global.current_wave / Global.WAVE_MULT_DIVIDER)"
+(Global.current_wave / Global.WAVE_MULT_DIVIDER)
+const WAVE_MULT_DIVIDER := 10.0
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -154,12 +165,13 @@ vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = -65.99997
-offset_top = 190.0
-offset_right = 738.0
-offset_bottom = 365.99854
+offset_left = -108.99997
+offset_top = 209.00003
+offset_right = 695.0
+offset_bottom = 384.99857
 theme_override_font_sizes/font_size = 24
-text = "dont get flung upwards"
+text = "idk what im doing i need to 
+spend more time impelmenting what i learnt"
 horizontal_alignment = 1
 vertical_alignment = 1
 

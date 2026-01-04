@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bo83lpidxpbeo"
+path="res://.godot/imported/15 more waves.mp3-965122e0b30150b312b9c6ff66fae9d0.mp3str"
+
+[deps]
+
+source_file="res://sounds/VL/15 more waves.mp3"
+dest_files=["res://.godot/imported/15 more waves.mp3-965122e0b30150b312b9c6ff66fae9d0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

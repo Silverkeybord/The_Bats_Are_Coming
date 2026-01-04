@@ -320,6 +320,12 @@ transform = Transform3D(1, 6.91216e-10, 1.3038516e-08, -2.1827873e-11, 1, 1.1641
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Hurt" type="TextureRect" parent="."]
+modulate = Color(0.99999434, 0.49142903, 0.4498309, 1)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_qlg0r")
+
 [node name="coins_label" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.011979166
@@ -794,14 +800,8 @@ size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
 [node name="voice_line_player" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7571836, 0.72308564)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9571836, 0.72308564)
 script = ExtResource("4_dqkch")
-
-[node name="Hurt" type="TextureRect" parent="."]
-modulate = Color(0.99999434, 0.49142903, 0.4498309, 1)
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("5_qlg0r")
 
 [connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
 [connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]

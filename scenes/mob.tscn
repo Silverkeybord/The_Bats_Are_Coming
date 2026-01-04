@@ -30,7 +30,7 @@ size = Vector3(1, 0.1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_adr5o"]
 size = Vector3(0.2, 0.2, 1)
 
-[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "shooter_projectile_spawn", "game_controller", "death_sound", "hurt_sound")]
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "shooter_projectile_spawn", "transparent_interval", "transparent_duration", "game_controller", "death_sound", "hurt_sound")]
 gravity_scale = 0.0
 script = ExtResource("1_h8ps3")
 bat_model = NodePath("bat_model")
@@ -43,6 +43,8 @@ rigid_body_collisionshape = NodePath("CollisionShape3D")
 attack_collisionshape = NodePath("attack_area/CollisionShape3D")
 move_collisionshape = NodePath("stop_movment_area/CollisionShape3D")
 shooter_projectile_spawn = NodePath("shooter_projectile_spawn")
+transparent_interval = NodePath("invisible_interval")
+transparent_duration = NodePath("invisible_duration")
 sky_bat_projectile = ExtResource("2_ebxvl")
 shooter_bat_projectile = ExtResource("3_ebxvl")
 game_controller = NodePath("height_check_areas")
@@ -58,32 +60,33 @@ shape = SubResource("SphereShape3D_ih2ng")
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, 0.023599999, 0)
-bones/1/rotation = Quaternion(0.16987346, 0.00401692, -0.64632475, 0.7439027)
-bones/2/rotation = Quaternion(0.17363562, 0.074478716, 0.3868569, 0.9025771)
-bones/3/rotation = Quaternion(0.15137416, 0.109721094, 0.35825026, 0.9147153)
-bones/4/rotation = Quaternion(0.16987346, -0.00401692, 0.64632475, 0.7439027)
-bones/5/rotation = Quaternion(0.17363562, -0.074478716, -0.3868569, 0.9025771)
-bones/6/rotation = Quaternion(0.15137416, -0.109721094, -0.35825026, 0.9147153)
-bones/8/rotation = Quaternion(3.7269547e-08, 0.6647223, 0.7470906, 2.2434625e-08)
-bones/11/rotation = Quaternion(2.2608514e-08, 0.6647223, 0.7470906, 4.201655e-08)
+bones/0/position = Vector3(0, -0.023599999, 0)
+bones/1/rotation = Quaternion(-0.016947761, 0.16385731, -0.63625926, 0.75368273)
+bones/2/rotation = Quaternion(-0.17914264, -0.054256205, 0.28492656, 0.9400964)
+bones/3/rotation = Quaternion(-0.191442, 0.0049537877, 0.21632248, 0.9573558)
+bones/4/rotation = Quaternion(-0.016947761, -0.16385731, 0.63625926, 0.75368273)
+bones/5/rotation = Quaternion(-0.17914264, 0.054256205, -0.28492656, 0.9400964)
+bones/6/rotation = Quaternion(-0.191442, -0.0049537877, -0.21632248, 0.9573558)
+bones/8/rotation = Quaternion(3.3016196e-08, 0.5816052, 0.8134712, 1.9399444e-08)
+bones/11/rotation = Quaternion(2.8582857e-08, 0.5816052, 0.8134712, 4.826852e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")
 
 [node name="attack_area" type="Area3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attack_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014716387, 0.0049643517, 0.020637155)
 shape = SubResource("SphereShape3D_h8ps3")
+debug_color = Color(1, 0.011764706, 0, 1)
 
 [node name="stop_movment_area" type="Area3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stop_movment_area"]
 shape = SubResource("SphereShape3D_ebxvl")
-
-[node name="attack_timer" type="Timer" parent="."]
-one_shot = true
+debug_color = Color(0, 1, 0.9098039, 1)
 
 [node name="death_sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_i71wu")
@@ -101,14 +104,14 @@ visible = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="height_check_areas/top_flying_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 shape = SubResource("BoxShape3D_g7bq0")
-debug_color = Color(0.87058824, 0, 0, 1)
+debug_color = Color(1, 1, 1, 1)
 
 [node name="bottom_flying_area" type="Area3D" parent="height_check_areas"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="height_check_areas/bottom_flying_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 shape = SubResource("BoxShape3D_g7bq0")
-debug_color = Color(0.87058824, 0, 0, 1)
+debug_color = Color(1, 1, 1, 1)
 
 [node name="rise_area" type="Area3D" parent="."]
 visible = false
@@ -120,17 +123,28 @@ debug_color = Color(0.8745098, 0, 0.9764706, 1)
 
 [node name="shooter_projectile_spawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+visible = false
+
+[node name="attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="invisible_interval" type="Timer" parent="."]
+
+[node name="invisible_duration" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
 [connection signal="body_entered" from="stop_movment_area" to="." method="_on_stop_movment_area_body_entered"]
 [connection signal="body_exited" from="stop_movment_area" to="." method="_on_stop_movment_area_body_exited"]
-[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_entered"]
 [connection signal="area_exited" from="height_check_areas/top_flying_area" to="." method="_on_top_flying_area_area_exited"]
 [connection signal="area_entered" from="height_check_areas/bottom_flying_area" to="." method="_on_bottom_flying_area_area_entered"]
 [connection signal="area_exited" from="height_check_areas/bottom_flying_area" to="." method="_on_bottom_flying_area_area_exited"]
 [connection signal="body_entered" from="rise_area" to="." method="_on_rise_area_body_entered"]
 [connection signal="body_exited" from="rise_area" to="." method="_on_rise_area_body_exited"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="invisible_interval" to="." method="_on_invisible_interval_timeout"]
+[connection signal="timeout" from="invisible_duration" to="." method="_on_invisible_duration_timeout"]
 
 [editable path="bat_model"]

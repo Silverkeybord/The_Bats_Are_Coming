@@ -18,8 +18,19 @@ const RESPAWN_POSITION := Vector3(0, 5, 0)
 const RESPAWN_CAMERA_ROTATION := Vector3(0, 0, 0)
 
 const AIM_DISTANCE := 200
-const WORLD_DAMAGE := 100
+const WORLD_DAMAGE := 200
 const HURT_THRESHOLD := 2.0 # the amount hp id divided by before showing
+
+const OUT_OF_THIS_WORLD_DISTANCE := 65.0 # meters away fom 0, 0, 0
+const OUT_OF_THIS_WORLD_REWARD := 100
+const MOBS_ALIVE_VL_THRESHOLD:= 30
+
+const VL_DEATH_KEY := "death"
+const VL_MAX_SCALE_KEY := "max_out_scale"
+const VL_FIRST_UPGRADE_KEY := "first_upgrade"
+const VL_10K_COINS_KEY := "ten_k_coins"
+const VL_OUT_OF_THIS_WORLD_KEY := "out_of_this_world"
+const VL_MORE_THAN_30_BATS_KEY := "more_than_30_bats"
 
 var h_sensitivity := 0.25
 var v_sensitivity := 0.005
@@ -34,6 +45,8 @@ var damage := 1
 var firerate := 0.25
 var durability := 1
 var bullet_scale := Vector3(1, 1, 1)
+
+var can_more_than_30_bats := false
 
 @export_group("in scene exports")
 @export var bullet_scene: PackedScene
@@ -186,6 +199,33 @@ func _process(_delta: float) -> void:
 	hurt_image.modulate.a = clamp(1.0 - (hp / max_hp) * HURT_THRESHOLD, 0.0, 1.0)
 	
 	_update_hp()
+	
+	#print(position.y)
+	
+	# voic lines stuff
+	if (Global.coins >= 10000 and 
+		not VoiceLines.single_activation_vls[VL_10K_COINS_KEY]):
+		
+		VoiceLines.play_vl(VL_10K_COINS_KEY)
+	
+	if Global.mobs_left >= MOBS_ALIVE_VL_THRESHOLD and can_more_than_30_bats:
+		can_more_than_30_bats = true
+		VoiceLines.play_vl(VL_MORE_THAN_30_BATS_KEY)
+		
+	else:
+		can_more_than_30_bats = false
+	
+	if (position.x >= OUT_OF_THIS_WORLD_DISTANCE or 
+		position.x <= -OUT_OF_THIS_WORLD_DISTANCE or
+		position.z >= OUT_OF_THIS_WORLD_DISTANCE or
+		position.z <= -OUT_OF_THIS_WORLD_DISTANCE
+		):
+		
+		if (not VoiceLines.single_activation_vls[VL_OUT_OF_THIS_WORLD_KEY] and 
+			not Global.going_to_boss):
+			
+			VoiceLines.play_vl(VL_OUT_OF_THIS_WORLD_KEY)
+			Global.coins += OUT_OF_THIS_WORLD_REWARD
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -242,13 +282,15 @@ func _update_hp() -> void:
 	hp_text_display.text = str(hp) + "/" + str(max_hp)
 	
 	if hp <= 0:
-		Global.player_died = true
-		
 		Global.clear_coins_and_mobs()
 		
 		effect_animations.play("fade_in")
 		await effect_animations.animation_finished
-		_died()
+		
+		if not Global.player_died:
+			_died()
+		
+		Global.player_died = true
 
 
 func _died() -> void:
@@ -257,13 +299,17 @@ func _died() -> void:
 	hp = max_hp
 	velocity = Vector3.ZERO
 	
+	Global._unlock_mouse_movement()
 	_check_wave_selection_unlocks()
 	game_controller.reset_wave_display()
 	Global.current_wave = Global.selected_wave
 	Global.can_spawn_enemies = false
 	Global.shop_open = true
+	
 	effect_animations.play("fade_out")
 	shop_animations.play("open_shop")
+	
+	await shop_animations.animation_finished
 	
 	Global._unlock_mouse_movement()
 
@@ -281,6 +327,8 @@ func _on_damage_button_pressed() -> void:
 	var new_value = damage_info["value"][str(Global.damage_level)]
 	damage_value_label.text = VALUE_TEXT + str(new_value)
 	Global.damage = new_value
+	
+	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
 	
 	var max_level =  damage_info["levels"]
 	if Global.damage_level == max_level:
@@ -304,6 +352,8 @@ func _on_firerate_button_pressed() -> void:
 	firerate_value_label.text = VALUE_TEXT + str(new_value)
 	firerate = new_value
 	shooting_timer.wait_time = firerate
+	
+	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
 	
 	var max_level = firerate_info["levels"]
 	if Global.firerate_level == max_level:
@@ -330,6 +380,8 @@ func _on_health_button_pressed() -> void:
 	hp_bar.max_value = max_hp
 	hp_bar.value = max_hp
 	
+	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
+	
 	var max_level = health_info["levels"]
 	if Global.hp_level == max_level:
 		health_button.queue_free()
@@ -352,10 +404,13 @@ func _on_bullet_scale_button_pressed() -> void:
 	bullet_scale_value_label.text = VALUE_TEXT + str(new_value)
 	Global.bullet_scale = Vector3(new_value, new_value, new_value)
 	
+	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
+	
 	var max_level = bullet_scale_info["levels"]
 	if Global.scale_level == max_level:
 		bullet_scale_button.queue_free()
 		bullet_scale_cost_label.text = MAX_LEVEL_TEXT
+		VoiceLines.play_vl(VL_MAX_SCALE_KEY)
 	else:
 		var new_cost = bullet_scale_info["cost"][str(Global.scale_level + 1)]
 		bullet_scale_cost_label.text = COINS_TEXT + str(new_cost)
@@ -373,6 +428,8 @@ func _on_durability_button_pressed() -> void:
 	var new_value = durability_info["value"][str(Global.durabilty_level)]
 	durability_value_label.text = VALUE_TEXT + str(new_value)
 	Global.durability = new_value
+	
+	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
 	
 	var max_level = durability_info["levels"]
 	if Global.durabilty_level == max_level:

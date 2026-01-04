@@ -12,7 +12,7 @@ const SHOP_INFO: Dictionary = {
 			"4": 100,
 			"5": 250,
 			"6": 500,
-			"7": 550,
+			"7": 750,
 			"8": 1000,
 			"9": 2500
 		},
@@ -106,13 +106,13 @@ const SHOP_INFO: Dictionary = {
 }
 const WAVE_INFO: Dictionary = {
 	"wave66": {
-		"amount": 10,
+		"amount": 20,
 		"interval": 1,
 		"mutation_probilities": {
 			"normal": 0.,
 			"fast": 0.,
 			"heavy": 0.,
-			"shooter": 0.99,
+			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
 		}
@@ -370,50 +370,50 @@ const WAVE_INFO: Dictionary = {
 		}
 	},
 	"wave22": {
-		"amount": 40,
+		"amount": 30,
 		"interval": 3,
 		"mutation_probilities": {
-			"normal": 0.48,
-			"fast": 0.1,
-			"heavy": 0.1,
-			"shooter": 0.06,
+			"normal": 0.,
+			"fast": 0.8,
+			"heavy": 0.,
+			"shooter": 0.1,
 			"sky": 0.1,
-			"transparent": 0.16
+			"transparent": 0.
 		}
 	},
 	"wave23": {
 		"amount": 40,
 		"interval": 3,
 		"mutation_probilities": {
-			"normal": 0.44,
+			"normal": 0.,
 			"fast": 0.1,
-			"heavy": 0.05,
-			"shooter": 0.2,
-			"sky": 0.1,
-			"transparent": 0.11
+			"heavy": 0.4,
+			"shooter": 0.4,
+			"sky": 0.,
+			"transparent": 0.1
 		}
 	},
 	"wave24": {
 		"amount": 40,
 		"interval": 2,
 		"mutation_probilities": {
-			"normal": 0.40,
-			"fast": 0.5,
-			"heavy": 0.05,
-			"shooter": 0.1,
+			"normal": 0.20,
+			"fast": 0.2,
+			"heavy": 0.2,
+			"shooter": 0.2,
 			"sky": 0.2,
 			"transparent": 0.2
 		}
 	},
 	"wave25": {
 		"amount": 100,
-		"interval": 1.5,
+		"interval": 3,
 		"mutation_probilities": {
-			"normal": 0.16,
-			"fast": 0.16,
+			"normal": 0.1,
+			"fast": 0.18,
 			"heavy": 0.16,
-			"shooter": 0.16,
-			"sky": 0.16,
+			"shooter": 0.18,
+			"sky": 0.18,
 			"transparent": 0.2
 		}
 	}
@@ -451,7 +451,7 @@ const ENEMY_INFO: Dictionary = {
 	"sky": {
 		"value": 4,
 		"damage": 2,
-		"speed": 4.5,
+		"speed": 6,
 		"health": 15,
 		"flight_height": 6,
 		"attack_interval": 0.8,
@@ -465,11 +465,13 @@ const ENEMY_INFO: Dictionary = {
 		"flight_height": 1,
 		"attack_interval": 1.8,
 		"texture": preload("res://textres/transparent_palette.png"),
+		"invisible_interval": 3,
+		"invisible_duration": 1
 	},
 	"shooter": {
 		"value": 3,
 		"damage": 2,
-		"speed": 4,
+		"speed": 6,
 		"health": 10,
 		"flight_height": 2,
 		"attack_interval": 1.5,
@@ -498,8 +500,8 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
 var player_died := true
-var coins := 100000
-var lock_movement := false
+var coins := 52000
+var lock_movement := true
 var shop_open := false
 
 # current wave info
@@ -511,10 +513,15 @@ var total_enemies: int
 var mob_stat_mult: int
 var mutation_probabilities: Dictionary
 var base_stat_mult: float
+var going_to_boss := false
+var fighting_boss := false
 
 # wave information
-var highest_wave := 1
-var selected_wave := 1
+var highest_wave := 25
+var selected_wave := 66
+
+# voice line stuff
+var coins_made_this_run := 0
 
 
 func _lock_mouse_movement() -> void:

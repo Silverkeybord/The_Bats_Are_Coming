@@ -6,7 +6,7 @@ const MAX_RANDOM_VECTOR3_VALUE := 10
 const VERTICLE_SPEED := 3
 const RANDOM_FLYING_HEIGHT_OFFSET := 0.2
 const RANDOM_SPEED := 0.5
-const HALF_PLAYER_HEIGH := 1.25
+const HALF_PLAYER_HEIGHT := 1.25
 
 # bat types
 const FAST_TYPE_KEY := "fast"
@@ -18,14 +18,15 @@ const TRANSPARENT_TYPE_KEY := "transparent"
 # sky bat area properties
 const SKY_ATTACK_AREA_RADIUS := 4.0
 const SKY_MOVE_AREA_RADIUS := 0.4
-const SKY_BAT_PROJECTILE_Y_OFFSET := 0.5
 
 # shooter bat area properties
 const SHOOTER_ATTACK_AREA_RADIUS := 8
 const SHOOTER_MOVE_AREA_RADIUS := 7
 
+# if bats go here they get teleported to glitch position
 const LOWEST_POINT := -5
 
+# bat stats and information
 var in_attack_range := false
 var can_move := true
 var can_attack := true
@@ -52,7 +53,11 @@ var should_rise := false
 @export var rigid_body_collisionshape: CollisionShape3D
 @export var attack_collisionshape: CollisionShape3D
 @export var move_collisionshape: CollisionShape3D
+
 @export var shooter_projectile_spawn: Marker3D
+
+@export var transparent_interval: Timer
+@export var transparent_duration: Timer
 
 @export_group("out of scene exports")
 @export var sky_bat_projectile: PackedScene
@@ -98,6 +103,9 @@ func _ready() -> void:
 		
 	elif type == TRANSPARENT_TYPE_KEY:
 		bat_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+		transparent_interval.wait_time = bat_info["invisible_interval"]
+		transparent_duration.wait_time = bat_info["invisible_duration"]
+		transparent_interval.start()
 	
 	elif type == SKY_TYPE_KEY:
 		# height is multiplyd by 2 because of the round ends of the capsul 
@@ -114,7 +122,9 @@ func _ready() -> void:
 			move_collisionshape.shape.height / 2 - SKY_MOVE_AREA_RADIUS)
 	
 	elif type == SHOOTER_TYPE_KEY:
+		attack_collisionshape.shape = attack_collisionshape.shape.duplicate()
 		attack_collisionshape.shape.radius = SHOOTER_ATTACK_AREA_RADIUS
+		move_collisionshape.shape = move_collisionshape.shape.duplicate()
 		move_collisionshape.shape.radius = SHOOTER_MOVE_AREA_RADIUS
 	
 	height_check_areas.position.y = -flying_height 
@@ -139,7 +149,7 @@ func _physics_process(delta: float) -> void:
 		position.y -= VERTICLE_SPEED * delta
 	
 	if position.y <= LOWEST_POINT:
-		linear_velocity = Vector3.ZERO
+		position = Vector3.UP
 
 
 func take_damage(player_damage: int):
@@ -158,7 +168,6 @@ func die(called_node: Node) -> void: # if killed by bullets is true
 	rigid_body_collisionshape.set_deferred("disabled", true)
 	can_attack = false
 	gravity_scale = 1
-	game_controller.mob_died()
 	set_physics_process(false)
 	linear_velocity = _random_vector3()
 	angular_velocity = _random_vector3()
@@ -168,7 +177,9 @@ func die(called_node: Node) -> void: # if killed by bullets is true
 	
 	if called_node == self:
 		death_sound.play()
+		game_controller.mob_died()
 		Global.coins += value
+		Global.coins_made_this_run += value
 	
 	await get_tree().create_timer(RAGDOLL_TIME).timeout
 	queue_free()
@@ -208,7 +219,7 @@ func _on_attack_timer_timeout() -> void:
 		var new_projectile = sky_bat_projectile.instantiate()
 		add_sibling(new_projectile)
 		new_projectile.position = Vector3(
-			position.x, position.y - SKY_BAT_PROJECTILE_Y_OFFSET, position.z)
+			player.position.x, position.y, player.position.z)
 		new_projectile.damage = damage
 		new_projectile.player_pos = player.position
 	
@@ -218,7 +229,7 @@ func _on_attack_timer_timeout() -> void:
 		new_projectile.position = shooter_projectile_spawn.global_position
 		new_projectile.look_at(Vector3(
 			player.position.x, 
-			player.position.y + HALF_PLAYER_HEIGH, 
+			player.position.y + HALF_PLAYER_HEIGHT, 
 			player.position.z))
 		new_projectile.damage = damage
 	
@@ -261,3 +272,15 @@ func _on_rise_area_body_entered(body: Node3D) -> void:
 func _on_rise_area_body_exited(body: Node3D) -> void:
 	if body is CSGBox3D:
 		should_rise = false
+
+
+# transparent bat invisibility timers
+func _on_invisible_interval_timeout() -> void:
+	bat_model.visible = false
+	rigid_body_collisionshape.set_deferred("disabled", true)
+	transparent_duration.start()
+
+
+func _on_invisible_duration_timeout() -> void:
+	bat_model.visible = true
+	rigid_body_collisionshape.set_deferred("disabled", false)

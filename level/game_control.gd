@@ -22,7 +22,17 @@ const KEY_MUTATION_PROB := "mutation_probilities"
 
 const INTRO_FADEOUT := "fade_out"
 
+const VL_FIRST_DEATH_KEY := "first_death"
+const VL_DEATH_KEY := "death"
 const VL_INTRO_KEY := "intro"
+const VL_BEAT_WAVE1_KEY := "beat_wave1"
+const VL_BEAT_WAVE10_KEY := "beat_wave10"
+const VL_BEAT_WAVE15_KEY := "beat_wave15"
+const VL_BEAT_WAVE20_KEY := "beat_wave20"
+const VL_BEAT_WAVE25_KEY := "beat_wave25"
+const VL_GOOD_RUN_KEY := "good_run"
+
+const GOOD_RUN_REQUIRMENTS := 200 # then times by global mult
 
 var active_spawners: Node3D
 var active_coin_spawners: Node3D
@@ -57,15 +67,35 @@ func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	player.effect_animations.play(INTRO_FADEOUT)
 	
+	Global._lock_mouse_movement()
 	start_new_run()
 
 
 func start_new_run() -> void:
+	# voice lines
+	if Global.current_wave == 15:
+		VoiceLines.play_vl(VL_BEAT_WAVE15_KEY)
+	
+	if Global.current_wave == 25:
+		VoiceLines.play_vl(VL_BEAT_WAVE25_KEY)
+	
+	if (Global.coins_made_this_run >= GOOD_RUN_REQUIRMENTS * Global.base_stat_mult
+		and Global.player_died):
+		VoiceLines.play_vl(VL_GOOD_RUN_KEY)
+	
+	
+	# starting all new wave setup
 	if Global.player_died:
+		if not VoiceLines.single_activation_vls[VL_FIRST_DEATH_KEY]:
+			await VoiceLines.play_vl(VL_FIRST_DEATH_KEY)
+		else:
+			await VoiceLines.play_vl(VL_DEATH_KEY)
+		
 		Global.current_wave = Global.selected_wave
 	
 	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
 	Global.player_died = false
+	
 	
 	# disables all enabled spawners
 	for spawner in get_tree().get_nodes_in_group("spawners"):
@@ -91,8 +121,9 @@ func start_new_run() -> void:
 	next_animations_wave.text = str(Global.current_wave)
 	previous_animations_wave.text = str(Global.current_wave - 1)
 	
+	
 	# sets main mob and wave text while they cant be seen and changes map
-	# if on the correct threshold
+	# if on the correct threshold and voice lines at certian waves
 	wave_visuals_animations.play("next_wave")
 	
 	if Global.current_wave in map_1_waves:
@@ -112,24 +143,28 @@ func start_new_run() -> void:
 			
 			if current_map == maps.MAP1:
 				change_map_animations.play("map1-map2")
+				VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
 			elif current_map == maps.MAP3:
 				change_map_animations.play("map3-map2")
 				
 			current_map = maps.MAP2
-		
+	
 	elif Global.current_wave in map_3_waves:
-		change_map_animations.play("map2-map3")
 		Global.clear_coins_and_mobs()
 		if current_map != maps.MAP3:
 			
 			if current_map == maps.MAP1:
 				change_map_animations.play("map1-map3")
+				print("map1-map3 wait wtf is actually happening")
 			elif current_map == maps.MAP2:
 				change_map_animations.play("map2-map3")
+				print("map2-map3")
+				VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
 			
 			current_map = maps.MAP3
-		
 	
+	
+	# changes wave and mob values while they are not visible in the animation
 	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
 	main_wave_label.text = VISUAL_WAVE_TEXT + str(Global.current_wave)
 	Global.mobs_left = Global.WAVE_INFO[current_wave_text]["amount"]
@@ -151,6 +186,8 @@ func start_new_run() -> void:
 		spawner.start_spawning()
 
 
+# quite bulky so i put it in a funciton sets the map the the current one based 
+# on an enum
 func _set_active_map_and_spawners() -> void:
 	if Global.current_wave in map_1_waves:
 		active_map = maps.MAP1
@@ -184,9 +221,14 @@ func mob_died() -> void:
 	mob_counter.text = VISUAL_MOBS_TEXT + str(Global.mobs_left)
 	
 	if Global.mobs_left == 0 and not Global.player_died:
+		
+		if Global.highest_wave == 1:
+			VoiceLines.play_vl(VL_BEAT_WAVE1_KEY)
+		
 		Global.current_wave += 1
 		if Global.current_wave > Global.highest_wave:
 			Global.highest_wave = Global.current_wave
+		
 		start_new_run()
 
 

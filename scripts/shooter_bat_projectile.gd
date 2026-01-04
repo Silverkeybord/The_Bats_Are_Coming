@@ -1,7 +1,7 @@
 extends Area3D
 
-const SPEED := 6.0
-const MAX_DISTANCE := 200.0
+const SPEED := 8.0
+const MAX_DISTANCE := 100.0
 
 var distance_travled := 0.0
 
