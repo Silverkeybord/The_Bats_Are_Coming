@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://3pfuogrxfj18"]
+[gd_scene load_steps=14 format=3 uid="uid://3pfuogrxfj18"]
 
-[ext_resource type="Script" uid="uid://lwulas5u6tem" path="res://scripts/coin.gd" id="1_i64fm"]
+[ext_resource type="Script" uid="uid://lwulas5u6tem" path="res://scripts/item.gd" id="1_i64fm"]
 [ext_resource type="AudioStream" uid="uid://c2l8ueigvxrj1" path="res://sounds/SFX/retro-coin-4-236671.mp3" id="2_11l1o"]
+[ext_resource type="AudioStream" uid="uid://dtsgycsnn4ddy" path="res://sounds/SFX/healed-up.mp3" id="3_6muww"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6qpsl"]
 
@@ -33,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("mesh:position:y")
+tracks/2/path = NodePath("animated_node:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -72,7 +73,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("mesh:position:y")
+tracks/2/path = NodePath("animated_node:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -87,6 +88,12 @@ _data = {
 &"spin": SubResource("Animation_v7riw")
 }
 
+[sub_resource type="BoxMesh" id="BoxMesh_s8enn"]
+size = Vector3(0.3, 0.9, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6muww"]
+albedo_color = Color(0.03137255, 1, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_h4etq"]
 size = Vector3(0.2, 0.6, 0.3)
 
@@ -100,13 +107,17 @@ height = 0.2
 albedo_color = Color(0.9963239, 0.9922176, 3.080368e-06, 1)
 bent_normal_enabled = true
 
-[node name="Area3D" type="Area3D" node_paths=PackedStringArray("pickup_sound", "mesh")]
+[node name="Area3D" type="Area3D" node_paths=PackedStringArray("collisionshape", "coin_sound", "heal_sound", "coin_mesh", "health_mesh")]
 script = ExtResource("1_i64fm")
-pickup_sound = NodePath("coin sound")
-mesh = NodePath("mesh")
+collisionshape = NodePath("CollisionShape3D")
+coin_sound = NodePath("coin_sound")
+heal_sound = NodePath("health_sound")
+coin_mesh = NodePath("animated_node/coin_mesh")
+health_mesh = NodePath("animated_node/heath_mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_6qpsl")
+debug_color = Color(0, 1, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -114,20 +125,37 @@ libraries = {
 }
 autoplay = "spin"
 
-[node name="coin sound" type="AudioStreamPlayer" parent="."]
+[node name="coin_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_11l1o")
 
-[node name="mesh" type="Node3D" parent="."]
+[node name="health_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6muww")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesh"]
+[node name="animated_node" type="Node3D" parent="."]
+
+[node name="heath_mesh" type="Node3D" parent="animated_node"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="animated_node/heath_mesh"]
+mesh = SubResource("BoxMesh_s8enn")
+surface_material_override/0 = SubResource("StandardMaterial3D_6muww")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="animated_node/heath_mesh"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_s8enn")
+surface_material_override/0 = SubResource("StandardMaterial3D_6muww")
+
+[node name="coin_mesh" type="Node3D" parent="animated_node"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="animated_node/coin_mesh"]
 mesh = SubResource("BoxMesh_h4etq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_o4fra")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="animated_node/coin_mesh"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d5gmh")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0t63x")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

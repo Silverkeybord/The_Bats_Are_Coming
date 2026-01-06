@@ -26,8 +26,11 @@ const VOICE_LINES := {
 		preload("res://sounds/VL/did that hurt it shouldn_t.mp3"),
 		preload("res://sounds/VL/how many coins did you get.mp3"),
 		preload("res://sounds/VL/welcome back.mp3"),
-		preload("res://sounds/VL/welcome back.mp3"),
-		preload("res://sounds/VL/did you fall off or were you touched by bats.mp3")
+		preload("res://sounds/VL/did you fall off or were you touched by bats.mp3"),
+		preload("res://sounds/SFX/fahhhhhhhhhhhhhh.mp3"),
+		preload("res://sounds/SFX/fail-sound-effect.mp3"),
+		preload("res://sounds/SFX/window-knock.mp3"),
+		preload("res://sounds/SFX/indian-song.mp3"),
 	],
 	"good_run": preload("res://sounds/VL/that was a good run.mp3"),
 	"more_than_30_bats": preload("res://sounds/VL/shoot the bats.mp3"),

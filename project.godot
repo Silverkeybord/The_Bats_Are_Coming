@@ -42,9 +42,9 @@ folder_colors={
 enemies=""
 bat_flight_plane=""
 player=""
-coins=""
 spawners="they spawn the enemies"
 coin_spawners="they spawn the coins"
+items=""
 
 [input]
 

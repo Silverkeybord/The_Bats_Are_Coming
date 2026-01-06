@@ -14,7 +14,8 @@ const SHOP_INFO: Dictionary = {
 			"6": 500,
 			"7": 750,
 			"8": 1000,
-			"9": 2500
+			"9": 2500,
+			"10": 5000
 		},
 		"value" : {
 			"0": 1,
@@ -27,6 +28,7 @@ const SHOP_INFO: Dictionary = {
 			"7": 12,
 			"8": 15,
 			"9": 20,
+			"10": 25
 		}
 	},
 	"firerate" : {
@@ -41,8 +43,8 @@ const SHOP_INFO: Dictionary = {
 			"0": 0.25,
 			"1": 0.2,
 			"2": 0.15,
-			"3": 0.12,
-			"4": 0.09,
+			"3": 0.10,
+			"4": 0.05,
 		}
 	},
 	"health" : {
@@ -57,6 +59,7 @@ const SHOP_INFO: Dictionary = {
 			"7": 750,
 			"8": 1000,
 			"9": 2500,
+			"10": 5000
 		},
 		"value" : {
 			"0": 10,
@@ -68,7 +71,8 @@ const SHOP_INFO: Dictionary = {
 			"6": 75,
 			"7": 100,
 			"8": 150,
-			"9": 250
+			"9": 250,
+			"10": 400
 		}
 	},
 	"bullet_scale" : {
@@ -112,8 +116,8 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.,
 			"fast": 0.,
 			"heavy": 0.,
-			"shooter": 0.,
-			"sky": 0.,
+			"shooter": 0.5,
+			"sky": 0.5,
 			"transparent": 0.
 		}
 	},
@@ -195,7 +199,7 @@ const WAVE_INFO: Dictionary = {
 		"mutation_probilities": {
 			"normal": 0.86,
 			"fast": 0.06,
-			"heavy": 0.02,
+			"heavy": 0.08,
 			"shooter": 0.,
 			"sky": 0.,
 			"transparent": 0.
@@ -430,8 +434,8 @@ const ENEMY_INFO: Dictionary = {
 	},
 	"fast": {
 		"value": 2,
-		"damage": 2,
-		"speed": 6,
+		"damage": 1,
+		"speed": 5.5,
 		"health": 3,
 		"flight_height": 1.5,
 		"attack_interval": 0.8,
@@ -443,7 +447,7 @@ const ENEMY_INFO: Dictionary = {
 		"damage": 4,
 		"speed": 2.5,
 		"health": 25,
-		"flight_height": 0.4,
+		"flight_height": 0.6,
 		"attack_interval": 2.5,
 		"texture": preload("res://textres/heavy_palette.png"),
 		"scale": Vector3(2, 2, 2)
@@ -452,7 +456,7 @@ const ENEMY_INFO: Dictionary = {
 		"value": 4,
 		"damage": 2,
 		"speed": 6,
-		"health": 15,
+		"health": 3,
 		"flight_height": 6,
 		"attack_interval": 0.8,
 		"texture": preload("res://textres/sky_palette.png"),
@@ -483,9 +487,6 @@ const ENEMY_KEYS: Array = [
 ]
 const AVAIBLE_SELECTABLE_WAVES: Array = [1, 5, 10, 15, 20, 25]
 
-var one_time_voice_lines: Dictionary = {
-	"enterd_game": false
-}
 
 # shop upgrades and values
 var damage_level := 0
@@ -500,7 +501,7 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
 var player_died := true
-var coins := 52000
+var coins := 3000
 var lock_movement := true
 var shop_open := false
 
@@ -510,15 +511,14 @@ var can_spawn_enemies := true
 var current_wave := 1
 var spawned_enemies: int
 var total_enemies: int
-var mob_stat_mult: int
 var mutation_probabilities: Dictionary
-var base_stat_mult: float
 var going_to_boss := false
 var fighting_boss := false
 
 # wave information
-var highest_wave := 25
-var selected_wave := 66
+var highest_wave := 15
+var selected_wave := 15
+var base_stat_mult := 1.0
 
 # voice line stuff
 var coins_made_this_run := 0
@@ -534,12 +534,12 @@ func _unlock_mouse_movement() -> void:
 	lock_movement = true
 
 
-func clear_coins_and_mobs() -> void:
+func clear_items_and_mobs() -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	var coins_alive = get_tree().get_nodes_in_group("coins")
+	var items_alive = get_tree().get_nodes_in_group("items")
 	
-	for coin in coins_alive:
-		coin.queue_free()
+	for item in items_alive:
+		item.queue_free()
 	
 	for enemy in enemies:
 		enemy.die(self)

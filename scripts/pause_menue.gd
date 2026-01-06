@@ -1,6 +1,9 @@
 extends Control
 
 
+@export var music: AudioStreamPlayer
+
+
 func _ready() -> void:
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -19,8 +22,10 @@ func _pause_or_unpause() -> void:
 	
 	if new_paused:
 		Global._unlock_mouse_movement()
-			
+		music.play()
+		
 	else:
+		music.stop()
 		if not Global.shop_open:
 			Global._lock_mouse_movement()
 

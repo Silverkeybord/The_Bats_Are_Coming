@@ -20,10 +20,8 @@ const GROUP_SPAWNERS := "spawners"
 const GROUP_COIN_SPAWNERS := "coin_spawners"
 const KEY_MUTATION_PROB := "mutation_probilities"
 
-const INTRO_FADEOUT := "fade_out"
+const INTRO_FADEOUT := "first_fade_out"
 
-const VL_FIRST_DEATH_KEY := "first_death"
-const VL_DEATH_KEY := "death"
 const VL_INTRO_KEY := "intro"
 const VL_BEAT_WAVE1_KEY := "beat_wave1"
 const VL_BEAT_WAVE10_KEY := "beat_wave10"
@@ -32,7 +30,7 @@ const VL_BEAT_WAVE20_KEY := "beat_wave20"
 const VL_BEAT_WAVE25_KEY := "beat_wave25"
 const VL_GOOD_RUN_KEY := "good_run"
 
-const GOOD_RUN_REQUIRMENTS := 200 # then times by global mult
+const GOOD_RUN_REQUIRMENTS := 200 # coins required then times by global mult
 
 var active_spawners: Node3D
 var active_coin_spawners: Node3D
@@ -86,11 +84,6 @@ func start_new_run() -> void:
 	
 	# starting all new wave setup
 	if Global.player_died:
-		if not VoiceLines.single_activation_vls[VL_FIRST_DEATH_KEY]:
-			await VoiceLines.play_vl(VL_FIRST_DEATH_KEY)
-		else:
-			await VoiceLines.play_vl(VL_DEATH_KEY)
-		
 		Global.current_wave = Global.selected_wave
 	
 	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
@@ -108,12 +101,19 @@ func start_new_run() -> void:
 	
 	_set_active_map_and_spawners()
 	
+	if Global.current_wave == 26:
+		_boss_wave_start()
+	else:
+		_normal_wave_start()
+
+
+func _normal_wave_start() -> void:
 	var current_wave_text = WAVE_TEXT + str(Global.current_wave)
 	
 	Global.mutation_probabilities = (
 		Global.WAVE_INFO[current_wave_text]["mutation_probilities"])
 	
-	Global.mob_stat_mult = 1 + roundi(Global.current_wave / Global.WAVE_MULT_DIVIDER)
+	Global.base_stat_mult = 1 + roundi(Global.current_wave / Global.WAVE_MULT_DIVIDER)
 	Global.can_spawn_enemies = true
 	Global.total_enemies = Global.WAVE_INFO[current_wave_text]["amount"]
 	Global.spawned_enemies = 0
@@ -127,7 +127,6 @@ func start_new_run() -> void:
 	wave_visuals_animations.play("next_wave")
 	
 	if Global.current_wave in map_1_waves:
-		Global.clear_coins_and_mobs()
 		if current_map != maps.MAP1:
 			
 			if current_map == maps.MAP2:
@@ -136,9 +135,9 @@ func start_new_run() -> void:
 				change_map_animations.play("map3-map1")
 				
 			current_map = maps.MAP1
+			_clear_items()
 	
 	if Global.current_wave in map_2_waves:
-		Global.clear_coins_and_mobs()
 		if current_map != maps.MAP2:
 			
 			if current_map == maps.MAP1:
@@ -148,20 +147,19 @@ func start_new_run() -> void:
 				change_map_animations.play("map3-map2")
 				
 			current_map = maps.MAP2
+			_clear_items()
 	
 	elif Global.current_wave in map_3_waves:
-		Global.clear_coins_and_mobs()
 		if current_map != maps.MAP3:
 			
 			if current_map == maps.MAP1:
 				change_map_animations.play("map1-map3")
-				print("map1-map3 wait wtf is actually happening")
 			elif current_map == maps.MAP2:
 				change_map_animations.play("map2-map3")
-				print("map2-map3")
 				VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
 			
 			current_map = maps.MAP3
+			_clear_items()
 	
 	
 	# changes wave and mob values while they are not visible in the animation
@@ -184,6 +182,10 @@ func start_new_run() -> void:
 		spawner.enabled = true
 		spawner.spawn_interval = Global.WAVE_INFO[current_wave_text]["interval"]
 		spawner.start_spawning()
+
+
+func _boss_wave_start() -> void:
+	pass
 
 
 # quite bulky so i put it in a funciton sets the map the the current one based 
@@ -237,3 +239,10 @@ func reset_wave_display() -> void:
 	Global.current_wave = Global.selected_wave
 	main_wave_label.text = VISUAL_WAVE_TEXT + str(Global.current_wave)
 	mob_counter.text = VISUAL_MOBS_TEXT + str(Global.mobs_left)
+
+
+func _clear_items() -> void:
+	var items_alive = get_tree().get_nodes_in_group("items")
+	
+	for item in items_alive:
+		item.queue_free()

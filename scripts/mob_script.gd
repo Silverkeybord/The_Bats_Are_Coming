@@ -17,7 +17,9 @@ const TRANSPARENT_TYPE_KEY := "transparent"
 
 # sky bat area properties
 const SKY_ATTACK_AREA_RADIUS := 4.0
-const SKY_MOVE_AREA_RADIUS := 0.4
+const SKY_MOVE_AREA_RADIUS := 2.0
+const SKY_BAT_Y_PROJECTILE_OFFSET := 0.3
+const RANDOM_XZ_OFFSET := 1.0 # +- 1 meter along x and z axix
 
 # shooter bat area properties
 const SHOOTER_ATTACK_AREA_RADIUS := 8
@@ -25,6 +27,15 @@ const SHOOTER_MOVE_AREA_RADIUS := 7
 
 # if bats go here they get teleported to glitch position
 const LOWEST_POINT := -5
+
+# pick random sound to play when attacking
+const ATTACK_SOUNDS := [
+	preload("res://sounds/SFX/mob_attack_sounds/punch-gaming-sound-effect-hd_RzlG1GE.mp3"),
+	preload("res://sounds/SFX/mob_attack_sounds/punch-notification_sound-493565.mp3"),
+	preload("res://sounds/SFX/mob_attack_sounds/punch-sound-effect-meme.mp3"),
+	preload("res://sounds/SFX/mob_attack_sounds/punch_u4LmMsr.mp3"),
+	preload("res://sounds/SFX/mob_attack_sounds/weak-punch.mp3")
+]
 
 # bat stats and information
 var in_attack_range := false
@@ -45,17 +56,23 @@ var should_rise := false
 
 @export_group("in scene exports")
 @export var bat_model: Node3D
-@export var animation_tree: AnimationTree
-@export var animation_player: AnimationPlayer
 @export var attack_timer: Timer
 @export var height_check_areas: Node3D
 @export var bat_mesh: MeshInstance3D
+
+@export_subgroup("animation players")
+@export var animation_tree: AnimationTree
+@export var animation_player: AnimationPlayer
+
+@export_subgroup("collision_shapes")
 @export var rigid_body_collisionshape: CollisionShape3D
 @export var attack_collisionshape: CollisionShape3D
 @export var move_collisionshape: CollisionShape3D
 
+@export_subgroup("shooter bat")
 @export var shooter_projectile_spawn: Marker3D
 
+@export_subgroup("transparent bat time's")
 @export var transparent_interval: Timer
 @export var transparent_duration: Timer
 
@@ -68,6 +85,7 @@ var should_rise := false
 @export_group("sounds")
 @export var death_sound: AudioStreamPlayer3D
 @export var hurt_sound: AudioStreamPlayer3D
+@export var attack_sound: AudioStreamPlayer3D
 
 @export_group("stats")
 @export var type: String
@@ -193,7 +211,8 @@ func _random_vector3() -> Vector3:
 
 
 func _on_attack_area_body_entered(body: Node3D) -> void:
-	if body == player:
+	if body == player and can_attack:
+		_on_attack_timer_timeout()
 		attack_timer.start()
 		in_attack_range = true
 
@@ -215,15 +234,21 @@ func _on_stop_movment_area_body_exited(body: Node3D) -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	if type == "sky":
+	if type == SKY_TYPE_KEY:
 		var new_projectile = sky_bat_projectile.instantiate()
 		add_sibling(new_projectile)
+		var x_offset = randf_range(-RANDOM_XZ_OFFSET, RANDOM_XZ_OFFSET)
+		var z_offset = randf_range(-RANDOM_XZ_OFFSET, RANDOM_XZ_OFFSET)
 		new_projectile.position = Vector3(
-			player.position.x, position.y, player.position.z)
+			player.position.x + x_offset, 
+			position.y - SKY_BAT_Y_PROJECTILE_OFFSET,
+			player.position.z + z_offset)
 		new_projectile.damage = damage
 		new_projectile.player_pos = player.position
+		new_projectile.add_to_group("items")
+		new_projectile.loaded()
 	
-	elif type == "shooter":
+	elif type == SHOOTER_TYPE_KEY:
 		var new_projectile = shooter_bat_projectile.instantiate()
 		add_sibling(new_projectile)
 		new_projectile.position = shooter_projectile_spawn.global_position
@@ -232,8 +257,12 @@ func _on_attack_timer_timeout() -> void:
 			player.position.y + HALF_PLAYER_HEIGHT, 
 			player.position.z))
 		new_projectile.damage = damage
+		new_projectile.add_to_group("items")
 	
 	else:
+		attack_sound.stream = ATTACK_SOUNDS.pick_random()
+		attack_sound.play()
+		
 		if player.hp - damage < 0:
 			player.hp = 0
 		else:

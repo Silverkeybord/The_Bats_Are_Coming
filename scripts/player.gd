@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const V_CAMERA_MAX := deg_to_rad(80)
-const V_CAMERA_MIN := deg_to_rad(-80)
+const V_CAMERA_MAX := deg_to_rad(88)
+const V_CAMERA_MIN := deg_to_rad(-88)
 
 const PLAYER_SPEED := 7.0
 const INITIAL_JUMP_VELOCITY := 7.0
@@ -18,13 +18,14 @@ const RESPAWN_POSITION := Vector3(0, 5, 0)
 const RESPAWN_CAMERA_ROTATION := Vector3(0, 0, 0)
 
 const AIM_DISTANCE := 200
-const WORLD_DAMAGE := 200
-const HURT_THRESHOLD := 2.0 # the amount hp id divided by before showing
+const WORLD_DAMAGE := 0.5 # percentage of damage interms of max hp
+const HURT_THRESHOLD := 1.4 # the amount hp is divided by before showing
 
 const OUT_OF_THIS_WORLD_DISTANCE := 65.0 # meters away fom 0, 0, 0
 const OUT_OF_THIS_WORLD_REWARD := 100
 const MOBS_ALIVE_VL_THRESHOLD:= 30
 
+const VL_FIRST_DEATH_KEY := "first_death"
 const VL_DEATH_KEY := "death"
 const VL_MAX_SCALE_KEY := "max_out_scale"
 const VL_FIRST_UPGRADE_KEY := "first_upgrade"
@@ -40,7 +41,7 @@ var initial_jump_done := false
 
 var coyote_timer := 0.0
 var max_hp := 10.0
-var hp := 10.0
+var hp := 0.0
 var damage := 1
 var firerate := 0.25
 var durability := 1
@@ -55,8 +56,8 @@ var can_more_than_30_bats := false
 @export var shooting_timer: Timer
 @export var coins_label: Label
 @export var effect_animations: AnimationPlayer
-@export var hp_var: ProgressBar
 @export var hurt_image: TextureRect
+@export var boss_button: Button
 
 @export_group("out of scene exports")
 @export var game_controller: Node3D
@@ -99,6 +100,7 @@ var can_more_than_30_bats := false
 
 
 func _ready() -> void:
+	hp = max_hp
 	shooting_timer.wait_time = firerate
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -268,7 +270,7 @@ func _shoot_bullet() -> void:
 
 func _on_world_borders_body_entered(body: Node3D) -> void:
 	if body == self:
-		hp -= WORLD_DAMAGE
+		hp -= max_hp * WORLD_DAMAGE
 		position = RESPAWN_POSITION
 
 
@@ -282,18 +284,17 @@ func _update_hp() -> void:
 	hp_text_display.text = str(hp) + "/" + str(max_hp)
 	
 	if hp <= 0:
-		Global.clear_coins_and_mobs()
+		Global.clear_items_and_mobs()
 		
 		effect_animations.play("fade_in")
 		await effect_animations.animation_finished
 		
 		if not Global.player_died:
 			_died()
-		
-		Global.player_died = true
 
 
 func _died() -> void:
+	Global.player_died = true
 	position = RESPAWN_POSITION
 	player_cam.rotation = RESPAWN_CAMERA_ROTATION
 	hp = max_hp
@@ -305,6 +306,16 @@ func _died() -> void:
 	Global.current_wave = Global.selected_wave
 	Global.can_spawn_enemies = false
 	Global.shop_open = true
+	
+	if Global.player_died:
+		if not VoiceLines.single_activation_vls[VL_FIRST_DEATH_KEY]:
+			await VoiceLines.play_vl(VL_FIRST_DEATH_KEY)
+		else:
+			await VoiceLines.play_vl(VL_DEATH_KEY)
+	
+	if Global.highest_wave >= 26:
+		boss_button.visible = true
+		boss_button.disabled = false
 	
 	effect_animations.play("fade_out")
 	shop_animations.play("open_shop")

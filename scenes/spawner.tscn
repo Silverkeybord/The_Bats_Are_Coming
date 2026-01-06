@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://scenes/spawner_model.tscn" id="1_qnmfe"]
 [ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://scenes/mob.tscn" id="2_goea1"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3fqj6"]
-radius = 1.1071879
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tx2ig"]
+height = 1.55
+radius = 0.85
 
 [sub_resource type="Animation" id="Animation_xsv3d"]
 length = 0.001
@@ -99,7 +100,8 @@ mob_spawn = NodePath("Marker3D")
 mob_scene = ExtResource("2_goea1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_3fqj6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999952, 0.27499998, 0)
+shape = SubResource("CylinderShape3D_tx2ig")
 
 [node name="spawner_model" parent="." instance=ExtResource("1_qnmfe")]
 

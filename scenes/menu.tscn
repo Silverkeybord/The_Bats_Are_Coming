@@ -1,7 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxk1y4n5scojw"]
+[gd_scene load_steps=8 format=3 uid="uid://cxk1y4n5scojw"]
 
 [ext_resource type="Script" uid="uid://chsrvj7h267ke" path="res://scripts/pause_menue.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://b5hqa1q3u00ce" path="res://WIN_20251125_22_03_15_Pro.jpg" id="2_mae5d"]
+[ext_resource type="AudioStream" uid="uid://dndubuf6r5n41" path="res://sounds/SFX/menu song.MP3" id="3_con2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="Animation" id="Animation_ytr4m"]
 length = 0.001
@@ -65,7 +72,7 @@ _data = {
 &"rotate": SubResource("Animation_4hy44")
 }
 
-[node name="Control" type="Control" groups=["player"]]
+[node name="Control" type="Control" node_paths=PackedStringArray("music") groups=["player"]]
 process_mode = 3
 z_index = 1
 layout_mode = 3
@@ -76,6 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 6.2831855
 script = ExtResource("1_ouk20")
+music = NodePath("AudioStreamPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -117,18 +125,29 @@ text = "Unpause or press esc"
 [node name="save" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 107.0
-offset_top = 352.0
+offset_top = 311.0
 offset_right = 314.45502
-offset_bottom = 464.0
+offset_bottom = 423.0
 text = "save"
 
 [node name="load" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 358.55902
-offset_top = 352.0
+offset_top = 311.0
 offset_right = 574.0
-offset_bottom = 464.0
+offset_bottom = 423.0
 text = "load"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1488119
+anchor_top = 0.48566896
+anchor_right = 0.82781875
+anchor_bottom = 0.5570193
+theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
+text = "jsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjf"
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -185,5 +204,8 @@ theme_override_font_sizes/font_size = 24
 text = "game might be bad ik :)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_con2f")
 
 [connection signal="pressed" from="ColorRect/unpause" to="." method="_on_unpause_pressed"]

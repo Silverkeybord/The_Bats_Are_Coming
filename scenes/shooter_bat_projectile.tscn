@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgwj8s7jrwp72"]
+[gd_scene load_steps=6 format=3 uid="uid://cgwj8s7jrwp72"]
 
-[ext_resource type="Material" uid="uid://chvorqjxttqst" path="res://material's/sky_bat_projectile.tres" id="1_5tqtt"]
 [ext_resource type="Script" uid="uid://ckayb5j1xab8t" path="res://scripts/shooter_bat_projectile.gd" id="1_ynaxo"]
+[ext_resource type="Material" uid="uid://dmilvgugsslod" path="res://material's/shooter_bat_projectile.tres" id="2_pgd71"]
+[ext_resource type="AudioStream" uid="uid://chqr0uuemdw5w" path="res://sounds/SFX/critical-hit-sounds-effect.mp3" id="3_pgd71"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ynaxo"]
 radius = 0.25
@@ -10,14 +11,20 @@ radius = 0.25
 radius = 0.2
 height = 0.4
 
-[node name="Area3D" type="Area3D"]
+[node name="Area3D" type="Area3D" node_paths=PackedStringArray("donk_sound", "ball_mesh", "collisionshape")]
 script = ExtResource("1_ynaxo")
+donk_sound = NodePath("AudioStreamPlayer3D")
+ball_mesh = NodePath("MeshInstance3D")
+collisionshape = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ynaxo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_pgd71")
-surface_material_override/0 = ExtResource("1_5tqtt")
+surface_material_override/0 = ExtResource("2_pgd71")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pgd71")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

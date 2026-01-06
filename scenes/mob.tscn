@@ -30,15 +30,15 @@ size = Vector3(1, 0.1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_adr5o"]
 size = Vector3(0.2, 0.2, 1)
 
-[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "animation_tree", "animation_player", "attack_timer", "height_check_areas", "bat_mesh", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "shooter_projectile_spawn", "transparent_interval", "transparent_duration", "game_controller", "death_sound", "hurt_sound")]
+[node name="mob" type="RigidBody3D" node_paths=PackedStringArray("bat_model", "attack_timer", "height_check_areas", "bat_mesh", "animation_tree", "animation_player", "rigid_body_collisionshape", "attack_collisionshape", "move_collisionshape", "shooter_projectile_spawn", "transparent_interval", "transparent_duration", "game_controller", "death_sound", "hurt_sound", "attack_sound")]
 gravity_scale = 0.0
 script = ExtResource("1_h8ps3")
 bat_model = NodePath("bat_model")
-animation_tree = NodePath("bat_model/AnimationTree")
-animation_player = NodePath("bat_model/AnimationPlayer")
 attack_timer = NodePath("attack_timer")
 height_check_areas = NodePath("height_check_areas")
 bat_mesh = NodePath("bat_model/Armature/Skeleton3D/bat")
+animation_tree = NodePath("bat_model/AnimationTree")
+animation_player = NodePath("bat_model/AnimationPlayer")
 rigid_body_collisionshape = NodePath("CollisionShape3D")
 attack_collisionshape = NodePath("attack_area/CollisionShape3D")
 move_collisionshape = NodePath("stop_movment_area/CollisionShape3D")
@@ -50,6 +50,7 @@ shooter_bat_projectile = ExtResource("3_ebxvl")
 game_controller = NodePath("height_check_areas")
 death_sound = NodePath("death_sound")
 hurt_sound = NodePath("hurt_sound")
+attack_sound = NodePath("attack_sound")
 metadata/mob = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -60,15 +61,15 @@ shape = SubResource("SphereShape3D_ih2ng")
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.023599999, 0)
-bones/1/rotation = Quaternion(-0.016947761, 0.16385731, -0.63625926, 0.75368273)
-bones/2/rotation = Quaternion(-0.17914264, -0.054256205, 0.28492656, 0.9400964)
-bones/3/rotation = Quaternion(-0.191442, 0.0049537877, 0.21632248, 0.9573558)
-bones/4/rotation = Quaternion(-0.016947761, -0.16385731, 0.63625926, 0.75368273)
-bones/5/rotation = Quaternion(-0.17914264, 0.054256205, -0.28492656, 0.9400964)
-bones/6/rotation = Quaternion(-0.191442, -0.0049537877, -0.21632248, 0.9573558)
-bones/8/rotation = Quaternion(3.3016196e-08, 0.5816052, 0.8134712, 1.9399444e-08)
-bones/11/rotation = Quaternion(2.8582857e-08, 0.5816052, 0.8134712, 4.826852e-08)
+bones/0/position = Vector3(0, 0.000956899, 0)
+bones/1/rotation = Quaternion(0.16048266, 0.022095382, -0.5927826, 0.7889017)
+bones/2/rotation = Quaternion(0.0068932916, 0.0030547814, 0.389513, 0.92099005)
+bones/3/rotation = Quaternion(-0.1134997, 0.013791748, 0.29883748, 0.94743013)
+bones/4/rotation = Quaternion(0.16048266, -0.022095382, 0.5927826, 0.7889017)
+bones/5/rotation = Quaternion(0.0068932916, -0.0030547814, -0.389513, 0.92099005)
+bones/6/rotation = Quaternion(-0.1134997, -0.013791748, -0.29883748, 0.94743013)
+bones/8/rotation = Quaternion(2.9154084e-08, 0.5442415, 0.8389286, 2.0303963e-08)
+bones/11/rotation = Quaternion(2.495732e-08, 0.5442415, 0.83892864, 4.286743e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")
@@ -95,6 +96,8 @@ pitch_scale = 0.95
 
 [node name="hurt_sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_m0xve")
+
+[node name="attack_sound" type="AudioStreamPlayer3D" parent="."]
 
 [node name="height_check_areas" type="Node3D" parent="."]
 visible = false
