@@ -1,15 +1,17 @@
 extends Area3D
 
-const SPEED := 15.0
+const SPEED := 20.0
 const MAX_DISTANCE := 100.0
+const HIT_SOUND := preload("res://sounds/SFX/critical-hit-sounds-effect.mp3")
+const TEMP_SOUND_SCRIPT := preload("res://scripts/temp_sound.gd")
 
 var distance_travled := 0.0
 var hit := false
 
 @export var damage: int
-@export var donk_sound: AudioStreamPlayer3D
 @export var ball_mesh: MeshInstance3D
 @export var collisionshape: CollisionShape3D
+@export var temp_sound_node: Node
 
 @onready var ball_mat: StandardMaterial3D
 
@@ -32,8 +34,15 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body in get_tree().get_nodes_in_group("player") and not Global.player_died:
 		body.hp -= damage
-		donk_sound.play()
+		
+		var audiostreamplayer3D = AudioStreamPlayer3D.new()
+		audiostreamplayer3D.set_script(TEMP_SOUND_SCRIPT)
+		temp_sound_node.add_child(audiostreamplayer3D)
+		audiostreamplayer3D.stream = HIT_SOUND
+		audiostreamplayer3D.position = global_position
+		audiostreamplayer3D.play()
+		
 		ball_mesh.queue_free()
 		collisionshape.set_deferred("disable", true)
-		await donk_sound.finished
+		await audiostreamplayer3D.finished
 		queue_free()

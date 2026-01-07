@@ -71,16 +71,27 @@ func _ready() -> void:
 
 func start_new_run() -> void:
 	# voice lines
-	if Global.current_wave == 15:
+	if (Global.current_wave == 10 and not 
+		VoiceLines.single_activation_vls[VL_BEAT_WAVE10_KEY]):
+		VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
+	
+	if (Global.current_wave == 15 and not 
+		VoiceLines.single_activation_vls[VL_BEAT_WAVE15_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE15_KEY)
 	
-	if Global.current_wave == 25:
+	if (Global.current_wave == 20 and not 
+		VoiceLines.single_activation_vls[VL_BEAT_WAVE20_KEY]):
+		VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
+	
+	if (Global.current_wave == 25 and not 
+		VoiceLines.single_activation_vls[VL_BEAT_WAVE25_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE25_KEY)
 	
 	if (Global.coins_made_this_run >= GOOD_RUN_REQUIRMENTS * Global.base_stat_mult
 		and Global.player_died):
 		VoiceLines.play_vl(VL_GOOD_RUN_KEY)
 	
+	Global.coins_made_this_run = 0
 	
 	# starting all new wave setup
 	if Global.player_died:
@@ -142,7 +153,6 @@ func _normal_wave_start() -> void:
 			
 			if current_map == maps.MAP1:
 				change_map_animations.play("map1-map2")
-				VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
 			elif current_map == maps.MAP3:
 				change_map_animations.play("map3-map2")
 				
@@ -156,7 +166,6 @@ func _normal_wave_start() -> void:
 				change_map_animations.play("map1-map3")
 			elif current_map == maps.MAP2:
 				change_map_animations.play("map2-map3")
-				VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
 			
 			current_map = maps.MAP3
 			_clear_items()

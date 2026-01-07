@@ -5,7 +5,7 @@ enum SPAWN_TYPE {
 	HEATH
 }
 
-const HP_HEAL_PERCENTAGE := 0.2
+const HP_HEAL_PERCENTAGE := 0.3
 
 @export var value: int
 @export var collisionshape: CollisionShape3D

@@ -2,7 +2,7 @@ extends StaticBody3D
 
 const RANDOM_SPAWN_OFFSET := 0.2 
 
-@export_group("in_scene_exports")
+@export_group("in scene exports")
 @export var spawn_timer: Timer
 @export var mob_spawn: Marker3D
 
@@ -10,11 +10,12 @@ const RANDOM_SPAWN_OFFSET := 0.2
 @export var spawn_interval: int
 @export var enabled := true
 
-@export_group("external_exports")
+@export_group("out of scene exports")
 @export var mob_scene: PackedScene
 @export var player: CharacterBody3D
 @export var game_controller: Node3D
 @export var enemy_spawn_node: Node
+@export var temp_sound_node: Node
 
 
 func _ready() -> void:
@@ -55,6 +56,7 @@ func _on_timer_timeout() -> void:
 		new_mob.game_controller = game_controller
 		new_mob.position = mob_spawn.global_position
 		new_mob.type = selection
+		new_mob.temp_sound_node = temp_sound_node
 		enemy_spawn_node.add_child(new_mob)
 		
 		spawn_timer.wait_time = spawn_interval + (

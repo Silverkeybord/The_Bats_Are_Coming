@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c148jwmfcy6qw"]
+[gd_scene load_steps=9 format=3 uid="uid://c148jwmfcy6qw"]
 
 [ext_resource type="Script" uid="uid://sur5vsarglr6" path="res://scripts/sky_bat_projectile.gd" id="1_6etly"]
 [ext_resource type="Material" uid="uid://dfv3id6bm0suo" path="res://material's/sky_bat_projectile.tres" id="2_6etly"]
-[ext_resource type="AudioStream" uid="uid://7as1ybxrwhfq" path="res://sounds/SFX/bongo-hit.mp3" id="3_1hu4h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m8t2b"]
 
@@ -169,7 +168,7 @@ _data = {
 &"fade_out": SubResource("Animation_6etly")
 }
 
-[node name="projectile" type="RigidBody3D" node_paths=PackedStringArray("ball_mesh", "animation_player", "stream_player", "area_collisionshape")]
+[node name="projectile" type="RigidBody3D" node_paths=PackedStringArray("ball_mesh", "animation_player", "area_collisionshape")]
 collision_layer = 0
 collision_mask = 2
 mass = 10.0
@@ -177,7 +176,6 @@ gravity_scale = 0.0
 script = ExtResource("1_6etly")
 ball_mesh = NodePath("Mesh3D")
 animation_player = NodePath("AnimationPlayer")
-stream_player = NodePath("AudioStreamPlayer3D")
 area_collisionshape = NodePath("Area3D/CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -200,9 +198,6 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_7wbsd")
 }
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_1hu4h")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

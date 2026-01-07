@@ -16,7 +16,7 @@ const SHOOTER_TYPE_KEY := "shooter"
 const TRANSPARENT_TYPE_KEY := "transparent"
 
 # sky bat area properties
-const SKY_ATTACK_AREA_RADIUS := 4.0
+const SKY_ATTACK_AREA_RADIUS := 3.0
 const SKY_MOVE_AREA_RADIUS := 2.0
 const SKY_BAT_Y_PROJECTILE_OFFSET := 0.3
 const RANDOM_XZ_OFFSET := 1.0 # +- 1 meter along x and z axix
@@ -54,6 +54,9 @@ var too_high := true
 var too_low := false
 var should_rise := false
 
+# for transparent bat speed boost while invis
+var speed_boost : float
+
 @export_group("in scene exports")
 @export var bat_model: Node3D
 @export var attack_timer: Timer
@@ -81,6 +84,7 @@ var should_rise := false
 @export var shooter_bat_projectile: PackedScene
 @export var player: CharacterBody3D
 @export var game_controller: Node3D
+@export var temp_sound_node: Node
 
 @export_group("sounds")
 @export var death_sound: AudioStreamPlayer3D
@@ -124,6 +128,7 @@ func _ready() -> void:
 		transparent_interval.wait_time = bat_info["invisible_interval"]
 		transparent_duration.wait_time = bat_info["invisible_duration"]
 		transparent_interval.start()
+		speed_boost = bat_info["speed_boost"]
 	
 	elif type == SKY_TYPE_KEY:
 		# height is multiplyd by 2 because of the round ends of the capsul 
@@ -237,6 +242,7 @@ func _on_attack_timer_timeout() -> void:
 	if type == SKY_TYPE_KEY:
 		var new_projectile = sky_bat_projectile.instantiate()
 		add_sibling(new_projectile)
+		new_projectile.temp_sound_node = temp_sound_node
 		var x_offset = randf_range(-RANDOM_XZ_OFFSET, RANDOM_XZ_OFFSET)
 		var z_offset = randf_range(-RANDOM_XZ_OFFSET, RANDOM_XZ_OFFSET)
 		new_projectile.position = Vector3(
@@ -251,6 +257,7 @@ func _on_attack_timer_timeout() -> void:
 	elif type == SHOOTER_TYPE_KEY:
 		var new_projectile = shooter_bat_projectile.instantiate()
 		add_sibling(new_projectile)
+		new_projectile.temp_sound_node = temp_sound_node
 		new_projectile.position = shooter_projectile_spawn.global_position
 		new_projectile.look_at(Vector3(
 			player.position.x, 
@@ -258,6 +265,7 @@ func _on_attack_timer_timeout() -> void:
 			player.position.z))
 		new_projectile.damage = damage
 		new_projectile.add_to_group("items")
+
 	
 	else:
 		attack_sound.stream = ATTACK_SOUNDS.pick_random()
@@ -307,9 +315,13 @@ func _on_rise_area_body_exited(body: Node3D) -> void:
 func _on_invisible_interval_timeout() -> void:
 	bat_model.visible = false
 	rigid_body_collisionshape.set_deferred("disabled", true)
+	attack_collisionshape.set_deferred("disbled", true)
 	transparent_duration.start()
+	speed *= speed_boost
 
 
 func _on_invisible_duration_timeout() -> void:
 	bat_model.visible = true
 	rigid_body_collisionshape.set_deferred("disabled", false)
+	attack_collisionshape.set_deferred("disbled", true)
+	speed /= speed_boost

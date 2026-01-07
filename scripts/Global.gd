@@ -1,7 +1,7 @@
 extends Node
 
 const GRAVITY := -22 # meters per second per second
-const WAVE_MULT_DIVIDER := 10.0
+const WAVE_MULT_DIVIDER := 8.0
 const SHOP_INFO: Dictionary = {
 	"damage" : {
 		"levels": 9,
@@ -80,8 +80,8 @@ const SHOP_INFO: Dictionary = {
 		"cost" : {
 			"1": 100,
 			"2": 500,
-			"3": 2500,
-			"4": 12500,
+			"3": 1000,
+			"4": 2500,
 		},
 		"value" : {
 			"0": 1,
@@ -96,8 +96,8 @@ const SHOP_INFO: Dictionary = {
 		"cost" : {
 			"1": 250,
 			"2": 1000,
-			"3": 4000,
-			"4": 16000,
+			"3": 2500,
+			"4": 5000,
 		},
 		"value" : {
 			"0": 1,
@@ -320,17 +320,17 @@ const WAVE_INFO: Dictionary = {
 			"normal": 0.60,
 			"fast": 0.16,
 			"heavy": 0.,
-			"shooter": 0.08,
+			"shooter": 0.18,
 			"sky": 0.06,
 			"transparent": 0.
 		}
 	},
 	"wave18": {
-		"amount": 15,
+		"amount": 25,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.2,
-			"fast": 0.,
+			"normal": 0.1,
+			"fast": 0.1,
 			"heavy": 0.,
 			"shooter": 0.4,
 			"sky": 0.4,
@@ -341,9 +341,9 @@ const WAVE_INFO: Dictionary = {
 		"amount": 25,
 		"interval": 4,
 		"mutation_probilities": {
-			"normal": 0.56,
-			"fast": 0.2,
-			"heavy": 0.2,
+			"normal": 0.4,
+			"fast": 0.5,
+			"heavy": 0.,
 			"shooter": 0.05,
 			"sky": 0.05,
 			"transparent": 0.
@@ -413,11 +413,11 @@ const WAVE_INFO: Dictionary = {
 		"amount": 100,
 		"interval": 3,
 		"mutation_probilities": {
-			"normal": 0.1,
-			"fast": 0.18,
+			"normal": 0.,
+			"fast": 0.24,
 			"heavy": 0.16,
-			"shooter": 0.18,
-			"sky": 0.18,
+			"shooter": 0.20,
+			"sky": 0.20,
 			"transparent": 0.2
 		}
 	}
@@ -435,7 +435,7 @@ const ENEMY_INFO: Dictionary = {
 	"fast": {
 		"value": 2,
 		"damage": 1,
-		"speed": 5.5,
+		"speed": 6.5,
 		"health": 3,
 		"flight_height": 1.5,
 		"attack_interval": 0.8,
@@ -446,7 +446,7 @@ const ENEMY_INFO: Dictionary = {
 		"value": 3,
 		"damage": 4,
 		"speed": 2.5,
-		"health": 25,
+		"health": 40,
 		"flight_height": 0.6,
 		"attack_interval": 2.5,
 		"texture": preload("res://textres/heavy_palette.png"),
@@ -455,30 +455,31 @@ const ENEMY_INFO: Dictionary = {
 	"sky": {
 		"value": 4,
 		"damage": 2,
-		"speed": 6,
-		"health": 3,
+		"speed": 5.8,
+		"health": 5,
 		"flight_height": 6,
-		"attack_interval": 0.8,
+		"attack_interval": 1,
 		"texture": preload("res://textres/sky_palette.png"),
 	},
 	"transparent": {
 		"value": 5,
-		"damage": 5,
+		"damage": 3,
 		"speed": 3,
 		"health": 25,
 		"flight_height": 1,
 		"attack_interval": 1.8,
 		"texture": preload("res://textres/transparent_palette.png"),
-		"invisible_interval": 3,
-		"invisible_duration": 1
+		"invisible_interval": 4,
+		"invisible_duration": 0.4,
+		"speed_boost": 8.0
 	},
 	"shooter": {
 		"value": 3,
 		"damage": 2,
-		"speed": 6,
+		"speed": 5.8,
 		"health": 10,
 		"flight_height": 2,
-		"attack_interval": 1.5,
+		"attack_interval": 2,
 		"texture": preload("res://textres/shooter_palette.png"),
 	}
 }
@@ -501,23 +502,25 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
 var player_died := true
-var coins := 3000
+var coins := 14000
 var lock_movement := true
 var shop_open := false
 
 # current wave info
 var mobs_left: int
 var can_spawn_enemies := true
-var current_wave := 1
 var spawned_enemies: int
 var total_enemies: int
 var mutation_probabilities: Dictionary
+
+# boss related varibles
 var going_to_boss := false
 var fighting_boss := false
 
 # wave information
-var highest_wave := 15
-var selected_wave := 15
+var current_wave := 1
+var highest_wave := 25
+var selected_wave := 25
 var base_stat_mult := 1.0
 
 # voice line stuff

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dp7sxe5xl5shk"]
+[gd_scene load_steps=66 format=3 uid="uid://dp7sxe5xl5shk"]
 
 [ext_resource type="Script" uid="uid://ityxmd8yap7a" path="res://level/game_control.gd" id="1_l5ub2"]
 [ext_resource type="PackedScene" uid="uid://chb3pxm0scfyx" path="res://scenes/player.tscn" id="1_vu7ft"]
@@ -382,6 +382,11 @@ _data = {
 &"RESET": SubResource("Animation_8jqrf"),
 &"next_wave": SubResource("Animation_xkvjb")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tnpc"]
+albedo_color = Color(0.64466345, 0.64466345, 0.64466345, 1)
+albedo_texture = ExtResource("2_hfkki")
+uv1_triplanar = true
 
 [sub_resource type="Animation" id="Animation_fxr6r"]
 length = 0.001
@@ -840,9 +845,9 @@ tracks/0/path = NodePath("boss/platforms/platform:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-14.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -851,9 +856,9 @@ tracks/1/path = NodePath("boss/platforms/platform2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-14, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -862,9 +867,9 @@ tracks/2/path = NodePath("boss/platforms/platform3:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-13.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -873,9 +878,9 @@ tracks/3/path = NodePath("boss/platforms/platform4:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-13, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -884,9 +889,9 @@ tracks/4/path = NodePath("boss/platforms/platform5:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-12.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -895,9 +900,9 @@ tracks/5/path = NodePath("boss/platforms/platform6:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
@@ -906,9 +911,9 @@ tracks/6/path = NodePath("boss/platforms/platform7:position:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-11.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/7/type = "bezier"
 tracks/7/imported = false
@@ -917,9 +922,9 @@ tracks/7/path = NodePath("boss/platforms/platform8:position:y")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-11, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
@@ -928,9 +933,9 @@ tracks/8/path = NodePath("boss/platforms/platform9:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-10.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
@@ -939,9 +944,9 @@ tracks/9/path = NodePath("boss/platforms/platform10:position:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-10, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -962,9 +967,9 @@ tracks/11/path = NodePath("boss/platforms/platform16:position:y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/12/type = "bezier"
 tracks/12/imported = false
@@ -973,9 +978,9 @@ tracks/12/path = NodePath("boss/platforms/platform11:position:y")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/13/type = "bezier"
 tracks/13/imported = false
@@ -984,9 +989,9 @@ tracks/13/path = NodePath("boss/platforms/platform12:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/14/type = "bezier"
 tracks/14/imported = false
@@ -995,9 +1000,9 @@ tracks/14/path = NodePath("boss/platforms/platform13:position:y")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/15/type = "bezier"
 tracks/15/imported = false
@@ -1006,9 +1011,9 @@ tracks/15/path = NodePath("boss/platforms/platform14:position:y")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/16/type = "bezier"
 tracks/16/imported = false
@@ -1017,14 +1022,14 @@ tracks/16/path = NodePath("boss/platforms/platform15:position:y")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, -90, -0.00016666668, 1.6666667, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 
 [sub_resource type="Animation" id="Animation_0tnpc"]
 resource_name = "open_path"
-length = 10.0
+length = 7.25
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1154,9 +1159,9 @@ tracks/11/path = NodePath("boss/platforms/platform16:position:y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(5, 6)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(6.266667, 7.25)
 }
 tracks/12/type = "bezier"
 tracks/12/imported = false
@@ -1165,8 +1170,8 @@ tracks/12/path = NodePath("boss/platforms/platform11:position:y")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(5, 6)
 }
 tracks/13/type = "bezier"
@@ -1176,9 +1181,9 @@ tracks/13/path = NodePath("boss/platforms/platform12:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(5, 6)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(5.266667, 6.266667)
 }
 tracks/14/type = "bezier"
 tracks/14/imported = false
@@ -1187,9 +1192,9 @@ tracks/14/path = NodePath("boss/platforms/platform13:position:y")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(5, 6)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(5.5, 6.5)
 }
 tracks/15/type = "bezier"
 tracks/15/imported = false
@@ -1198,9 +1203,9 @@ tracks/15/path = NodePath("boss/platforms/platform14:position:y")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(5, 6)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(5.8, 6.8)
 }
 tracks/16/type = "bezier"
 tracks/16/imported = false
@@ -1209,9 +1214,9 @@ tracks/16/path = NodePath("boss/platforms/platform15:position:y")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(-80, 0, 0, 0.16666667, 12.166667, -7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(5, 6)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, 0, 0, 0.2, 70, -7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(6.0333347, 7.033334)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvpfn"]
@@ -1335,27 +1340,27 @@ metadata/_edit_use_anchors_ = true
 [node name="boss_wall" type="MeshInstance3D" parent="consistant_nodes"]
 
 [node name="enviromnt35" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, -17.5, -1)
-use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, -10.5, -1)
+calculate_tangents = false
 collision_layer = 0
 collision_mask = 0
-size = Vector3(14, 113, 86)
+size = Vector3(14, 99, 86)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="enviromnt36" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5, -30, -17)
-use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5, -22.5, -17)
+calculate_tangents = false
 collision_layer = 0
 collision_mask = 0
-size = Vector3(11, 88, 54)
+size = Vector3(11, 73, 54)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="enviromnt37" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, -27.5, 25)
-use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, -19.5, 25)
+calculate_tangents = false
 collision_layer = 0
 collision_mask = 0
-size = Vector3(16, 93, 42)
+size = Vector3(16, 77, 42)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="enviroment" type="MeshInstance3D" parent="consistant_nodes"]
@@ -1422,6 +1427,46 @@ use_collision = true
 collision_layer = 0
 collision_mask = 0
 size = Vector3(35, 115, 22)
+material = SubResource("StandardMaterial3D_hfkki")
+
+[node name="enviromnt42" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.40001, -2, -62.500004)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(50.2, 156, 50)
+material = SubResource("StandardMaterial3D_hfkki")
+
+[node name="enviromnt50" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 288, -28.5, 0)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(75, 103, 75)
+material = SubResource("StandardMaterial3D_hfkki")
+
+[node name="enviromnt48" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.5, -2, 62)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(50, 156, 50)
+material = SubResource("StandardMaterial3D_hfkki")
+
+[node name="enviromnt51" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.5, -2, -62.5)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(50, 156, 50)
+material = SubResource("StandardMaterial3D_hfkki")
+
+[node name="enviromnt52" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.50003, -3, 62.499996)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(50, 156, 50)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="enviromnt40" type="CSGBox3D" parent="consistant_nodes/enviroment"]
@@ -1600,6 +1645,14 @@ collision_mask = 0
 size = Vector3(28, 106, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 
+[node name="enviromnt49" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 200, -42.5, 42.5)
+use_collision = true
+collision_layer = 0
+collision_mask = 0
+size = Vector3(28, 91, 27)
+material = SubResource("StandardMaterial3D_hfkki")
+
 [node name="enviromnt45" type="CSGBox3D" parent="consistant_nodes/enviroment"]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 146.5, -20, 56.5)
 use_collision = true
@@ -1728,9 +1781,11 @@ collision_mask = 0
 size = Vector3(67, 126, 30)
 material = SubResource("StandardMaterial3D_hfkki")
 
-[node name="enemies" type="Node" parent="."]
+[node name="items" type="Node" parent="."]
 
-[node name="items" type="Node" parent="enemies"]
+[node name="temp_sounds" type="Node" parent="."]
+
+[node name="enemies" type="Node" parent="."]
 
 [node name="bat_flight_plane" type="Node" parent="."]
 
@@ -2518,62 +2573,67 @@ metadata/_edit_lock_ = true
 
 [node name="spawners" type="Node3D" parent="maps/map1"]
 
-[node name="1" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 3, 20)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="2" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D2" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 28)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="3" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D3" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 3, 24)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="4" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D4" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 27, 3, -26)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="5" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D5" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -28, 3, -20)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
 [node name="item_spawners" type="Node3D" parent="maps/map1"]
 
 [node name="coin_spawners" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -29)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 
 [node name="coin_spawners2" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, 27.5)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 
 [node name="coin_spawners3" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 1, 10.5)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 
 [node name="coin_spawners4" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -19.5)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 
 [node name="health_spawner" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -25)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -2581,7 +2641,7 @@ spawn_type = 1
 
 [node name="health_spawner2" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 1, 25.5)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -3289,68 +3349,74 @@ metadata/_edit_lock_ = true
 
 [node name="spawners" type="Node3D" parent="maps/map2"]
 
-[node name="1" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 8)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="2" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D2" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, -8)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="3" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D3" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, -8)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="4" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D4" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 8)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="5" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D5" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -27)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="6" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D6" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, 25)
 enabled = false
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
 [node name="item_spawners" type="Node3D" parent="maps/map2"]
 
 [node name="coin_spawners" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 11, 17)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 50
 
 [node name="coin_spawners2" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -29)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 25
 
 [node name="coin_spawners3" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 16)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 25
 
 [node name="health_spawner" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -11)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -3358,7 +3424,7 @@ spawn_type = 1
 
 [node name="health_spawner2" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -5)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -3369,67 +3435,73 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
 
 [node name="spawners" type="Node3D" parent="maps/map3"]
 
-[node name="StaticBody3D" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 19, -12.5)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="StaticBody3D2" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D2" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 29)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="StaticBody3D3" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D3" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 3, 0.5)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="StaticBody3D4" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D4" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -30)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="StaticBody3D5" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D5" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 19, 12.5)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
-[node name="StaticBody3D6" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node") instance=ExtResource("5_l5ub2")]
+[node name="StaticBody3D6" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 13, 0)
 player = NodePath("../../../../consistant_nodes/Player")
 game_controller = NodePath("../../../..")
 enemy_spawn_node = NodePath("../../../../enemies")
+temp_sound_node = NodePath("../../../../temp_sounds")
 
 [node name="item_spawners" type="Node3D" parent="maps/map3"]
 
 [node name="coin_spawners" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 11, 0)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 50
 
 [node name="coin_spawners2" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 41)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 50
 
 [node name="coin_spawners3" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 2, 0)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 50
 
 [node name="coin_spawners4" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -34)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 50
 
 [node name="health_spawner" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -24)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -3437,7 +3509,7 @@ spawn_type = 1
 
 [node name="health_spawner2" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 32)
-spawn_node = NodePath("../../../../enemies/items")
+spawn_node = NodePath("../../../../items")
 value = 0
 spawn_interval = 15
 spawn_probability = 0.5
@@ -3482,7 +3554,7 @@ material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
 [node name="platform36" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -20, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -19, -22)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -3509,7 +3581,7 @@ material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
 [node name="platform39" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -20, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -19, -20)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -3518,7 +3590,7 @@ material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
 [node name="platform40" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -20, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -18, -16)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4100,7 +4172,7 @@ metadata/_edit_lock_ = true
 [node name="platforms" type="MeshInstance3D" parent="maps/boss"]
 
 [node name="platform" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, -14.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4108,7 +4180,7 @@ size = Vector3(5, 51, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform2" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, -14, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4116,7 +4188,7 @@ size = Vector3(5, 52, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform3" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, -13.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4124,7 +4196,7 @@ size = Vector3(5, 53, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform4" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, -13, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4132,7 +4204,7 @@ size = Vector3(5, 54, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform5" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, -12.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4140,7 +4212,7 @@ size = Vector3(5, 55, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform6" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4148,7 +4220,7 @@ size = Vector3(5, 56, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform7" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, -11.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4156,7 +4228,7 @@ size = Vector3(5, 57, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform8" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, -11, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4164,7 +4236,7 @@ size = Vector3(5, 58, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform9" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, -10.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4172,7 +4244,7 @@ size = Vector3(5, 59, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform10" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4180,7 +4252,7 @@ size = Vector3(5, 60, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform11" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4188,7 +4260,7 @@ size = Vector3(5, 60, 5)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform12" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4196,7 +4268,7 @@ size = Vector3(5, 60, 9)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform13" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4204,7 +4276,7 @@ size = Vector3(5, 60, 12)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform14" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4212,7 +4284,7 @@ size = Vector3(5, 60, 15)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform15" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -4220,14 +4292,232 @@ size = Vector3(5, 60, 17)
 material = SubResource("StandardMaterial3D_hfkki")
 
 [node name="platform16" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136, -7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136, -80, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
 size = Vector3(5, 60, 19)
 material = SubResource("StandardMaterial3D_hfkki")
 
+[node name="platform17" type="CSGBox3D" parent="maps/boss/platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.5, -7, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(42, 60, 19)
+material = SubResource("StandardMaterial3D_hfkki")
+
 [node name="bridges" type="MeshInstance3D" parent="maps/boss"]
+
+[node name="platform5" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 19)
+material = ExtResource("3_bk1rt")
+
+[node name="platform6" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 18)
+material = ExtResource("3_bk1rt")
+
+[node name="platform7" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 193.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 17)
+material = ExtResource("3_bk1rt")
+
+[node name="platform8" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 16)
+material = ExtResource("3_bk1rt")
+
+[node name="platform9" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 203.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 15)
+material = ExtResource("3_bk1rt")
+
+[node name="platform10" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 208.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 14)
+material = ExtResource("3_bk1rt")
+
+[node name="platform11" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 13)
+material = ExtResource("3_bk1rt")
+
+[node name="platform12" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 12)
+material = ExtResource("3_bk1rt")
+
+[node name="platform13" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 11)
+material = ExtResource("3_bk1rt")
+
+[node name="platform14" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("3_bk1rt")
+
+[node name="platform15" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.5, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 1, 10)
+material = ExtResource("3_bk1rt")
+
+[node name="platform16" type="CSGBox3D" parent="maps/boss/bridges"]
+transform = Transform3D(0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0, 1, 245.4, 19.1, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 1, 10)
+material = ExtResource("3_bk1rt")
+
+[node name="castle" type="MeshInstance3D" parent="maps/boss"]
+
+[node name="platform15" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 23.5, -10)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 1, 10)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform16" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 31.5, -10)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 17, 10)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform23" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236.95, 22.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1.1, 1.2, 12)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform17" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 31.5, 10)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 17, 10)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform19" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 252, 39.41421, 4.4142137)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 6, 4)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform20" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, -0.7071067, 0.70710677, 0, -0.70710677, -0.7071067, 252, 39.41421, -4.5857863)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 6, 4)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform18" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 56.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 33, 30)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform24" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 48, 26.25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 50, 22.5)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform25" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 48, -26.25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 50, 22.5)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform26" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.5, 48, -36)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(72, 50, 3)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform27" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.5, 48, 36)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(72, 50, 3)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform28" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324, 48, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 50, 69)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform21" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(0.5, -0.8660254, 0, 0.8660254, 0.5, 0, 0, 0, 1, 242.97372, 32.7, -5.45)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(24, 1, 0.90000004)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="platform22" type="CSGBox3D" parent="maps/boss/castle"]
+transform = Transform3D(0.5, -0.8660254, 0, 0.8660254, 0.5, 0, 0, 0, 1, 242.97372, 32.7, 5.45)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(24, 1, 0.90000004)
+material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="change_map_animations" type="AnimationPlayer" parent="maps"]
 root_node = NodePath("../..")
@@ -4247,14 +4537,6 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 shape = SubResource("BoxShape3D_fxr6r")
 disabled = true
-
-[node name="temp" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 175, -41.5, 0)
-visible = false
-use_collision = true
-collision_layer = 0
-collision_mask = 0
-size = Vector3(166, 93, 60)
 
 [connection signal="body_entered" from="consistant_nodes/start_fade" to="consistant_nodes/Player" method="_on_start_fade_body_entered"]
 [connection signal="body_entered" from="consistant_nodes/death_area" to="consistant_nodes/Player" method="_on_world_borders_body_entered"]
