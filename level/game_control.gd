@@ -7,12 +7,15 @@ enum maps {
 }
 
 const WAVE_TEXT := "wave"
+const CENTER_WAVE_TEXT := "Wave"
 const VISUAL_WAVE_TEXT := "Wave: "
 const VISUAL_MOBS_TEXT := "Mobs: "
+const BOSS_WAVE_TEXT := "Boss Time"
+
 const TIME_BEFORE_TEXT_CHANGE := 0.5
 const map_1_waves := [1, 5]
 const map_2_waves := [10, 15]
-const map_3_waves := [20, 25]
+const map_3_waves := [20, 25, 26]
 const map_2_threshlond := 10
 const map_3_threshlond := 20
 
@@ -37,6 +40,8 @@ var active_coin_spawners: Node3D
 var active_map = maps.MAP1
 var current_map = maps.MAP1
 
+var path_open := false
+
 @export_group("map exports")
 @export var change_map_animations: AnimationPlayer
 @export var bat_flight_plane_2: Area3D
@@ -56,6 +61,13 @@ var current_map = maps.MAP1
 @export var next_animations_wave: Label
 @export var previous_animations_wave: Label
 @export var mob_counter: Label
+@export var center_wave: Label
+
+@export_group("boss related")
+@export var arrow_indicator: MeshInstance3D
+@export var path_activation_area: Area3D
+@export var boss_related_animations: AnimationPlayer
+@export var boss: Node3D
 
 
 func _ready() -> void:
@@ -71,19 +83,19 @@ func _ready() -> void:
 
 func start_new_run() -> void:
 	# voice lines
-	if (Global.current_wave == 10 and not 
+	if (Global.current_wave == 11 and not 
 		VoiceLines.single_activation_vls[VL_BEAT_WAVE10_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
 	
-	if (Global.current_wave == 15 and not 
+	if (Global.current_wave == 16 and not 
 		VoiceLines.single_activation_vls[VL_BEAT_WAVE15_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE15_KEY)
 	
-	if (Global.current_wave == 20 and not 
+	if (Global.current_wave == 21 and not 
 		VoiceLines.single_activation_vls[VL_BEAT_WAVE20_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
 	
-	if (Global.current_wave == 25 and not 
+	if (Global.current_wave == 26 and not 
 		VoiceLines.single_activation_vls[VL_BEAT_WAVE25_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE25_KEY)
 	
@@ -120,6 +132,9 @@ func start_new_run() -> void:
 
 func _normal_wave_start() -> void:
 	var current_wave_text = WAVE_TEXT + str(Global.current_wave)
+	arrow_indicator.visible = false
+	path_activation_area.monitoring = false
+	center_wave.text = CENTER_WAVE_TEXT
 	
 	Global.mutation_probabilities = (
 		Global.WAVE_INFO[current_wave_text]["mutation_probilities"])
@@ -132,11 +147,45 @@ func _normal_wave_start() -> void:
 	next_animations_wave.text = str(Global.current_wave)
 	previous_animations_wave.text = str(Global.current_wave - 1)
 	
-	
 	# sets main mob and wave text while they cant be seen and changes map
 	# if on the correct threshold and voice lines at certian waves
 	wave_visuals_animations.play("next_wave")
 	
+	
+	# changes wave and mob values while they are not visible in the animation
+	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
+	main_wave_label.text = VISUAL_WAVE_TEXT + str(Global.current_wave)
+	Global.mobs_left = Global.WAVE_INFO[current_wave_text]["amount"]
+	mob_counter.text = VISUAL_MOBS_TEXT + str(Global.mobs_left)
+	
+	await wave_visuals_animations.animation_finished
+	
+	# enables the current maps spawners 
+	var spawners = active_spawners.get_children()
+	var coin_spawners = active_coin_spawners.get_children()
+	
+	for coin_spawner in coin_spawners:
+		coin_spawner.enabled = true
+		coin_spawner.start_timer()
+	
+	for spawner in spawners:
+		spawner.enabled = true
+		spawner.spawn_interval = Global.WAVE_INFO[current_wave_text]["interval"]
+		spawner.start_spawning()
+
+
+func _boss_wave_start() -> void:
+	arrow_indicator.visible = true
+	path_activation_area.monitoring = true
+	
+	center_wave.text = CENTER_WAVE_TEXT + str(Global.current_wave - 1)
+	
+	wave_visuals_animations.play("boss_wave")
+
+
+# quite bulky so i put it in a funciton sets the map the the current one based 
+# on an enum
+func _set_active_map_and_spawners() -> void:
 	if Global.current_wave in map_1_waves:
 		if current_map != maps.MAP1:
 			
@@ -171,35 +220,6 @@ func _normal_wave_start() -> void:
 			_clear_items()
 	
 	
-	# changes wave and mob values while they are not visible in the animation
-	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
-	main_wave_label.text = VISUAL_WAVE_TEXT + str(Global.current_wave)
-	Global.mobs_left = Global.WAVE_INFO[current_wave_text]["amount"]
-	mob_counter.text = VISUAL_MOBS_TEXT + str(Global.mobs_left)
-	
-	await wave_visuals_animations.animation_finished
-	
-	# enables the current maps spawners 
-	var spawners = active_spawners.get_children()
-	var coin_spawners = active_coin_spawners.get_children()
-	
-	for coin_spawner in coin_spawners:
-		coin_spawner.enabled = true
-		coin_spawner.start_timer()
-	
-	for spawner in spawners:
-		spawner.enabled = true
-		spawner.spawn_interval = Global.WAVE_INFO[current_wave_text]["interval"]
-		spawner.start_spawning()
-
-
-func _boss_wave_start() -> void:
-	pass
-
-
-# quite bulky so i put it in a funciton sets the map the the current one based 
-# on an enum
-func _set_active_map_and_spawners() -> void:
 	if Global.current_wave in map_1_waves:
 		active_map = maps.MAP1
 	elif Global.current_wave in map_2_waves:
@@ -255,3 +275,25 @@ func _clear_items() -> void:
 	
 	for item in items_alive:
 		item.queue_free()
+
+
+# boss related functions
+func _on_path_activation_body_entered(body: Node3D) -> void:
+	if body in get_tree().get_nodes_in_group("player") and not path_open:
+		path_open = true
+		boss_related_animations.play("open_path")
+		Global.going_to_boss = true
+
+
+func _on_open_door_body_entered(body: Node3D) -> void:
+	if body in get_tree().get_nodes_in_group("player"):
+		boss_related_animations.play("open_door")
+
+
+func _on_boss_activation_body_entered(body: Node3D) -> void:
+	if body in get_tree().get_nodes_in_group("player") and not Global.fighting_boss:
+		Global.fighting_boss = true
+		boss_related_animations.play("close_door")
+		await boss_related_animations.animation_finished
+		boss_related_animations.play("descend_boss")
+		boss.start_boss()

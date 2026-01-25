@@ -28,9 +28,14 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.has_meta("mob"):
 		durability -= 1
 		body.take_damage(damage)
-
+		
 		if durability <= 0:
 			queue_free()
+	
+	elif body.has_meta("boss") and Global.fighting_boss:
+		body.take_damage(damage)
+		queue_free()
+	
 	elif (not body in get_tree().get_nodes_in_group("player") and 
 		can_despawn_to_ground):
 		queue_free()

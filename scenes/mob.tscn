@@ -54,22 +54,21 @@ attack_sound = NodePath("attack_sound")
 metadata/mob = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("SphereShape3D_ih2ng")
 
 [node name="bat_model" parent="." instance=ExtResource("3_wpivu")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, 0.000956899, 0)
-bones/1/rotation = Quaternion(0.16048266, 0.022095382, -0.5927826, 0.7889017)
-bones/2/rotation = Quaternion(0.0068932916, 0.0030547814, 0.389513, 0.92099005)
-bones/3/rotation = Quaternion(-0.1134997, 0.013791748, 0.29883748, 0.94743013)
-bones/4/rotation = Quaternion(0.16048266, -0.022095382, 0.5927826, 0.7889017)
-bones/5/rotation = Quaternion(0.0068932916, -0.0030547814, -0.389513, 0.92099005)
-bones/6/rotation = Quaternion(-0.1134997, -0.013791748, -0.29883748, 0.94743013)
-bones/8/rotation = Quaternion(2.9154084e-08, 0.5442415, 0.8389286, 2.0303963e-08)
-bones/11/rotation = Quaternion(2.495732e-08, 0.5442415, 0.83892864, 4.286743e-08)
+bones/0/position = Vector3(0, 0.020049693, 0)
+bones/1/rotation = Quaternion(0.1213014, 0.04303901, -0.66851825, 0.7324732)
+bones/2/rotation = Quaternion(0.14633332, 0.057716854, 0.36208537, 0.91877615)
+bones/3/rotation = Quaternion(0.17142205, 0.114718676, 0.3428498, 0.91646504)
+bones/4/rotation = Quaternion(0.1213014, -0.04303901, 0.66851825, 0.7324732)
+bones/5/rotation = Quaternion(0.14633332, -0.057716854, -0.36208537, 0.91877615)
+bones/6/rotation = Quaternion(0.17142205, -0.114718676, -0.3428498, 0.91646504)
+bones/8/rotation = Quaternion(3.347274e-08, 0.68972075, 0.72407556, 2.1803618e-08)
+bones/11/rotation = Quaternion(2.4991303e-08, 0.6897208, 0.7240755, 3.697655e-08)
 
 [node name="bat" parent="bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ok4bx")

@@ -3,7 +3,8 @@ extends RigidBody3D
 const RANDOM_HOLD_TIME := 0.2
 const APPLIED_GRAVITY := 6
 const Y_PROJECTILE_OFFSET := -0.3
-const DONK_SOUND := preload("res://sounds/SFX/bongo-hit.mp3")
+const DONK_SOUNDS := [preload("res://sounds/SFX/bongo-hit.mp3"),
+					 preload("res://sounds/SFX/hitsound_2.mp3")]
 const TEMP_SOUND_SCRIPT := preload("res://scripts/temp_sound.gd")
 
 
@@ -38,7 +39,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		var audiostreamplayer3D = AudioStreamPlayer3D.new()
 		audiostreamplayer3D.set_script(TEMP_SOUND_SCRIPT)
 		temp_sound_node.add_child(audiostreamplayer3D)
-		audiostreamplayer3D.stream = DONK_SOUND
+		audiostreamplayer3D.stream = DONK_SOUNDS.pick_random()
 		audiostreamplayer3D.position = global_position
 		audiostreamplayer3D.play()
 		

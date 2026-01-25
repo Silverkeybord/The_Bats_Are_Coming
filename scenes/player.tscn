@@ -921,3 +921,4 @@ script = ExtResource("4_dqkch")
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 15" to="." method="_on_wave_15_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 20" to="." method="_on_wave_20_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 25" to="." method="_on_wave_25_pressed"]
+[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/boss" to="." method="_on_boss_pressed"]

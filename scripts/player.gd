@@ -25,6 +25,8 @@ const OUT_OF_THIS_WORLD_DISTANCE := 65.0 # meters away fom 0, 0, 0
 const OUT_OF_THIS_WORLD_REWARD := 100
 const MOBS_ALIVE_VL_THRESHOLD:= 30
 
+const BOSS_WAVE_TEXT := "Boss :o"
+
 const VL_FIRST_DEATH_KEY := "first_death"
 const VL_DEATH_KEY := "death"
 const VL_MAX_SCALE_KEY := "max_out_scale"
@@ -33,8 +35,8 @@ const VL_10K_COINS_KEY := "ten_k_coins"
 const VL_OUT_OF_THIS_WORLD_KEY := "out_of_this_world"
 const VL_MORE_THAN_30_BATS_KEY := "more_than_30_bats"
 
-var h_sensitivity := 0.25
-var v_sensitivity := 0.005
+var h_sensitivity := 6
+var v_sensitivity := 0.15
 var can_increase_jump_strength := true
 var holding_jump := false
 var initial_jump_done := false
@@ -232,8 +234,8 @@ func _process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and not Global.lock_movement:
-		rotation_degrees.y -= event.relative.x * h_sensitivity
-		player_cam.rotation.x -= event.relative.y * v_sensitivity
+		rotation_degrees.y -= deg_to_rad(event.relative.x * h_sensitivity)
+		player_cam.rotation.x -= deg_to_rad(event.relative.y * v_sensitivity)
 		player_cam.rotation.x = clamp(
 			player_cam.rotation.x, V_CAMERA_MIN, V_CAMERA_MAX)
 
@@ -272,10 +274,11 @@ func _on_world_borders_body_entered(body: Node3D) -> void:
 	if body == self:
 		hp -= max_hp * WORLD_DAMAGE
 		position = RESPAWN_POSITION
+		velocity = Vector3.ZERO
 
 
 func _on_start_fade_body_entered(body: Node3D) -> void:
-	if body == self and hp <= WORLD_DAMAGE:
+	if body == self and hp <= max_hp * WORLD_DAMAGE:
 		effect_animations.play("fade_in")
 
 
@@ -505,3 +508,9 @@ func _on_wave_20_pressed() -> void:
 func _on_wave_25_pressed() -> void:
 	Global.selected_wave = 25
 	wave_label.text = WAVE_VISUAL_TEXT + str(Global.selected_wave)
+
+
+func _on_boss_pressed() -> void:
+	Global.selected_wave = Global.BOSS_WAVE
+	wave_label.text = BOSS_WAVE_TEXT
+	

@@ -2,9 +2,10 @@ extends Node
 
 const GRAVITY := -22 # meters per second per second
 const WAVE_MULT_DIVIDER := 8.0
+const BOSS_WAVE := 26
 const SHOP_INFO: Dictionary = {
 	"damage" : {
-		"levels": 9,
+		"levels": 10,
 		"cost" : {
 			"1": 10,
 			"2": 25,
@@ -59,7 +60,6 @@ const SHOP_INFO: Dictionary = {
 			"7": 750,
 			"8": 1000,
 			"9": 2500,
-			"10": 5000
 		},
 		"value" : {
 			"0": 10,
@@ -72,7 +72,6 @@ const SHOP_INFO: Dictionary = {
 			"7": 100,
 			"8": 150,
 			"9": 250,
-			"10": 400
 		}
 	},
 	"bullet_scale" : {
@@ -110,10 +109,10 @@ const SHOP_INFO: Dictionary = {
 }
 const WAVE_INFO: Dictionary = {
 	"wave66": {
-		"amount": 20,
+		"amount": 1,
 		"interval": 1,
 		"mutation_probilities": {
-			"normal": 0.,
+			"normal": 0.99,
 			"fast": 0.,
 			"heavy": 0.,
 			"shooter": 0.5,
@@ -502,7 +501,7 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
 var player_died := true
-var coins := 14000
+var coins := 100000
 var lock_movement := true
 var shop_open := false
 
@@ -519,8 +518,8 @@ var fighting_boss := false
 
 # wave information
 var current_wave := 1
-var highest_wave := 25
-var selected_wave := 25
+var highest_wave := 26
+var selected_wave := 26
 var base_stat_mult := 1.0
 
 # voice line stuff
