@@ -501,7 +501,7 @@ var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
 var player_died := true
-var coins := 100000
+var coins := 0
 var lock_movement := true
 var shop_open := false
 
@@ -518,12 +518,15 @@ var fighting_boss := false
 
 # wave information
 var current_wave := 1
-var highest_wave := 26
-var selected_wave := 26
+var highest_wave := 1
+var selected_wave := 1
 var base_stat_mult := 1.0
 
 # voice line stuff
 var coins_made_this_run := 0
+
+#misc
+var intro_done := false
 
 
 func _lock_mouse_movement() -> void:

@@ -194,6 +194,19 @@ spend more time impelmenting what i learnt"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = -111.99991
+offset_top = 495.0
+offset_right = 692.0001
+offset_bottom = 670.99854
+theme_override_font_sizes/font_size = 32
+text = "-----:-- IMPORTANT --:-----
+Press Shift + r 
+to kill yourself"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Label4" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1248.0

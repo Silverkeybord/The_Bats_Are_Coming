@@ -4,6 +4,6 @@
 
 [resource]
 transparency = 1
-albedo_color = Color(0, 0.6431373, 0.3254902, 1)
+albedo_color = Color(0.34509805, 0.7058824, 0.9764706, 1)
 albedo_texture = ExtResource("1_35hlp")
 uv1_scale = Vector3(2, 2, 2)

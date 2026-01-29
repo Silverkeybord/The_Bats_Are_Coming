@@ -330,6 +330,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("center_wave:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_dinhu"]
 resource_name = "boss_wave"
@@ -377,10 +389,10 @@ tracks/3/path = NodePath("center_wave:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.4, 1.75, 2),
+"times": PackedFloat32Array(0, 0.15, 0.4, 1.75),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -573,6 +585,29 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("center_wave:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("center_wave:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(453, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_famlx"]
@@ -2502,7 +2537,7 @@ anchor_bottom = 0.5685185
 offset_left = 95.0
 offset_top = 14.0
 offset_right = 97.0
-offset_bottom = 16.99939
+offset_bottom = 16.998901
 theme_override_font_sizes/font_size = 128
 text = "Wave"
 
@@ -2513,7 +2548,7 @@ anchor_bottom = 1.0
 offset_left = 648.0
 offset_top = -200.0
 offset_right = -648.0
-offset_bottom = -1104.9993
+offset_bottom = -1104.9995
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 128
@@ -2536,7 +2571,7 @@ visible = false
 offset_left = 1075.0
 offset_top = -200.0
 offset_right = 1221.0
-offset_bottom = -24.99878
+offset_bottom = -24.998566
 theme_override_font_sizes/font_size = 128
 text = "25"
 
@@ -5129,15 +5164,15 @@ debug_color = Color(0, 0, 0.69803923, 1)
 transform = Transform3D(-10, 0, 1.509958e-06, 0, 10, 0, -1.509958e-06, 0, -10, 0, 0, 0)
 
 [node name="Skeleton3D" parent="boss_arena_center/Boss/bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, -0.01185538, 0)
-bones/1/rotation = Quaternion(-0.043044057, 0.2017679, -0.68075985, 0.7028535)
-bones/2/rotation = Quaternion(-0.0899243, -0.024742067, 0.26579016, 0.9595087)
-bones/3/rotation = Quaternion(0.0037738087, 0.049594026, 0.25184742, 0.96648806)
-bones/4/rotation = Quaternion(-0.043044057, -0.2017679, 0.68075985, 0.7028535)
-bones/5/rotation = Quaternion(-0.0899243, 0.024742067, -0.26579016, 0.9595087)
-bones/6/rotation = Quaternion(0.0037738087, -0.049594026, -0.25184742, 0.96648806)
-bones/8/rotation = Quaternion(3.6524785e-08, 0.6792199, 0.7339348, 1.9189303e-08)
-bones/11/rotation = Quaternion(2.2643066e-08, 0.67921996, 0.73393476, 4.3879716e-08)
+bones/0/position = Vector3(0, 0.019420244, 0)
+bones/1/rotation = Quaternion(0.116019435, 0.04773877, -0.67037195, 0.7313427)
+bones/2/rotation = Quaternion(0.14195013, 0.055477414, 0.35931745, 0.9206864)
+bones/3/rotation = Quaternion(0.17144749, 0.114309, 0.34084272, 0.9172598)
+bones/4/rotation = Quaternion(0.116019435, -0.04773877, 0.67037195, 0.7313427)
+bones/5/rotation = Quaternion(0.14195013, -0.055477414, -0.35931745, 0.9206864)
+bones/6/rotation = Quaternion(0.17144749, -0.114309, -0.34084272, 0.9172598)
+bones/8/rotation = Quaternion(3.368761e-08, 0.6916949, 0.72218984, 2.1952449e-08)
+bones/11/rotation = Quaternion(2.4982004e-08, 0.69169486, 0.7221899, 3.6134228e-08)
 
 [node name="bat" parent="boss_arena_center/Boss/bat_model/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_trtic")

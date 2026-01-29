@@ -79,10 +79,21 @@ func _ready() -> void:
 	
 	Global._lock_mouse_movement()
 	start_new_run()
+	
+	await player.effect_animations.animation_finished
+	Global.intro_done = true
 
 
 func start_new_run() -> void:
-	# voice lines
+	# starting all new wave setup
+	if Global.player_died:
+		Global.current_wave = Global.selected_wave
+	
+	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
+	Global.player_died = false
+	
+	
+	# voiceline conditions
 	if (Global.current_wave == 11 and not 
 		VoiceLines.single_activation_vls[VL_BEAT_WAVE10_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
@@ -104,14 +115,6 @@ func start_new_run() -> void:
 		VoiceLines.play_vl(VL_GOOD_RUN_KEY)
 	
 	Global.coins_made_this_run = 0
-	
-	# starting all new wave setup
-	if Global.player_died:
-		Global.current_wave = Global.selected_wave
-	
-	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
-	Global.player_died = false
-	
 	
 	# disables all enabled spawners
 	for spawner in get_tree().get_nodes_in_group("spawners"):

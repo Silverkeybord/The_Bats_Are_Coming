@@ -221,7 +221,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
@@ -400,7 +400,7 @@ text = "Coins:"
 metadata/_edit_use_anchors_ = true
 
 [node name="intro_messages" type="Control" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -408,18 +408,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="intro_messages"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "just wait"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="intro_messages"]
 layout_mode = 1
@@ -461,6 +449,117 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
+[node name="wave_selection" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1955.0
+offset_right = 1057.999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="wave_selection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 215.0
+offset_top = 109.0
+offset_right = -133.99805
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7921569, 0.7921569, 0.7921569, 1)
+
+[node name="wave_buttons" type="Control" parent="wave_selection/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="wave 1" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 120.0
+offset_right = 282.0
+offset_bottom = 269.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 1"
+
+[node name="wave 5" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 120.0
+offset_right = 522.0
+offset_bottom = 269.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 5"
+
+[node name="wave 10" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 320.0
+offset_right = 282.0
+offset_bottom = 469.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 10"
+
+[node name="wave 15" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 320.0
+offset_right = 522.0
+offset_bottom = 469.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 15"
+
+[node name="wave 20" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 520.0
+offset_right = 282.0
+offset_bottom = 669.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 20"
+
+[node name="wave 25" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 520.0
+offset_right = 522.0
+offset_bottom = 669.0
+scale = Vector2(1.2215581, 1.0799994)
+disabled = true
+text = "wave 25"
+
+[node name="boss" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
+visible = false
+layout_mode = 0
+offset_left = 153.0
+offset_top = 841.0
+offset_right = 519.0
+offset_bottom = 917.0
+disabled = true
+text = "BOSS"
+
+[node name="Label" type="Label" parent="wave_selection"]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 852.0
+offset_right = 666.0
+offset_bottom = 940.0
+theme_override_font_sizes/font_size = 64
+text = "Wave 1"
+
 [node name="shop" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -468,7 +567,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -891.0
-offset_right = -1912.9993
+offset_right = -1912.9994
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -784,117 +883,6 @@ text = "press esc to pause and save and load progress "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="wave_selection" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1955.0
-offset_right = 1057.998
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="wave_selection"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 215.0
-offset_top = 109.0
-offset_right = -133.99805
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.7921569, 0.7921569, 0.7921569, 1)
-
-[node name="wave_buttons" type="Control" parent="wave_selection/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="wave 1" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 120.0
-offset_right = 282.0
-offset_bottom = 269.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 1"
-
-[node name="wave 5" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 120.0
-offset_right = 522.0
-offset_bottom = 269.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 5"
-
-[node name="wave 10" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 320.0
-offset_right = 282.0
-offset_bottom = 469.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 10"
-
-[node name="wave 15" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 320.0
-offset_right = 522.0
-offset_bottom = 469.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 15"
-
-[node name="wave 20" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 520.0
-offset_right = 282.0
-offset_bottom = 669.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 20"
-
-[node name="wave 25" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 520.0
-offset_right = 522.0
-offset_bottom = 669.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 25"
-
-[node name="boss" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-visible = false
-layout_mode = 0
-offset_left = 153.0
-offset_top = 841.0
-offset_right = 519.0
-offset_bottom = 917.0
-disabled = true
-text = "BOSS"
-
-[node name="Label" type="Label" parent="wave_selection"]
-layout_mode = 0
-offset_left = 444.0
-offset_top = 852.0
-offset_right = 666.0
-offset_bottom = 940.0
-theme_override_font_sizes/font_size = 64
-text = "Wave 1"
-
 [node name="shop_animations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_boad6")
@@ -909,12 +897,6 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9571836, 0.72308564)
 script = ExtResource("4_dqkch")
 
-[connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/more_hp/health_button" to="." method="_on_health_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/bigger_bullet/bullet_scale_button" to="." method="_on_bullet_scale_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/druability/durability_button" to="." method="_on_durability_button_pressed"]
-[connection signal="pressed" from="shop/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 1" to="." method="_on_wave_1_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 5" to="." method="_on_wave_5_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 10" to="." method="_on_wave_10_pressed"]
@@ -922,3 +904,9 @@ script = ExtResource("4_dqkch")
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 20" to="." method="_on_wave_20_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 25" to="." method="_on_wave_25_pressed"]
 [connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/boss" to="." method="_on_boss_pressed"]
+[connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/more_hp/health_button" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/bigger_bullet/bullet_scale_button" to="." method="_on_bullet_scale_button_pressed"]
+[connection signal="pressed" from="shop/ColorRect/druability/durability_button" to="." method="_on_durability_button_pressed"]
+[connection signal="pressed" from="shop/close_button" to="." method="_on_close_button_pressed"]

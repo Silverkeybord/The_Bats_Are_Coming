@@ -30,7 +30,7 @@ const VOICE_LINES := {
 		preload("res://sounds/SFX/fahhhhhhhhhhhhhh.mp3"),
 		preload("res://sounds/SFX/fail-sound-effect.mp3"),
 		preload("res://sounds/SFX/window-knock.mp3"),
-		preload("res://sounds/SFX/indian-song.mp3"),
+		#preload("res://sounds/SFX/indian-song.mp3"),
 	],
 	"good_run": preload("res://sounds/VL/that was a good run.mp3"),
 	"more_than_30_bats": preload("res://sounds/VL/shoot the bats.mp3"),
@@ -66,13 +66,11 @@ func play_vl(vl: String):
 		if single_activation_vls[vl] == true:
 			return
 		
-		print("single voice line played -- ", vl)
 		single_activation_vls[vl] = true
 		stream = VOICE_LINES[vl]
 		self.play()
 	
 	else:
-		print("multi voice line played -- ", vl)
 		if VOICE_LINES[vl] is Array:
 			stream = VOICE_LINES[vl].pick_random()
 			self.play()

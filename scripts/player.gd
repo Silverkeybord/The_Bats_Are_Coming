@@ -3,10 +3,12 @@ extends CharacterBody3D
 const V_CAMERA_MAX := deg_to_rad(88)
 const V_CAMERA_MIN := deg_to_rad(-88)
 
-const PLAYER_SPEED := 7.0
+const SPEED := 7.0
+const ACCELERATION := 40.0
+const DECELERATION := 30.0
 const INITIAL_JUMP_VELOCITY := 7.0
 const JUMP_HOLD_ACCELERATION := 40.0
-const MAX_JUMP_VELOCITY := 8.0
+const MAX_JUMP_VELOCITY := 8.5
 const COYOTE_TIME := 0.15
 
 const COINS_TEXT := "Coins: "
@@ -42,6 +44,7 @@ var holding_jump := false
 var initial_jump_done := false
 
 var coyote_timer := 0.0
+var current_speed := 0.0
 var max_hp := 10.0
 var hp := 0.0
 var damage := 1
@@ -145,17 +148,20 @@ func _initial_shop_ui() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Global.lock_movement:
-		# back and fourth movement
+		# back and fourth movement with acceleration and decelleration
 		var input_direction_2D = Input.get_vector(
 			"left", "right", "forward", "back"
 			)
-		var input_direction_3D = Vector3(
-			input_direction_2D.x, 0.0, input_direction_2D.y
-			)
-		var direction = transform.basis * input_direction_3D
+		var direction = ((transform.basis * 
+						Vector3(input_direction_2D.x, 0, input_direction_2D.y))
+						.normalized())
 		
-		velocity.x = direction.x * PLAYER_SPEED
-		velocity.z = direction.z * PLAYER_SPEED
+		if direction:
+			velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION * delta)
+			velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
+			velocity.z = move_toward(velocity.z, 0, DECELERATION * delta)
 		
 		# -- jumping -- 
 		# longer you hold the higher you will jump after the initial boost of
@@ -198,6 +204,10 @@ func _process(_delta: float) -> void:
 		not Global.lock_movement):
 		_shoot_bullet()
 	
+	if Input.is_action_just_pressed("die") and not Global.lock_movement:
+		hp = 0
+		_update_hp()
+	
 	coins_label.text = COINS_TEXT + str(Global.coins)
 	
 	hurt_image.modulate.a = clamp(1.0 - (hp / max_hp) * HURT_THRESHOLD, 0.0, 1.0)
@@ -230,6 +240,8 @@ func _process(_delta: float) -> void:
 			
 			VoiceLines.play_vl(VL_OUT_OF_THIS_WORLD_KEY)
 			Global.coins += OUT_OF_THIS_WORLD_REWARD
+	
+	print(get_viewport().get_mouse_position())
 
 
 func _unhandled_input(event: InputEvent) -> void:
