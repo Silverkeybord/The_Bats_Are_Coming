@@ -7,12 +7,13 @@ enum SPAWN_TYPE {
 
 @export var item_scene: PackedScene 
 @export var timer: Timer
-@export var spawn_node: Node 
 @export var enabled := false
 @export var value := 10
 @export var spawn_interval := 10
 @export var spawn_probability := 0.1
 @export var spawn_type := SPAWN_TYPE.COIN
+
+@onready var spawn_node := get_tree().get_first_node_in_group("items_node") 
 
 var item: Area3D
 

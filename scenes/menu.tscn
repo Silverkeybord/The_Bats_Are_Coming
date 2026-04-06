@@ -1,14 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxk1y4n5scojw"]
+[gd_scene format=3 uid="uid://cxk1y4n5scojw"]
 
 [ext_resource type="Script" uid="uid://chsrvj7h267ke" path="res://scripts/pause_menue.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://b5hqa1q3u00ce" path="res://WIN_20251125_22_03_15_Pro.jpg" id="2_mae5d"]
 [ext_resource type="AudioStream" uid="uid://dndubuf6r5n41" path="res://sounds/SFX/menu song.MP3" id="3_con2f"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
-expand_margin_left = 8.0
-expand_margin_top = 8.0
-expand_margin_right = 8.0
-expand_margin_bottom = 8.0
 
 [sub_resource type="Animation" id="Animation_ytr4m"]
 length = 0.001
@@ -72,7 +66,7 @@ _data = {
 &"rotate": SubResource("Animation_4hy44")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("music") groups=["player"]]
+[node name="Control" type="Control" unique_id=1539109169 node_paths=PackedStringArray("music", "reset_button") groups=["player"]]
 process_mode = 3
 z_index = 1
 layout_mode = 3
@@ -84,8 +78,9 @@ grow_vertical = 2
 rotation = 6.2831855
 script = ExtResource("1_ouk20")
 music = NodePath("AudioStreamPlayer")
+reset_button = NodePath("ColorRect/reset_progress")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=302613556]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,12 +94,12 @@ offset_bottom = 458.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Win20251125220315Pro" type="Sprite2D" parent="ColorRect"]
+[node name="Win20251125220315Pro" type="Sprite2D" parent="ColorRect" unique_id=1078099312]
 position = Vector2(356.00012, 667.9998)
 scale = Vector2(0.490318, 0.45295414)
 texture = ExtResource("2_mae5d")
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="ColorRect" unique_id=701038907]
 layout_mode = 0
 offset_left = 141.0
 offset_top = 27.0
@@ -114,7 +109,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 84
 text = "MENUE : 0"
 
-[node name="unpause" type="Button" parent="ColorRect"]
+[node name="unpause" type="Button" parent="ColorRect" unique_id=622893366]
 layout_mode = 0
 offset_left = 110.0
 offset_top = 174.0
@@ -122,40 +117,28 @@ offset_right = 577.0
 offset_bottom = 286.0
 text = "Unpause or press esc"
 
-[node name="save" type="Button" parent="ColorRect"]
+[node name="save" type="Button" parent="ColorRect" unique_id=770772551]
 layout_mode = 0
-offset_left = 107.0
-offset_top = 311.0
-offset_right = 314.45502
-offset_bottom = 423.0
-text = "save"
+offset_left = 107.00006
+offset_top = 315.99988
+offset_right = 577.1823
+offset_bottom = 457.99982
+text = "Save 
+(the game auto saves ater every finished wave)"
 
-[node name="load" type="Button" parent="ColorRect"]
+[node name="reset_progress" type="Button" parent="ColorRect" unique_id=1258248772]
 layout_mode = 0
-offset_left = 358.55902
-offset_top = 311.0
-offset_right = 574.0
-offset_bottom = 423.0
-text = "load"
+offset_left = 566.0001
+offset_top = 834.99976
+offset_right = 685.0001
+offset_bottom = 886.0907
+text = "reset progress"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1488119
-anchor_top = 0.48566896
-anchor_right = 0.82781875
-anchor_bottom = 0.5570193
-theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
-text = "jsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjfjsdfkdshjasdfa;lskdjfas;ljka;lkj;alksjdlfkjakjsjfjdkdjfjdkjdkdjjfjdkfjdkkkdjf"
-metadata/_edit_use_anchors_ = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=555440666]
+libraries/ = SubResource("AnimationLibrary_l48gv")
+autoplay = &"rotate"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_l48gv")
-}
-autoplay = "rotate"
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1342454316]
 layout_mode = 0
 offset_left = 1197.0001
 offset_top = 884.9998
@@ -170,8 +153,9 @@ const WAVE_MULT_DIVIDER := 10.0
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=787195745]
 layout_mode = 0
 offset_left = -117.99983
 offset_top = 943.0
@@ -181,8 +165,9 @@ theme_override_font_sizes/font_size = 24
 text = "dont surf the bat outside the map"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="." unique_id=438270206]
 layout_mode = 0
 offset_left = -108.99997
 offset_top = 209.00003
@@ -193,8 +178,9 @@ text = "idk what im doing i need to
 spend more time impelmenting what i learnt"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Label5" type="Label" parent="."]
+[node name="Label5" type="Label" parent="." unique_id=982193572]
 layout_mode = 0
 offset_left = -111.99991
 offset_top = 495.0
@@ -206,8 +192,9 @@ Press Shift + r
 to kill yourself"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Label4" type="Label" parent="."]
+[node name="Label4" type="Label" parent="." unique_id=2086360491]
 layout_mode = 0
 offset_left = 1248.0
 offset_top = 300.9998
@@ -217,8 +204,11 @@ theme_override_font_sizes/font_size = 24
 text = "game might be bad ik :)"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1104436621]
 stream = ExtResource("3_con2f")
 
 [connection signal="pressed" from="ColorRect/unpause" to="." method="_on_unpause_pressed"]
+[connection signal="pressed" from="ColorRect/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="ColorRect/reset_progress" to="." method="_on_reset_progress_pressed"]

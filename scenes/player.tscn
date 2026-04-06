@@ -1,12 +1,41 @@
-[gd_scene load_steps=18 format=3 uid="uid://chb3pxm0scfyx"]
+[gd_scene format=3 uid="uid://chb3pxm0scfyx"]
 
 [ext_resource type="PackedScene" uid="uid://chjrhhjvxun3r" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da56tvn384nn6" path="res://scripts/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://b8mmrsy51ssx1" path="res://scenes/bullet.tscn" id="2_yw30f"]
 [ext_resource type="Script" uid="uid://cnoapfkxro84e" path="res://scripts/voice_lines.gd" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://d0j822q7kciyd" path="res://scenes/shop_upgrade.tscn" id="5_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dbsfutyee7ral" path="res://assests/hurt.png" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://t4fn0p1u8oho" path="res://assests/shop_divider.png" id="5_smehm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlg0r"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuyoq"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjrip"]
+content_margin_left = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yw30f"]
 bg_color = Color(0.99999994, 0.04050286, 0.022352692, 1)
@@ -37,18 +66,18 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shop:position:x")
+tracks/0/path = NodePath("wave_selection:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-891, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1118, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shop:visible")
+tracks/1/path = NodePath("wave_selection:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -60,18 +89,18 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("wave_selection:position:x")
+tracks/2/path = NodePath("Shop_Control:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(1955, -0.25, 0, 0.25, 0),
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("wave_selection:visible")
+tracks/3/path = NodePath("Shop_Control:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -81,53 +110,53 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_yw30f"]
+[sub_resource type="Animation" id="Animation_smehm"]
 resource_name = "close_shop"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shop:position:x")
+tracks/0/path = NodePath("wave_selection:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(0, 0, 0, 0.033333335, -901.0752, -891, -0.25, 0, 0.25, 0),
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1118, -0.25, 0, 0, 886.89355, 2000, -0.1, 0, 0, 215.69312),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shop:visible")
+tracks/1/path = NodePath("wave_selection:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("wave_selection:position:x")
+tracks/2/path = NodePath("Shop_Control:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(1009, -0.25, 0, 0.1, 572.9066, 1934, -0.6333333, 0.18554688, 0, 0),
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.26666665, 9.826048, 0, -898.9917, -900, -0.1, 0, 0.16666663, 31.850525),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("wave_selection:visible")
+tracks/3/path = NodePath("Shop_Control:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_g6k8r"]
@@ -135,18 +164,18 @@ resource_name = "open_shop"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shop:position:x")
+tracks/0/path = NodePath("wave_selection:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(-891, -0.25, 0, 0.06666667, 887.3078, 0, -0.26666665, -2.4405956, 0, 0),
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(2000, 0, 0, 0.06666667, -703.1471, 1118, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shop:visible")
+tracks/1/path = NodePath("wave_selection:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -158,18 +187,18 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("wave_selection:position:x")
+tracks/2/path = NodePath("Shop_Control:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1945, 0, 0, 0.033333335, -864.2649, 1009, -0.5, 5.63385, 0.25, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-900, 0, 0, 0.06666667, 827.0119, 0, -0.26666665, 9.826048, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("wave_selection:visible")
+tracks/3/path = NodePath("Shop_Control:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -182,7 +211,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_boad6"]
 _data = {
 &"RESET": SubResource("Animation_qjkh3"),
-&"close_shop": SubResource("Animation_yw30f"),
+&"close_shop": SubResource("Animation_smehm"),
 &"open_shop": SubResource("Animation_g6k8r")
 }
 
@@ -221,7 +250,89 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_messages:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_retry:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("boss_retry:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("boss_retry/yes:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("boss_retry/no:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("boss_retry/yes:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("boss_retry/no:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
@@ -313,16 +424,181 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("intro_messages:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "hide_retry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_retry:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_retry:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("boss_retry/yes:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boss_retry/no:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_retry/yes:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("boss_retry/no:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "show_retry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_retry:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_retry:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("boss_retry/yes:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(100, 0, 0, 0.033333335, 340.52417, 600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boss_retry/no:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1600, 0, 0, 0.06666667, -347.82446, 1100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_retry/yes:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("boss_retry/no:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hg6s5"]
 _data = {
 &"RESET": SubResource("Animation_rgyib"),
 &"fade_in": SubResource("Animation_hg6s5"),
 &"fade_out": SubResource("Animation_boad6"),
-&"first_fade_out": SubResource("Animation_qlg0r")
+&"first_fade_out": SubResource("Animation_qlg0r"),
+&"hide_retry": SubResource("Animation_fjrip"),
+&"show_retry": SubResource("Animation_tuyoq")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("bullet_spawn", "player_cam", "shooting_timer", "coins_label", "effect_animations", "hurt_image", "boss_button", "hp_bar", "hp_text_display", "shop_animations", "damage_button", "damage_cost_label", "damage_value_label", "firerate_button", "firerate_cost_label", "firerate_value_label", "health_button", "health_cost_label", "health_value_label", "bullet_scale_button", "bullet_scale_cost_label", "bullet_scale_value_label", "durability_button", "durability_cost_label", "durability_value_label", "wave_buttons", "wave_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smehm"]
+bg_color = Color(1, 1, 1, 0)
+
+[node name="Player" type="CharacterBody3D" unique_id=1003883256 node_paths=PackedStringArray("bullet_spawn", "player_cam", "shooting_timer", "coins_label", "effect_animations", "hurt_image", "boss_button", "FPS_lable", "hp_bar", "hp_text_display", "shop_animations", "damage_upgrade", "hp_upgrade", "firerate_upgrade", "scale_upgrade", "pierce_upgrade", "wave_buttons", "wave_label")]
 script = ExtResource("1_rkbax")
 bullet_scene = ExtResource("2_yw30f")
 bullet_spawn = NodePath("Camera3D/gun_model/bullet_spawn")
@@ -331,52 +607,43 @@ shooting_timer = NodePath("Timer")
 coins_label = NodePath("coins_label")
 effect_animations = NodePath("effects_animations")
 hurt_image = NodePath("Hurt")
-boss_button = NodePath("wave_selection/ColorRect/wave_buttons/boss")
+boss_button = NodePath("wave_selection/wave_buttons/VBoxContainer/boss")
+FPS_lable = NodePath("FPS lable")
 hp_bar = NodePath("hp_bar")
 hp_text_display = NodePath("hp_bar/hp_display")
 shop_animations = NodePath("shop_animations")
-damage_button = NodePath("shop/ColorRect/gun_damage/damage_button")
-damage_cost_label = NodePath("shop/ColorRect/gun_damage/cost")
-damage_value_label = NodePath("shop/ColorRect/gun_damage/value")
-firerate_button = NodePath("shop/ColorRect/firerate/firerate_button")
-firerate_cost_label = NodePath("shop/ColorRect/firerate/cost")
-firerate_value_label = NodePath("shop/ColorRect/firerate/value")
-health_button = NodePath("shop/ColorRect/more_hp/health_button")
-health_cost_label = NodePath("shop/ColorRect/more_hp/cost")
-health_value_label = NodePath("shop/ColorRect/more_hp/value")
-bullet_scale_button = NodePath("shop/ColorRect/bigger_bullet/bullet_scale_button")
-bullet_scale_cost_label = NodePath("shop/ColorRect/bigger_bullet/cost")
-bullet_scale_value_label = NodePath("shop/ColorRect/bigger_bullet/value")
-durability_button = NodePath("shop/ColorRect/druability/durability_button")
-durability_cost_label = NodePath("shop/ColorRect/druability/cost")
-durability_value_label = NodePath("shop/ColorRect/druability/value")
-wave_buttons = NodePath("wave_selection/ColorRect/wave_buttons")
-wave_label = NodePath("wave_selection/Label")
+damage_upgrade = NodePath("Shop_Control/shop/VBoxContainer/gun_damage")
+hp_upgrade = NodePath("Shop_Control/shop/VBoxContainer/health")
+firerate_upgrade = NodePath("Shop_Control/shop/VBoxContainer/fire_rate")
+scale_upgrade = NodePath("Shop_Control/shop/VBoxContainer/bullet_scale")
+pierce_upgrade = NodePath("Shop_Control/shop/VBoxContainer/pierce")
+wave_buttons = NodePath("wave_selection/wave_buttons/VBoxContainer2")
+wave_label = NodePath("wave_selection/wave_buttons/VBoxContainer/Label")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1281036513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=430116333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="gun_model" parent="Camera3D" instance=ExtResource("1_oul6g")]
+[node name="gun_model" parent="Camera3D" unique_id=896361990 instance=ExtResource("1_oul6g")]
 transform = Transform3D(-0.19992577, -0.00029005486, -0.0054407716, -0.0002723582, 0.19999874, -0.0006541695, 0.0054416843, -0.0006465177, -0.19992493, 0.40378076, -0.17118919, -0.3913274)
 
-[node name="bullet_spawn" type="Marker3D" parent="Camera3D/gun_model"]
+[node name="bullet_spawn" type="Marker3D" parent="Camera3D/gun_model" unique_id=459852994]
 transform = Transform3D(1, 6.91216e-10, 1.3038516e-08, -2.1827873e-11, 1, 1.1641532e-09, -2.2351742e-08, -2.3283064e-10, 0.9999998, 0.0012421608, 0.009852409, 0.52436185)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=253607678]
 one_shot = true
 
-[node name="Hurt" type="TextureRect" parent="."]
+[node name="Hurt" type="TextureRect" parent="." unique_id=114471354]
 visible = false
-modulate = Color(0.99999434, 0.49142903, 0.4498309, 1)
+modulate = Color(1, 0.49019608, 0.4509804, 1)
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_qlg0r")
 
-[node name="black_overlay" type="ColorRect" parent="."]
+[node name="black_overlay" type="ColorRect" parent="." unique_id=405874259]
 z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -386,21 +653,21 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="coins_label" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.011979166
-anchor_top = 0.02037037
-anchor_right = 0.20260416
-anchor_bottom = 0.10185185
+[node name="coins_label" type="Label" parent="." unique_id=1712606103]
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 389.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Coins:"
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
-[node name="intro_messages" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="intro_messages" type="Control" parent="." unique_id=2026491597]
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -408,26 +675,220 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="Label2" type="Label" parent="intro_messages"]
+[node name="Label2" type="Label" parent="intro_messages" unique_id=1660506673]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_bottom = -34.0
+offset_left = -312.5
+offset_top = -130.0
+offset_right = 312.5
+offset_bottom = -37.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Use headphones for the best experience
 press esc to pause, save, and load"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="hp_bar" type="ProgressBar" parent="."]
-offset_left = 1500.0
+[node name="wave_selection" type="PanelContainer" parent="." unique_id=923496732]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -802.0
+offset_top = -431.0
+offset_right = -16.99707
+offset_bottom = 519.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qlg0r")
+
+[node name="wave_buttons" type="VBoxContainer" parent="wave_selection" unique_id=276402918]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="wave_selection/wave_buttons" unique_id=432882475]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="wave_selection/wave_buttons/VBoxContainer2" unique_id=402861717]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="wave 1" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer" unique_id=632387010]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 1"
+
+[node name="wave 5" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer" unique_id=1244174321]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 5"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="wave_selection/wave_buttons/VBoxContainer2" unique_id=1227770599]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="wave 10" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer2" unique_id=2044048399]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 10"
+
+[node name="wave 15" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer2" unique_id=602277911]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 15"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="wave_selection/wave_buttons/VBoxContainer2" unique_id=468974795]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="wave 20" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer3" unique_id=890047378]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 20"
+
+[node name="wave 25" type="Button" parent="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer3" unique_id=1246525471]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "wave 25"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="wave_selection/wave_buttons" unique_id=476587471]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Label" type="Label" parent="wave_selection/wave_buttons/VBoxContainer" unique_id=230783566]
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_font_sizes/font_size = 64
+text = "Wave 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="boss" type="Button" parent="wave_selection/wave_buttons/VBoxContainer" unique_id=709616208]
+visible = false
+layout_mode = 2
+size_flags_vertical = 7
+disabled = true
+text = "BOSS"
+
+[node name="Shop_Control" type="Control" parent="." unique_id=602384656]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="shop" type="PanelContainer" parent="Shop_Control" unique_id=526127324]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.625
+anchor_top = 2.725
+anchor_right = 20.225
+anchor_bottom = 26.475
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tuyoq")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop_Control/shop" unique_id=1411683691]
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="shop" type="Label" parent="Shop_Control/shop/VBoxContainer" unique_id=320484744]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_fjrip")
+text = "Goofy ahh shop"
+vertical_alignment = 1
+
+[node name="gun_damage" parent="Shop_Control/shop/VBoxContainer" unique_id=1807217842 instance=ExtResource("5_fjrip")]
+layout_mode = 2
+upgrade = "damage"
+upgrade_name = "gUn DaMaGe"
+
+[node name="TextureRect" type="TextureRect" parent="Shop_Control/shop/VBoxContainer" unique_id=1808063154]
+layout_mode = 2
+texture = ExtResource("5_smehm")
+
+[node name="health" parent="Shop_Control/shop/VBoxContainer" unique_id=471734057 instance=ExtResource("5_fjrip")]
+layout_mode = 2
+upgrade = "health"
+upgrade_name = "MooR Hach Pee"
+
+[node name="TextureRect4" type="TextureRect" parent="Shop_Control/shop/VBoxContainer" unique_id=250886816]
+layout_mode = 2
+texture = ExtResource("5_smehm")
+
+[node name="fire_rate" parent="Shop_Control/shop/VBoxContainer" unique_id=11737476 instance=ExtResource("5_fjrip")]
+layout_mode = 2
+upgrade = "firerate"
+upgrade_name = "faster pew pew"
+
+[node name="TextureRect2" type="TextureRect" parent="Shop_Control/shop/VBoxContainer" unique_id=828924571]
+layout_mode = 2
+texture = ExtResource("5_smehm")
+
+[node name="bullet_scale" parent="Shop_Control/shop/VBoxContainer" unique_id=559276740 instance=ExtResource("5_fjrip")]
+layout_mode = 2
+upgrade = "bullet_scale"
+upgrade_name = "BiG Bullet yes"
+
+[node name="TextureRect3" type="TextureRect" parent="Shop_Control/shop/VBoxContainer" unique_id=199917317]
+layout_mode = 2
+texture = ExtResource("5_smehm")
+
+[node name="pierce" parent="Shop_Control/shop/VBoxContainer" unique_id=935741204 instance=ExtResource("5_fjrip")]
+layout_mode = 2
+upgrade = "pierce"
+upgrade_name = "Pierce"
+
+[node name="TextureRect5" type="TextureRect" parent="Shop_Control/shop/VBoxContainer" unique_id=1129373785]
+layout_mode = 2
+texture = ExtResource("5_smehm")
+
+[node name="close_button" type="Button" parent="Shop_Control" unique_id=30914050]
+layout_mode = 0
+anchor_left = 16.1
+anchor_top = 3.75
+anchor_right = 18.925
+anchor_bottom = 5.9
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[node name="hp_bar" type="ProgressBar" parent="." unique_id=169151606]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -420.0
 offset_top = 20.0
-offset_right = 1903.0
+offset_right = -17.0
 offset_bottom = 92.0
+grow_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_yw30f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qjkh3")
 max_value = 10.0
@@ -437,7 +898,7 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="hp_display" type="Label" parent="hp_bar"]
+[node name="hp_display" type="Label" parent="hp_bar" unique_id=903917194]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.9975186
@@ -449,464 +910,80 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="wave_selection" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1955.0
-offset_right = 1057.999
-grow_horizontal = 2
-grow_vertical = 2
+[node name="shop_animations" type="AnimationPlayer" parent="." unique_id=883672273]
+libraries/ = SubResource("AnimationLibrary_boad6")
 
-[node name="ColorRect" type="ColorRect" parent="wave_selection"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 215.0
-offset_top = 109.0
-offset_right = -133.99805
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.7921569, 0.7921569, 0.7921569, 1)
+[node name="effects_animations" type="AnimationPlayer" parent="." unique_id=1492907322]
+libraries/ = SubResource("AnimationLibrary_hg6s5")
 
-[node name="wave_buttons" type="Control" parent="wave_selection/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="wave 1" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 120.0
-offset_right = 282.0
-offset_bottom = 269.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 1"
-
-[node name="wave 5" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 120.0
-offset_right = 522.0
-offset_bottom = 269.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 5"
-
-[node name="wave 10" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 320.0
-offset_right = 282.0
-offset_bottom = 469.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 10"
-
-[node name="wave 15" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 320.0
-offset_right = 522.0
-offset_bottom = 469.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 15"
-
-[node name="wave 20" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 520.0
-offset_right = 282.0
-offset_bottom = 669.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 20"
-
-[node name="wave 25" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-layout_mode = 0
-offset_left = 355.0
-offset_top = 520.0
-offset_right = 522.0
-offset_bottom = 669.0
-scale = Vector2(1.2215581, 1.0799994)
-disabled = true
-text = "wave 25"
-
-[node name="boss" type="Button" parent="wave_selection/ColorRect/wave_buttons"]
-visible = false
-layout_mode = 0
-offset_left = 153.0
-offset_top = 841.0
-offset_right = 519.0
-offset_bottom = 917.0
-disabled = true
-text = "BOSS"
-
-[node name="Label" type="Label" parent="wave_selection"]
-layout_mode = 0
-offset_left = 444.0
-offset_top = 852.0
-offset_right = 666.0
-offset_bottom = 940.0
-theme_override_font_sizes/font_size = 64
-text = "Wave 1"
-
-[node name="shop" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -891.0
-offset_right = -1912.9994
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ColorRect" type="ColorRect" parent="shop"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.013020833
-anchor_top = 0.13333334
-anchor_right = 0.89390516
-anchor_bottom = 0.9814815
-color = Color(0.7919991, 0.79199916, 0.7919991, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="shop" type="Label" parent="shop/ColorRect"]
-layout_mode = 0
-offset_right = 801.0
-offset_bottom = 135.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "Goofy ahh shop"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="gun_damage" type="Control" parent="shop/ColorRect"]
-layout_mode = 1
-anchor_top = -0.033842795
-anchor_bottom = -0.033842795
-offset_top = 138.0
-offset_right = 800.0
-offset_bottom = 258.0
-metadata/_edit_use_anchors_ = true
-
-[node name="damage_button" type="Button" parent="shop/ColorRect/gun_damage"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.006666667
-anchor_top = 0.17582418
-anchor_right = 0.248
-anchor_bottom = 0.8296703
-text = "buy"
-metadata/_edit_lock_ = true
-
-[node name="description" type="Label" parent="shop/ColorRect/gun_damage"]
-layout_mode = 0
-anchor_right = 0.11400001
-anchor_bottom = 0.32200003
-offset_left = 294.0
-offset_top = 26.0
-offset_right = 495.5
-offset_bottom = 34.395996
-theme_override_font_sizes/font_size = 48
-text = "GUN DmAgE"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="cost" type="Label" parent="shop/ColorRect/gun_damage"]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 90.0
-offset_right = 351.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Coins: "
-
-[node name="value" type="Label" parent="shop/ColorRect/gun_damage"]
-layout_mode = 0
-offset_left = 547.0
-offset_top = 90.0
-offset_right = 650.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Value: "
-
-[node name="firerate" type="Control" parent="shop/ColorRect"]
-layout_mode = 1
-anchor_top = 0.1091703
-anchor_bottom = 0.1091703
-offset_top = 142.0
-offset_right = 800.0
-offset_bottom = 262.0
-metadata/_edit_use_anchors_ = true
-
-[node name="firerate_button" type="Button" parent="shop/ColorRect/firerate"]
-layout_mode = 0
-anchor_left = 0.006666667
-anchor_top = 0.17582418
-anchor_right = 0.248
-anchor_bottom = 0.8296703
-text = "buy"
-metadata/_edit_lock_ = true
-
-[node name="description" type="Label" parent="shop/ColorRect/firerate"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.11400001
-anchor_bottom = 0.32200003
-offset_left = 294.0
-offset_top = 26.0
-offset_right = 495.5
-offset_bottom = 34.395996
-theme_override_font_sizes/font_size = 48
-text = "fire rate"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="cost" type="Label" parent="shop/ColorRect/firerate"]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 91.0
-offset_right = 351.0
-offset_bottom = 136.0
-theme_override_font_sizes/font_size = 32
-text = "Coins: "
-metadata/_edit_lock_ = true
-
-[node name="value" type="Label" parent="shop/ColorRect/firerate"]
-layout_mode = 0
-offset_left = 547.0
-offset_top = 90.0
-offset_right = 650.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Value: "
-
-[node name="more_hp" type="Control" parent="shop/ColorRect"]
-layout_mode = 1
-anchor_top = 0.2532751
-anchor_bottom = 0.2532751
-offset_top = 146.0
-offset_right = 800.0
-offset_bottom = 266.0
-metadata/_edit_use_anchors_ = true
-
-[node name="health_button" type="Button" parent="shop/ColorRect/more_hp"]
-layout_mode = 0
-anchor_left = 0.006666667
-anchor_top = 0.17582418
-anchor_right = 0.248
-anchor_bottom = 0.8296703
-text = "buy"
-metadata/_edit_lock_ = true
-
-[node name="description" type="Label" parent="shop/ColorRect/more_hp"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.11400001
-anchor_bottom = 0.32200003
-offset_left = 294.0
-offset_top = 26.0
-offset_right = 495.5
-offset_bottom = 34.395996
-theme_override_font_sizes/font_size = 48
-text = "moor HP"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="cost" type="Label" parent="shop/ColorRect/more_hp"]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 91.0
-offset_right = 351.0
-offset_bottom = 136.0
-theme_override_font_sizes/font_size = 32
-text = "Coins: "
-metadata/_edit_lock_ = true
-
-[node name="value" type="Label" parent="shop/ColorRect/more_hp"]
-layout_mode = 0
-offset_left = 547.0
-offset_top = 90.0
-offset_right = 650.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Value: "
-
-[node name="bigger_bullet" type="Control" parent="shop/ColorRect"]
-layout_mode = 1
-anchor_left = -0.00125
-anchor_top = 0.41375545
-anchor_right = -0.00125
-anchor_bottom = 0.6080786
-offset_left = 1.0
-offset_top = 134.0
-offset_right = 801.0
-offset_bottom = 76.0
-metadata/_edit_use_anchors_ = true
-
-[node name="bullet_scale_button" type="Button" parent="shop/ColorRect/bigger_bullet"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.006666667
-anchor_top = 0.17582418
-anchor_right = 0.248
-anchor_bottom = 0.8296703
-text = "buy"
-metadata/_edit_lock_ = true
-
-[node name="description" type="Label" parent="shop/ColorRect/bigger_bullet"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.11400001
-anchor_bottom = 0.32200003
-offset_left = 294.0
-offset_top = 26.0
-offset_right = 495.5
-offset_bottom = 34.395996
-theme_override_font_sizes/font_size = 48
-text = "biG Bullet
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="cost" type="Label" parent="shop/ColorRect/bigger_bullet"]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 91.0
-offset_right = 351.0
-offset_bottom = 136.0
-theme_override_font_sizes/font_size = 32
-text = "Coins: "
-metadata/_edit_lock_ = true
-
-[node name="value" type="Label" parent="shop/ColorRect/bigger_bullet"]
-layout_mode = 0
-offset_left = 547.0
-offset_top = 90.0
-offset_right = 650.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Value: "
-
-[node name="druability" type="Control" parent="shop/ColorRect"]
-layout_mode = 1
-anchor_left = -0.00125
-anchor_top = 0.5556769
-anchor_right = -0.00125
-anchor_bottom = 0.75
-offset_left = 1.0
-offset_top = 134.0
-offset_right = 801.0
-offset_bottom = 76.0
-metadata/_edit_use_anchors_ = true
-
-[node name="durability_button" type="Button" parent="shop/ColorRect/druability"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.006666667
-anchor_top = 0.17582418
-anchor_right = 0.248
-anchor_bottom = 0.8296703
-text = "buy"
-metadata/_edit_lock_ = true
-
-[node name="description" type="Label" parent="shop/ColorRect/druability"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.11400001
-anchor_bottom = 0.32200003
-offset_left = 294.0
-offset_top = 26.0
-offset_right = 495.5
-offset_bottom = 34.395996
-theme_override_font_sizes/font_size = 48
-text = "Durabillaty yEs"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="cost" type="Label" parent="shop/ColorRect/druability"]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 91.0
-offset_right = 351.0
-offset_bottom = 136.0
-theme_override_font_sizes/font_size = 32
-text = "Coins: "
-metadata/_edit_lock_ = true
-
-[node name="value" type="Label" parent="shop/ColorRect/druability"]
-layout_mode = 0
-offset_left = 547.0
-offset_top = 90.0
-offset_right = 650.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Value: "
-
-[node name="close_button" type="Button" parent="shop"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.76410836
-anchor_top = 0.16203703
-anchor_right = 0.856116
-anchor_bottom = 0.2324074
-offset_top = 1.5258789e-05
-text = "Close"
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="shop"]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 950.0
-offset_right = 754.0
-offset_bottom = 1029.0
-theme_override_font_sizes/font_size = 32
-text = "press esc to pause and save and load progress "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="shop_animations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_boad6")
-}
-
-[node name="effects_animations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hg6s5")
-}
-
-[node name="voice_line_player" type="AudioStreamPlayer3D" parent="."]
+[node name="voice_line_player" type="AudioStreamPlayer3D" parent="." unique_id=1766863949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9571836, 0.72308564)
 script = ExtResource("4_dqkch")
 
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 1" to="." method="_on_wave_1_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 5" to="." method="_on_wave_5_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 10" to="." method="_on_wave_10_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 15" to="." method="_on_wave_15_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 20" to="." method="_on_wave_20_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/wave 25" to="." method="_on_wave_25_pressed"]
-[connection signal="pressed" from="wave_selection/ColorRect/wave_buttons/boss" to="." method="_on_boss_pressed"]
-[connection signal="pressed" from="shop/ColorRect/gun_damage/damage_button" to="." method="_on_damage_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/firerate/firerate_button" to="." method="_on_firerate_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/more_hp/health_button" to="." method="_on_health_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/bigger_bullet/bullet_scale_button" to="." method="_on_bullet_scale_button_pressed"]
-[connection signal="pressed" from="shop/ColorRect/druability/durability_button" to="." method="_on_durability_button_pressed"]
-[connection signal="pressed" from="shop/close_button" to="." method="_on_close_button_pressed"]
+[node name="boss_retry" type="Control" parent="." unique_id=507659585]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="yes" type="Button" parent="boss_retry" unique_id=1215551976]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 501.0
+offset_right = 864.0
+offset_bottom = 708.0
+theme_override_font_sizes/font_size = 100
+theme_override_styles/disabled = SubResource("StyleBoxFlat_smehm")
+disabled = true
+text = "Yes"
+flat = true
+
+[node name="no" type="Button" parent="boss_retry" unique_id=1925897614]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 501.0
+offset_right = 1364.0
+offset_bottom = 708.0
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "No"
+flat = true
+
+[node name="Label" type="Label" parent="boss_retry" unique_id=504058735]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38489583
+anchor_top = 0.27962962
+anchor_right = 0.6145833
+anchor_bottom = 0.44166666
+theme_override_font_sizes/font_size = 128
+text = "RETRY?"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPS lable" type="Label" parent="." unique_id=1694135201]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -52.0
+offset_right = 79.0
+offset_bottom = -7.0
+theme_override_font_sizes/font_size = 32
+text = "FPS: "
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer/wave 1" to="." method="_on_wave_1_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer/wave 5" to="." method="_on_wave_5_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer2/wave 10" to="." method="_on_wave_10_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer2/wave 15" to="." method="_on_wave_15_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer3/wave 20" to="." method="_on_wave_20_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer2/HBoxContainer3/wave 25" to="." method="_on_wave_25_pressed"]
+[connection signal="pressed" from="wave_selection/wave_buttons/VBoxContainer/boss" to="." method="_on_boss_pressed"]
+[connection signal="pressed" from="Shop_Control/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="boss_retry/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="boss_retry/no" to="." method="_on_no_pressed"]

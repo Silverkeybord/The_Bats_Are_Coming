@@ -6,7 +6,7 @@ const BULLET_SCALE_FACTOR := 0.2
 
 var travled_distance := 0.0
 var damage := Global.damage
-var durability := Global.durability
+var pierce := Global.pierce
 var last_pos: Vector3
 var can_despawn_to_ground := false
 
@@ -26,10 +26,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.has_meta("mob"):
-		durability -= 1
+		pierce -= 1
 		body.take_damage(damage)
 		
-		if durability <= 0:
+		if pierce <= 0:
 			queue_free()
 	
 	elif body.has_meta("boss") and Global.fighting_boss:

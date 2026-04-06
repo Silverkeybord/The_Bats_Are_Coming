@@ -1,20 +1,17 @@
-[gd_scene load_steps=86 format=3 uid="uid://dp7sxe5xl5shk"]
+[gd_scene format=3 uid="uid://dp7sxe5xl5shk"]
 
 [ext_resource type="Script" uid="uid://ityxmd8yap7a" path="res://level/game_control.gd" id="1_l5ub2"]
 [ext_resource type="PackedScene" uid="uid://chb3pxm0scfyx" path="res://scenes/player.tscn" id="1_vu7ft"]
 [ext_resource type="Texture2D" uid="uid://bos7rridjkps1" path="res://level/checkboard.png" id="2_hfkki"]
 [ext_resource type="PackedScene" uid="uid://cxk1y4n5scojw" path="res://scenes/menu.tscn" id="2_to0a4"]
-[ext_resource type="Material" uid="uid://c0x4onlgqxge5" path="res://material's/yellow.tres" id="3_bk1rt"]
 [ext_resource type="Environment" uid="uid://1w0jk5dd1uk1" path="res://level/enviroment.tres" id="3_famlx"]
-[ext_resource type="PackedScene" uid="uid://4toi7ndrm7or" path="res://scenes/spawner.tscn" id="5_l5ub2"]
-[ext_resource type="Texture2D" uid="uid://cuyh8hew637ju" path="res://player/reticle.png" id="7_8jqrf"]
-[ext_resource type="PackedScene" uid="uid://b0cwv528153vi" path="res://scenes/item_spawner.tscn" id="8_xkvjb"]
-[ext_resource type="Material" uid="uid://cqm3o7q3mrvxq" path="res://material's/castle.tres" id="10_kvpfn"]
-[ext_resource type="Material" uid="uid://iht8hy64yqrj" path="res://material's/arrow_mat.tres" id="10_vtaks"]
-[ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="12_dinhu"]
-[ext_resource type="Texture2D" uid="uid://clm15i4oso3nw" path="res://textres/normal_palette.png" id="13_kvuet"]
-[ext_resource type="Script" uid="uid://caakh6joaalup" path="res://scripts/boss.gd" id="13_trtic"]
-[ext_resource type="AudioStream" uid="uid://0he5q3sbfwc3" path="res://sounds/SFX/hitmarker_2.mp3" id="15_ir15t"]
+[ext_resource type="PackedScene" uid="uid://dghcwyj35svyy" path="res://scenes/bat_flight_plane.tscn" id="6_rysoc"]
+[ext_resource type="PackedScene" uid="uid://bfadkccoq1lk3" path="res://scenes/2d_nodes.tscn" id="7_dinhu"]
+[ext_resource type="PackedScene" uid="uid://o2cqnk2qw0aj" path="res://scenes/map_1.tscn" id="8_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://ccmth1tyk0226" path="res://scenes/map_2.tscn" id="9_264po"]
+[ext_resource type="PackedScene" uid="uid://cwisdvs1ksisg" path="res://scenes/map_3.tscn" id="10_1kice"]
+[ext_resource type="PackedScene" uid="uid://dq3feute6g1v4" path="res://scenes/boss_map.tscn" id="11_kvuet"]
+[ext_resource type="PackedScene" uid="uid://csthoiaf517wj" path="res://scenes/boss_arena_center.tscn" id="12_trtic"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_famlx"]
 size = Vector3(1, 150, 150)
@@ -41,598 +38,16 @@ albedo_texture = ExtResource("2_hfkki")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_to0a4"]
-size = Vector3(400, 14, 400)
+[sub_resource type="GDScript" id="GDScript_dinhu"]
+script/source = "extends Node
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8jqrf"]
-size = Vector3(2, 0.5, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_agxqc"]
-size = Vector3(5, 1, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_a43n5"]
-size = Vector3(5, 3, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vlpid"]
-size = Vector3(5, 3, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wfejc"]
-size = Vector3(5, 2, 7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rm35f"]
-size = Vector3(8, 2.5, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bg2yq"]
-size = Vector3(3, 1.4, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6e45w"]
-size = Vector3(5, 1.5, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kkp00"]
-size = Vector3(10, 2, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uma06"]
-size = Vector3(5, 21, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qt5w0"]
-size = Vector3(6, 8, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_a2j7o"]
-size = Vector3(3, 12, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q5el7"]
-size = Vector3(7, 11, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xkvjb"]
-size = Vector3(6, 2, 11.900001)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0tnpc"]
-size = Vector3(3, 1.5, 4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vtaks"]
-size = Vector3(12, 3.5, 7.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kvpfn"]
-size = Vector3(5, 4, 26)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dinhu"]
-size = Vector3(7, 3, 8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kvuet"]
-size = Vector3(22, 2, 5.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_trtic"]
-size = Vector3(27, 1, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ir15t"]
-size = Vector3(10, 9, 21)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ca42v"]
-size = Vector3(12, 14, 12)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rysoc"]
-size = Vector3(14, 10.5, 16)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ssvqc"]
-size = Vector3(5.1, 8, 12)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_264po"]
-size = Vector3(10, 27, 8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1kice"]
-size = Vector3(6, 1, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5newe"]
-size = Vector3(7, 2, 9)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_37s47"]
-size = Vector3(8, 3, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bt5mj"]
-size = Vector3(8, 5, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_e1j6l"]
-size = Vector3(9, 4, 8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pl11u"]
-size = Vector3(9, 6, 7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bhx41"]
-size = Vector3(10, 2, 10)
-
-[sub_resource type="Animation" id="Animation_8jqrf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reticle:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("top_wave_display:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mobs_left:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("center_wave:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("previous_wave:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("next_wave:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("next_wave:position:y")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-200, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("previous_wave:position:y")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(453, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("previous_wave:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("next_wave:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("top_wave_display:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("mobs_left:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("boss_wave:position:y")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-200, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("boss_wave:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("center_wave:position:y")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(453, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("boss_wave:modulate")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("center_wave:visible")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_dinhu"]
-resource_name = "boss_wave"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reticle:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("top_wave_display:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mobs_left:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("center_wave:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4, 1.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("top_wave_display:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.25),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("mobs_left:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.25),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("boss_wave:position:y")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-200, -0.25, 0, 0.3403778, 991.47174, 452.5, -0.05962217, -65.33722, 0, 0),
-"times": PackedFloat32Array(0.5, 1.1)
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("boss_wave:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("center_wave:position:y")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(453, -0.25, 0, 0.32127416, 957.13416, 1112, -0.08075869, -104.43201, 0, 0),
-"times": PackedFloat32Array(0.5, 1.1)
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("boss_wave:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xkvjb"]
-resource_name = "next_wave"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reticle:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("top_wave_display:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mobs_left:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("center_wave:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.4, 1.75, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("previous_wave:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.15, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("next_wave:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("next_wave:position:y")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-200, 0, 0, 0.035087705, 708.48083, 450, -0.24255133, 111.437744, 0.25, 0),
-"times": PackedFloat32Array(0.4, 1)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("previous_wave:position:y")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(450, -0.25, 0, 0.01124084, 894.8673, 1180, -0.055425823, 137.72864, 0, 0),
-"times": PackedFloat32Array(0.4, 1)
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("previous_wave:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("next_wave:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(1.75, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("center_wave:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("center_wave:position:y")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(453, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_famlx"]
-_data = {
-&"RESET": SubResource("Animation_8jqrf"),
-&"boss_wave": SubResource("Animation_dinhu"),
-&"next_wave": SubResource("Animation_xkvjb")
-}
-
-[sub_resource type="PrismMesh" id="PrismMesh_0tnpc"]
-size = Vector3(3, 2.5, 0.4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvuet"]
-albedo_color = Color(0.54231757, 0.5423181, 0.5423178, 1)
-albedo_texture = ExtResource("2_hfkki")
-uv1_triplanar = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgl2t"]
-size = Vector3(1.5, 2, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qouja"]
-size = Vector3(1, 8, 14)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wljb1"]
-size = Vector3(1, 17, 70)
+@export var wave_visuals_animations: AnimationPlayer
+@export var main_wave_label: Label
+@export var next_animations_wave: Label
+@export var previous_animations_wave: Label
+@export var mob_counter: Label
+@export var center_wave: Label
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxr6r"]
 size = Vector3(150, 9.97, 150)
@@ -1090,7 +505,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("boss/platforms/platform:position:y")
+tracks/0/path = NodePath("boss_map/platforms/platform:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1101,7 +516,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("boss/platforms/platform2:position:y")
+tracks/1/path = NodePath("boss_map/platforms/platform2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1112,7 +527,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("boss/platforms/platform3:position:y")
+tracks/2/path = NodePath("boss_map/platforms/platform3:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1123,7 +538,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("boss/platforms/platform4:position:y")
+tracks/3/path = NodePath("boss_map/platforms/platform4:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1134,7 +549,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boss/platforms/platform5:position:y")
+tracks/4/path = NodePath("boss_map/platforms/platform5:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1145,7 +560,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("boss/platforms/platform6:position:y")
+tracks/5/path = NodePath("boss_map/platforms/platform6:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1156,7 +571,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("boss/platforms/platform7:position:y")
+tracks/6/path = NodePath("boss_map/platforms/platform7:position:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1167,7 +582,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("boss/platforms/platform8:position:y")
+tracks/7/path = NodePath("boss_map/platforms/platform8:position:y")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1178,7 +593,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("boss/platforms/platform9:position:y")
+tracks/8/path = NodePath("boss_map/platforms/platform9:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1189,7 +604,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("boss/platforms/platform10:position:y")
+tracks/9/path = NodePath("boss_map/platforms/platform10:position:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1204,15 +619,15 @@ tracks/10/path = NodePath("../consistant_nodes/boss_wall:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("boss/platforms/platform16:position:y")
+tracks/11/path = NodePath("boss_map/platforms/platform16:position:y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1223,7 +638,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("boss/platforms/platform11:position:y")
+tracks/12/path = NodePath("boss_map/platforms/platform11:position:y")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1234,7 +649,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("boss/platforms/platform12:position:y")
+tracks/13/path = NodePath("boss_map/platforms/platform12:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1245,7 +660,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("boss/platforms/platform13:position:y")
+tracks/14/path = NodePath("boss_map/platforms/platform13:position:y")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1256,7 +671,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("boss/platforms/platform14:position:y")
+tracks/15/path = NodePath("boss_map/platforms/platform14:position:y")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1267,7 +682,7 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("boss/platforms/platform15:position:y")
+tracks/16/path = NodePath("boss_map/platforms/platform15:position:y")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -1278,7 +693,7 @@ tracks/16/keys = {
 tracks/17/type = "bezier"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("boss/arrow_indicator:position:y")
+tracks/17/path = NodePath("boss_map/arrow_indicator:position:y")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1289,7 +704,7 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("boss/arrow_indicator:rotation")
+tracks/18/path = NodePath("boss_map/arrow_indicator:rotation")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -1301,49 +716,48 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("boss/door:position")
+tracks/19/path = NodePath("../boss_arena_center/Boss:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(252, 33, 0)]
+"values": [Vector3(0, 150, 0)]
 }
-tracks/20/type = "bezier"
+tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("boss/door:position:y")
+tracks/20/path = NodePath("../boss_arena_center/Boss:visible")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(33, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("../boss_arena_center/Boss:position")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 150, 0)]
-}
-tracks/22/type = "value"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("../boss_arena_center/Boss:visible")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../consistant_nodes/boss_wall:position:y")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.00016666668, 0, 0, -0.00016666668, -13.333334, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("boss_map/castle/door:position:y")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(31.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_v2yb1"]
@@ -1352,13 +766,203 @@ length = 0.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("boss/door:position:y")
+tracks/0/path = NodePath("boss_map/castle/door:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2, 0),
-"points": PackedFloat32Array(48, 0, 0, 0.23333333, -8.03043, 33, -0.03333333, 0.05583191, 0.033333328, -0.055831905, 33, -0.06666666, 1.0510902, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5)
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(49, -0.25, 0, 0.33333334, -0.02017212, 31, -0.022291869, 0.04389, 0, 0.3285885, 31, -0.06666666, 1.918148, 0, 0),
+"times": PackedFloat32Array(0, 0.375, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_ir15t"]
+resource_name = "close_path"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_map/platforms/platform:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-14.657677, -0.25, 0, 0.25, 0, -66.65768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_map/platforms/platform2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-14.157677, -0.25, 0, 0.25, 0, -66.15768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("boss_map/platforms/platform3:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-13.657677, -0.25, 0, 0.25, 0, -65.65768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boss_map/platforms/platform4:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-13.157677, -0.25, 0, 0.25, 0, -65.15768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_map/platforms/platform5:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-12.657677, -0.25, 0, 0.25, 0, -64.65768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("boss_map/platforms/platform6:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-12.157677, -0.25, 0, 0.25, 0, -64.15768, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("boss_map/platforms/platform7:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-11.657677, -0.25, 0, 0.25, 0, -63.657677, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("boss_map/platforms/platform8:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-11.157677, -0.25, 0, 0.25, 0, -63.157677, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("boss_map/platforms/platform9:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-10.657677, -0.25, 0, 0.25, 0, -62.657677, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("boss_map/platforms/platform10:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-10.157677, -0.25, 0, 0.25, 0, -62.157677, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("boss_map/platforms/platform11:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-9, -0.25, 0, 0.25, 0, -61, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("boss_map/platforms/platform12:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-8, -0.25, 0, 0.25, 0, -60, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("boss_map/platforms/platform13:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0, -59, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("boss_map/platforms/platform14:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0, -59, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("boss_map/platforms/platform15:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0, -59, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("boss_map/platforms/platform16:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-7, -0.25, 0, 0.25, 0, -59, -0.16666667, 8.666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../consistant_nodes/boss_wall:position:y")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, 0, 0, 0, 0.16666667, -13.333334),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_trtic"]
@@ -1391,18 +995,17 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_wljb1"]
 resource_name = "open_door"
-length = 5.0
-tracks/0/type = "value"
+length = 2.5
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("boss/door:position")
+tracks/0/path = NodePath("boss_map/castle/door:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1.464086, 0.307786),
-"update": 0,
-"values": [Vector3(252, 33, 0), Vector3(252, 48, 0)]
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(31.5, -0.25, 0, 0.8, 0.066, 50, -1.25, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.5)
 }
 
 [sub_resource type="Animation" id="Animation_0tnpc"]
@@ -1411,7 +1014,7 @@ length = 20.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("boss/platforms/platform:position:y")
+tracks/0/path = NodePath("boss_map/platforms/platform:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1422,7 +1025,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("boss/platforms/platform2:position:y")
+tracks/1/path = NodePath("boss_map/platforms/platform2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1433,7 +1036,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("boss/platforms/platform3:position:y")
+tracks/2/path = NodePath("boss_map/platforms/platform3:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1444,7 +1047,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("boss/platforms/platform4:position:y")
+tracks/3/path = NodePath("boss_map/platforms/platform4:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1455,7 +1058,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("boss/platforms/platform5:position:y")
+tracks/4/path = NodePath("boss_map/platforms/platform5:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1466,7 +1069,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("boss/platforms/platform6:position:y")
+tracks/5/path = NodePath("boss_map/platforms/platform6:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1477,7 +1080,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("boss/platforms/platform7:position:y")
+tracks/6/path = NodePath("boss_map/platforms/platform7:position:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1488,7 +1091,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("boss/platforms/platform8:position:y")
+tracks/7/path = NodePath("boss_map/platforms/platform8:position:y")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1499,7 +1102,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("boss/platforms/platform9:position:y")
+tracks/8/path = NodePath("boss_map/platforms/platform9:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1510,7 +1113,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("boss/platforms/platform10:position:y")
+tracks/9/path = NodePath("boss_map/platforms/platform10:position:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1533,7 +1136,7 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("boss/platforms/platform16:position:y")
+tracks/11/path = NodePath("boss_map/platforms/platform16:position:y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1544,7 +1147,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("boss/platforms/platform11:position:y")
+tracks/12/path = NodePath("boss_map/platforms/platform11:position:y")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1555,7 +1158,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("boss/platforms/platform12:position:y")
+tracks/13/path = NodePath("boss_map/platforms/platform12:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1566,7 +1169,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("boss/platforms/platform13:position:y")
+tracks/14/path = NodePath("boss_map/platforms/platform13:position:y")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1577,7 +1180,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("boss/platforms/platform14:position:y")
+tracks/15/path = NodePath("boss_map/platforms/platform14:position:y")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1588,7 +1191,7 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("boss/platforms/platform15:position:y")
+tracks/16/path = NodePath("boss_map/platforms/platform15:position:y")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -1601,199 +1204,117 @@ tracks/16/keys = {
 _data = {
 &"RESET": SubResource("Animation_vtaks"),
 &"close_door": SubResource("Animation_v2yb1"),
+&"close_path": SubResource("Animation_ir15t"),
 &"descend_boss": SubResource("Animation_trtic"),
 &"open_door": SubResource("Animation_wljb1"),
 &"open_path": SubResource("Animation_0tnpc")
 }
 
-[sub_resource type="Animation" id="Animation_kvuet"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("boss/arrow_indicator:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(17, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("boss/arrow_indicator:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kvpfn"]
-resource_name = "arrow_indication"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("boss/arrow_indicator:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(17, -0.25, 0, 0.7, 0, 24, -0.7, 0, 0.7, 0, 17, -0.7, 0, 0, 0),
-"times": PackedFloat32Array(0, 1.5, 3)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("boss/arrow_indicator:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_trtic"]
-_data = {
-&"RESET": SubResource("Animation_kvuet"),
-&"arrow_indication": SubResource("Animation_kvpfn")
-}
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_trtic"]
-radius = 2.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trtic"]
-resource_local_to_scene = true
-resource_name = "bat_mat"
-cull_mode = 2
-albedo_texture = ExtResource("13_kvuet")
-roughness = 0.42727274
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ir15t"]
-radius = 4.3
-
-[node name="Game_controller" type="Node3D" node_paths=PackedStringArray("change_map_animations", "bat_flight_plane_2", "bat_flight_plane_3", "map_1_spawners", "map_2_spawners", "map_3_spawners", "map_1_coin_spawners", "map_2_coin_spawners", "map_3_coin_spawners", "wave_visuals_animations", "main_wave_label", "next_animations_wave", "previous_animations_wave", "mob_counter", "center_wave", "arrow_indicator", "path_activation_area", "boss_related_animations", "boss")]
+[node name="Game_controller" type="Node3D" unique_id=670011940 node_paths=PackedStringArray("change_map_animations", "bat_flight_plane", "map1", "map2", "map3", "boss_map", "_2D_nodes", "boss_arena_center", "boss_related_animations") groups=["game_controller"]]
 script = ExtResource("1_l5ub2")
 change_map_animations = NodePath("maps/change_map_animations")
-bat_flight_plane_2 = NodePath("bat_flight_plane/map2")
-bat_flight_plane_3 = NodePath("bat_flight_plane/map3")
-map_1_spawners = NodePath("maps/map1/spawners")
-map_2_spawners = NodePath("maps/map2/spawners")
-map_3_spawners = NodePath("maps/map3/spawners")
-map_1_coin_spawners = NodePath("maps/map1/item_spawners")
-map_2_coin_spawners = NodePath("maps/map2/item_spawners")
-map_3_coin_spawners = NodePath("maps/map3/item_spawners")
-wave_visuals_animations = NodePath("wave_visuals2D/wave_visuals_animations")
-main_wave_label = NodePath("wave_visuals2D/top_wave_display")
-next_animations_wave = NodePath("wave_visuals2D/next_wave")
-previous_animations_wave = NodePath("wave_visuals2D/previous_wave")
-mob_counter = NodePath("wave_visuals2D/mobs_left")
-center_wave = NodePath("wave_visuals2D/center_wave")
-arrow_indicator = NodePath("maps/boss/arrow_indicator")
-path_activation_area = NodePath("maps/boss/path_activation")
+bat_flight_plane = NodePath("bat_flight_plane")
+map1 = NodePath("maps/map1")
+map2 = NodePath("maps/map2")
+map3 = NodePath("maps/map3")
+boss_map = NodePath("maps/boss_map")
+_2D_nodes = NodePath("2D_nodes")
+boss_arena_center = NodePath("boss_arena_center")
 boss_related_animations = NodePath("maps/boss_related_animations")
-boss = NodePath("boss_arena_center/Boss")
 
-[node name="consistant_nodes" type="Node" parent="."]
+[node name="consistant_nodes" type="Node" parent="." unique_id=786680663]
 
-[node name="Player" parent="consistant_nodes" node_paths=PackedStringArray("game_controller") groups=["player"] instance=ExtResource("1_vu7ft")]
+[node name="Player" parent="consistant_nodes" unique_id=1776981617 node_paths=PackedStringArray("game_controller") groups=["player"] instance=ExtResource("1_vu7ft")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 game_controller = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="world_borders" type="StaticBody3D" parent="consistant_nodes"]
+[node name="world_borders" type="StaticBody3D" parent="consistant_nodes" unique_id=1869054819]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=1871561552]
 transform = Transform3D(-4.371139e-08, -8.742278e-08, -1, 0, -1, 8.742278e-08, -1, 3.821371e-15, 4.371139e-08, 0, 1, 75)
 shape = SubResource("BoxShape3D_famlx")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=580835124]
 transform = Transform3D(-4.371139e-08, -8.742278e-08, -1, 1, 4.3711385e-08, -4.3711392e-08, 4.371139e-08, -1, 8.742278e-08, 0, 75, 0)
 shape = SubResource("BoxShape3D_famlx")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=1379187128]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 1, -75)
 shape = SubResource("BoxShape3D_famlx")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=842326186]
 transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 75, -30, -4.633407e-06)
 shape = SubResource("BoxShape3D_qnb83")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=1033831569]
 transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 75, 45, -40.000004)
 shape = SubResource("BoxShape3D_sww3w")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=187870934]
 transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 75, 44.95, 39.999996)
 shape = SubResource("BoxShape3D_sww3w")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=278681289]
 transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 75, 51, -3.279233e-06)
 shape = SubResource("BoxShape3D_suyxu")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="consistant_nodes/world_borders"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="consistant_nodes/world_borders" unique_id=1310998134]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -75, 1, 3.2783541e-06)
 shape = SubResource("BoxShape3D_famlx")
 debug_color = Color(0.60784316, 1, 1, 0.61960787)
 metadata/_edit_lock_ = true
 
-[node name="start_fade" type="Area3D" parent="consistant_nodes"]
+[node name="start_fade" type="Area3D" parent="consistant_nodes" unique_id=1068949120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/start_fade"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/start_fade" unique_id=401582951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127, -9, 0)
 shape = SubResource("HeightMapShape3D_l5ub2")
 debug_color = Color(0, 0, 0, 0.41960785)
 
-[node name="death_area" type="Area3D" parent="consistant_nodes"]
+[node name="death_area" type="Area3D" parent="consistant_nodes" unique_id=1647907223]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/death_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="consistant_nodes/death_area" unique_id=323990197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -35, 0)
 shape = SubResource("WorldBoundaryShape3D_l5ub2")
 debug_color = Color(0, 0, 0, 0.41960785)
 
-[node name="testing cam" type="Camera3D" parent="consistant_nodes"]
+[node name="testing cam" type="Camera3D" parent="consistant_nodes" unique_id=92725150]
 transform = Transform3D(1.7763568e-15, -1, -5.9604645e-08, -4.371139e-08, -5.9604645e-08, 1, -1, 8.2904493e-16, -4.371139e-08, 0, 30, 0)
 visible = false
 fov = 106.2
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="consistant_nodes"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="consistant_nodes" unique_id=1718184267]
 environment = ExtResource("3_famlx")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="consistant_nodes"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="consistant_nodes" unique_id=58573621]
 transform = Transform3D(1, 0, 0, 0, 0.6006017, 0.7995484, 0, -0.7995484, 0.6006017, 0, 69.46396, 33.36611)
 light_color = Color(0.4083453, 0.4083453, 0.4083453, 1)
 light_energy = 5.0
 shadow_enabled = true
 
-[node name="menu" parent="consistant_nodes" instance=ExtResource("2_to0a4")]
+[node name="menu" parent="consistant_nodes" unique_id=151188216 instance=ExtResource("2_to0a4")]
 visible = false
 metadata/_edit_use_anchors_ = true
 
-[node name="boss_wall" type="MeshInstance3D" parent="consistant_nodes"]
+[node name="boss_wall" type="MeshInstance3D" parent="consistant_nodes" unique_id=98682804]
 
-[node name="enviromnt35" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
+[node name="enviromnt35" type="CSGBox3D" parent="consistant_nodes/boss_wall" unique_id=1828837167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 4, -1)
 calculate_tangents = false
 collision_layer = 0
@@ -1801,7 +1322,7 @@ collision_mask = 0
 size = Vector3(14, 70, 86)
 material = SubResource("StandardMaterial3D_hfkki")
 
-[node name="enviromnt36" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
+[node name="enviromnt36" type="CSGBox3D" parent="consistant_nodes/boss_wall" unique_id=1868581637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5, -9, -17)
 calculate_tangents = false
 collision_layer = 0
@@ -1809,7 +1330,7 @@ collision_mask = 0
 size = Vector3(11, 46, 54)
 material = SubResource("StandardMaterial3D_hfkki")
 
-[node name="enviromnt37" type="CSGBox3D" parent="consistant_nodes/boss_wall"]
+[node name="enviromnt37" type="CSGBox3D" parent="consistant_nodes/boss_wall" unique_id=1745283202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, -6.5, 25)
 calculate_tangents = false
 collision_layer = 0
@@ -1817,9 +1338,9 @@ collision_mask = 0
 size = Vector3(16, 51, 42)
 material = SubResource("StandardMaterial3D_hfkki")
 
-[node name="enviroment" type="MeshInstance3D" parent="consistant_nodes"]
+[node name="enviroment" type="MeshInstance3D" parent="consistant_nodes" unique_id=176795032]
 
-[node name="enviromnt" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=281509951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -22, -98)
 use_collision = true
 collision_layer = 0
@@ -1828,7 +1349,7 @@ size = Vector3(23, 104, 24)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt30" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt30" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1685482429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, -27.5, -91)
 use_collision = true
 collision_layer = 0
@@ -1837,7 +1358,7 @@ size = Vector3(32, 93, 34)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt34" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt34" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1105065031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, -14.5, -67)
 use_collision = true
 collision_layer = 0
@@ -1846,7 +1367,7 @@ size = Vector3(32, 119, 48)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt36" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt36" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1567911857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141, -16.5, -64.5)
 use_collision = true
 collision_layer = 0
@@ -1855,7 +1376,7 @@ size = Vector3(36, 115, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt37" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt37" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=2089355947]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.5, -19, -62.5)
 use_collision = true
 collision_layer = 0
@@ -1864,7 +1385,7 @@ size = Vector3(31, 136, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt35" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt35" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=676169713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.5, -25.5, -45.5)
 use_collision = true
 collision_layer = 0
@@ -1873,7 +1394,7 @@ size = Vector3(49, 109, 19)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt39" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt39" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=678370752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.5, -33.5, -47)
 use_collision = true
 collision_layer = 0
@@ -1882,7 +1403,7 @@ size = Vector3(49, 111, 16)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt38" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt38" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1441561834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, -22.5, -44)
 use_collision = true
 collision_layer = 0
@@ -1891,7 +1412,7 @@ size = Vector3(35, 115, 22)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt42" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt42" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1218643235]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.40001, -2, -62.500004)
 use_collision = true
 collision_layer = 0
@@ -1900,7 +1421,7 @@ size = Vector3(50.2, 156, 50)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt48" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt48" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1559821475]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.5, -2, 62)
 use_collision = true
 collision_layer = 0
@@ -1909,7 +1430,7 @@ size = Vector3(50, 156, 50)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt51" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt51" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1698491778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.5, -2, -62.5)
 use_collision = true
 collision_layer = 0
@@ -1918,7 +1439,7 @@ size = Vector3(50, 156, 50)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt52" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt52" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=557559027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.50003, -3, 62.499996)
 use_collision = true
 collision_layer = 0
@@ -1927,7 +1448,7 @@ size = Vector3(50, 156, 50)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt40" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt40" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=658793438]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.5, -12, -64)
 use_collision = true
 collision_layer = 0
@@ -1936,7 +1457,7 @@ size = Vector3(35, 136, 22)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt32" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt32" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1932625252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, -21.5, -83)
 use_collision = true
 collision_layer = 0
@@ -1945,7 +1466,7 @@ size = Vector3(32, 105, 34)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt31" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt31" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1577166671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, -30, -96)
 use_collision = true
 collision_layer = 0
@@ -1954,7 +1475,7 @@ size = Vector3(23, 88, 24)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt28" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt28" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1442107728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, -27, -86)
 use_collision = true
 collision_layer = 0
@@ -1963,7 +1484,7 @@ size = Vector3(27, 94, 24)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt29" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt29" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1364093345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, -19.5, -108.5)
 use_collision = true
 collision_layer = 0
@@ -1972,7 +1493,7 @@ size = Vector3(83, 109, 15)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt3" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt3" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1204298699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, -20.5, -103)
 use_collision = true
 collision_layer = 0
@@ -1981,7 +1502,7 @@ size = Vector3(39, 107, 22)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt2" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt2" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=432208207]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -30, -40, -89.5)
 use_collision = true
 collision_layer = 0
@@ -1990,7 +1511,7 @@ size = Vector3(18, 100, 55)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt33" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt33" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1231442118]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 101.5, -36.5, -58)
 use_collision = true
 collision_layer = 0
@@ -1999,7 +1520,7 @@ size = Vector3(49, 107, 36)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt4" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt4" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=185590108]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -52.5, -34.5, -97.5)
 use_collision = true
 collision_layer = 0
@@ -2008,7 +1529,7 @@ size = Vector3(18, 111, 18)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt5" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt5" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=747386768]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -71.5, -29.5, -77.5)
 use_collision = true
 collision_layer = 0
@@ -2017,7 +1538,7 @@ size = Vector3(27, 121, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt14" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt14" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=837774886]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -77.50001, -29.5, 76.5)
 use_collision = true
 collision_layer = 0
@@ -2026,7 +1547,7 @@ size = Vector3(27, 121, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt19" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt19" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=190895017]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -1.5000073, -29.5, 84.5)
 use_collision = true
 collision_layer = 0
@@ -2035,7 +1556,7 @@ size = Vector3(27, 121, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt20" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt20" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1392346228]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 20.499992, -31.5, 96.5)
 use_collision = true
 collision_layer = 0
@@ -2044,7 +1565,7 @@ size = Vector3(27, 115, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt22" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt22" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=945337872]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 56.499992, -29.5, 105.5)
 use_collision = true
 collision_layer = 0
@@ -2053,7 +1574,7 @@ size = Vector3(61, 119, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt21" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt21" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=277813688]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 24.499992, -39.5, 90.5)
 use_collision = true
 collision_layer = 0
@@ -2062,7 +1583,7 @@ size = Vector3(35, 99, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt23" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt23" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1797647417]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 59.499992, -34, 97.5)
 use_collision = true
 collision_layer = 0
@@ -2071,7 +1592,7 @@ size = Vector3(35, 110, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt24" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt24" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1086012333]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 83.99999, -26, 81)
 use_collision = true
 collision_layer = 0
@@ -2080,7 +1601,7 @@ size = Vector3(22, 126, 24)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt25" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt25" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1375031403]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 66.99999, -41.5, 91)
 use_collision = true
 collision_layer = 0
@@ -2089,7 +1610,7 @@ size = Vector3(30, 93, 24)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt26" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt26" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1890890544]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 86.99999, -41.5, 58.5)
 use_collision = true
 collision_layer = 0
@@ -2098,7 +1619,7 @@ size = Vector3(30, 93, 49)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt41" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt41" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1903905622]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 106.99999, -41.5, 53.5)
 use_collision = true
 collision_layer = 0
@@ -2107,7 +1628,7 @@ size = Vector3(30, 93, 43)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt43" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt43" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=587397941]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 123, -25.5, 52.5)
 use_collision = true
 collision_layer = 0
@@ -2116,7 +1637,7 @@ size = Vector3(56, 125, 29)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt44" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt44" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=161911958]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 165, -35, 47.5)
 use_collision = true
 collision_layer = 0
@@ -2125,7 +1646,7 @@ size = Vector3(28, 106, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt49" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt49" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=251657490]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 200, -42.5, 42.5)
 use_collision = true
 collision_layer = 0
@@ -2134,7 +1655,7 @@ size = Vector3(28, 91, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt45" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt45" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=773232284]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 146.5, -20, 56.5)
 use_collision = true
 collision_layer = 0
@@ -2143,7 +1664,7 @@ size = Vector3(37, 136, 29)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt46" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt46" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1959507716]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 184, -25, 53.5)
 use_collision = true
 collision_layer = 0
@@ -2152,7 +1673,7 @@ size = Vector3(28, 126, 29)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt47" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt47" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=414012236]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 188, -17, 64.5)
 use_collision = true
 collision_layer = 0
@@ -2161,7 +1682,7 @@ size = Vector3(60, 142, 29)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt27" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt27" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=866111301]
 transform = Transform3D(-1, 0, -1.3909066e-08, 0, 1, 0, 1.3909066e-08, 0, -1, 105.99999, -22.5, 63)
 use_collision = true
 collision_layer = 0
@@ -2170,7 +1691,7 @@ size = Vector3(22, 131, 40)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt16" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt16" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1525535925]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -51.500008, -41, 78.5)
 use_collision = true
 collision_layer = 0
@@ -2179,7 +1700,7 @@ size = Vector3(27, 98, 31)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt18" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt18" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1738347435]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -25.500008, -41, 83)
 use_collision = true
 collision_layer = 0
@@ -2188,7 +1709,7 @@ size = Vector3(18, 98, 25)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt17" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt17" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=562131940]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -42.000008, -33, 102.5)
 use_collision = true
 collision_layer = 0
@@ -2197,7 +1718,7 @@ size = Vector3(27, 114, 62)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt6" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt6" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=2022091296]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -84.5, -47.5, -46.5)
 use_collision = true
 collision_layer = 0
@@ -2206,7 +1727,7 @@ size = Vector3(61, 99, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt15" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt15" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=906029849]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -87.5, -47.5, 54)
 use_collision = true
 collision_layer = 0
@@ -2215,7 +1736,7 @@ size = Vector3(22, 99, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt8" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt8" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=139560566]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -87.5, -43, -17)
 use_collision = true
 collision_layer = 0
@@ -2224,7 +1745,7 @@ size = Vector3(38, 108, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt10" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt10" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=637577083]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -85.5, -32, 11)
 use_collision = true
 collision_layer = 0
@@ -2233,7 +1754,7 @@ size = Vector3(28, 130, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt13" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt13" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1188411705]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -99.5, -28.5, 50.5)
 use_collision = true
 collision_layer = 0
@@ -2242,7 +1763,7 @@ size = Vector3(61, 137, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt11" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt11" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1822408423]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -78.5, -36, 37.5)
 use_collision = true
 collision_layer = 0
@@ -2251,7 +1772,7 @@ size = Vector3(19, 122, 21)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt12" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt12" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=396529893]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -89.5, -38.5, 26)
 use_collision = true
 collision_layer = 0
@@ -2260,7 +1781,7 @@ size = Vector3(12, 117, 27)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt7" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt7" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=1281730905]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -98.5, -40.5, -60.5)
 use_collision = true
 collision_layer = 0
@@ -2269,7 +1790,7 @@ size = Vector3(31, 113, 23)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="enviromnt9" type="CSGBox3D" parent="consistant_nodes/enviroment"]
+[node name="enviromnt9" type="CSGBox3D" parent="consistant_nodes/enviroment" unique_id=330500293]
 transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, -107, -34, -28.5)
 use_collision = true
 collision_layer = 0
@@ -2278,2939 +1799,49 @@ size = Vector3(67, 126, 30)
 material = SubResource("StandardMaterial3D_hfkki")
 metadata/_edit_lock_ = true
 
-[node name="items" type="Node" parent="."]
+[node name="items" type="Node" parent="." unique_id=1620125212 groups=["items_node"]]
 
-[node name="temp_sounds" type="Node" parent="."]
+[node name="temp_sounds" type="Node" parent="." unique_id=1110213631 groups=["temp_sounds"]]
 
-[node name="enemies" type="Node" parent="."]
+[node name="enemies" type="Node" parent="." unique_id=1824277433 groups=["enemy_node"]]
 
-[node name="bat_flight_plane" type="Node" parent="."]
+[node name="bat_flight_plane" parent="." unique_id=274450634 instance=ExtResource("6_rysoc")]
 
-[node name="base" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
-visible = false
-monitoring = false
+[node name="2D_nodes" parent="." unique_id=1307444850 instance=ExtResource("7_dinhu")]
+script = SubResource("GDScript_dinhu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bat_flight_plane/base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
-shape = SubResource("BoxShape3D_to0a4")
-debug_color = Color(1, 1, 1, 0.41960785)
+[node name="maps" type="Node" parent="." unique_id=1227096978]
 
-[node name="map2" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
-visible = false
-monitoring = false
-monitorable = false
+[node name="map1" parent="maps" unique_id=1894658038 instance=ExtResource("8_ssvqc")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, 0)
-shape = SubResource("BoxShape3D_8jqrf")
-debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.25, 0)
-shape = SubResource("BoxShape3D_8jqrf")
-debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -10)
-shape = SubResource("BoxShape3D_8jqrf")
-debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 10)
-shape = SubResource("BoxShape3D_8jqrf")
-debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, 8)
-shape = SubResource("BoxShape3D_agxqc")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.5, -8)
-shape = SubResource("BoxShape3D_agxqc")
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1.5, 10.5)
-shape = SubResource("BoxShape3D_a43n5")
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.5, -10.5)
-shape = SubResource("BoxShape3D_a43n5")
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.5, 13)
-shape = SubResource("BoxShape3D_vlpid")
-
-[node name="CollisionShape3D10" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.5, -13)
-shape = SubResource("BoxShape3D_vlpid")
-
-[node name="CollisionShape3D11" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -15)
-shape = SubResource("BoxShape3D_wfejc")
-
-[node name="CollisionShape3D12" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 1.25, -18)
-shape = SubResource("BoxShape3D_rm35f")
-
-[node name="CollisionShape3D13" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, 13)
-shape = SubResource("BoxShape3D_bg2yq")
-
-[node name="CollisionShape3D14" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.25, 8)
-shape = SubResource("BoxShape3D_6e45w")
-
-[node name="CollisionShape3D16" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.25, -8)
-shape = SubResource("BoxShape3D_6e45w")
-
-[node name="CollisionShape3D15" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 1, -15.5)
-shape = SubResource("BoxShape3D_kkp00")
-
-[node name="CollisionShape3D17" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 15)
-shape = SubResource("BoxShape3D_kkp00")
-
-[node name="CollisionShape3D18" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, -0.9396925, 0, 0.9396925, 0.34202015, 18, -1.4231746, 7.493099)
-shape = SubResource("BoxShape3D_uma06")
-
-[node name="CollisionShape3D19" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 3.5, 21.5)
-shape = SubResource("BoxShape3D_qt5w0")
-
-[node name="CollisionShape3D20" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 5.5, 23.5)
-shape = SubResource("BoxShape3D_a2j7o")
-
-[node name="CollisionShape3D21" type="CollisionShape3D" parent="bat_flight_plane/map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, 17)
-shape = SubResource("BoxShape3D_q5el7")
-
-[node name="map3" type="Area3D" parent="bat_flight_plane" groups=["bat_flight_plane"]]
-visible = false
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 3.1292439e-07)
-shape = SubResource("BoxShape3D_xkvjb")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1, 3.1292439e-07)
-shape = SubResource("BoxShape3D_xkvjb")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -3.5)
-shape = SubResource("BoxShape3D_0tnpc")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 3.5)
-shape = SubResource("BoxShape3D_0tnpc")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -9.3)
-shape = SubResource("BoxShape3D_vtaks")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 9.25)
-shape = SubResource("BoxShape3D_vtaks")
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0)
-shape = SubResource("BoxShape3D_kvpfn")
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 0)
-shape = SubResource("BoxShape3D_kvpfn")
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.5, 0)
-shape = SubResource("BoxShape3D_dinhu")
-
-[node name="CollisionShape3D10" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15)
-shape = SubResource("BoxShape3D_dinhu")
-
-[node name="CollisionShape3D11" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -15.75)
-shape = SubResource("BoxShape3D_kvuet")
-
-[node name="CollisionShape3D12" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -21.5)
-shape = SubResource("BoxShape3D_trtic")
-
-[node name="CollisionShape3D13" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(0.25881898, 0.9659258, 0, -0.9659258, 0.25881898, 0, 0, 0, 1, 14.817839, 1.1485869, 0)
-shape = SubResource("BoxShape3D_ir15t")
-
-[node name="CollisionShape3D14" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 0, 0, 1, 30.042162, 3.2773156, 0)
-shape = SubResource("BoxShape3D_ca42v")
-
-[node name="CollisionShape3D15" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 4.75, 0)
-shape = SubResource("BoxShape3D_rysoc")
-
-[node name="CollisionShape3D16" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 20.97769, 3.8854375, 0)
-shape = SubResource("BoxShape3D_ssvqc")
-
-[node name="CollisionShape3D17" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(0.70710677, 0.6830128, 0.18301263, 0, 0.25881895, -0.96592593, -0.70710677, 0.6830128, 0.18301263, 23.151897, 1.1192589, -11.848104)
-shape = SubResource("BoxShape3D_264po")
-
-[node name="CollisionShape3D18" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0.5, 19.5)
-shape = SubResource("BoxShape3D_1kice")
-
-[node name="CollisionShape3D19" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1, 22)
-shape = SubResource("BoxShape3D_5newe")
-
-[node name="CollisionShape3D20" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 1.5, 17)
-shape = SubResource("BoxShape3D_37s47")
-
-[node name="CollisionShape3D21" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.5, 14)
-shape = SubResource("BoxShape3D_bt5mj")
-
-[node name="CollisionShape3D22" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 2, 10)
-shape = SubResource("BoxShape3D_e1j6l")
-
-[node name="CollisionShape3D23" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 8.5)
-shape = SubResource("BoxShape3D_pl11u")
-
-[node name="CollisionShape3D24" type="CollisionShape3D" parent="bat_flight_plane/map3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, 0.5)
-shape = SubResource("BoxShape3D_bhx41")
-
-[node name="wave_visuals2D" type="Node" parent="."]
-
-[node name="top_wave_display" type="Label" parent="wave_visuals2D"]
-anchors_preset = -1
-anchor_left = 0.35416666
-anchor_right = 0.6458333
-anchor_bottom = 0.12962963
-pivot_offset = Vector2(280, 70)
-theme_override_font_sizes/font_size = 64
-text = "Wave 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="mobs_left" type="Label" parent="wave_visuals2D"]
-offset_left = 885.0
-offset_top = 110.0
-offset_right = 1042.0
-offset_bottom = 155.0
-theme_override_font_sizes/font_size = 32
-text = "mobs: 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Reticle" type="TextureRect" parent="wave_visuals2D"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -22.0
-offset_right = 22.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_8jqrf")
-expand_mode = 1
-
-[node name="center_wave" type="Label" parent="wave_visuals2D"]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
-anchor_left = 0.31354168
-anchor_top = 0.40648147
-anchor_right = 0.48958334
-anchor_bottom = 0.5685185
-offset_left = 95.0
-offset_top = 14.0
-offset_right = 97.0
-offset_bottom = 16.998901
-theme_override_font_sizes/font_size = 128
-text = "Wave"
-
-[node name="boss_wave" type="Label" parent="wave_visuals2D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 648.0
-offset_top = -200.0
-offset_right = -648.0
-offset_bottom = -1104.9995
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 128
-text = "Boss Time"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="previous_wave" type="Label" parent="wave_visuals2D"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-offset_left = 1075.0
-offset_top = 453.0
-offset_right = 1221.0
-offset_bottom = 628.00037
-theme_override_font_sizes/font_size = 128
-text = "24"
-
-[node name="next_wave" type="Label" parent="wave_visuals2D"]
-visible = false
-offset_left = 1075.0
-offset_top = -200.0
-offset_right = 1221.0
-offset_bottom = -24.998566
-theme_override_font_sizes/font_size = 128
-text = "25"
-
-[node name="wave_visuals_animations" type="AnimationPlayer" parent="wave_visuals2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_famlx")
-}
-
-[node name="maps" type="Node" parent="."]
-
-[node name="map1" type="Node3D" parent="maps"]
-
-[node name="platforms" type="MeshInstance3D" parent="maps/map1"]
-
-[node name="platform" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, -7.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(20, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 7.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(20, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform5" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.5, -20, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(10, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -20, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(10, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform2" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -20, -25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(10, 40, 14)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -20, -19.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(27, 40, 7)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform9" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28, -20, -3)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.5, -20, 10.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.5, -20, 15.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.5, -20, 23.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.5, -20, 25.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -20, 14.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, -20, 22.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(17, 40, 7)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14, -20, 29.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15, -20, 15.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22.5, -20, 19)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 21)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.5, -20, 27.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(7, 40, 9)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29, -20, 29.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, -20, 22.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 40, 10)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.5, -20, 26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 3)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.5, -20, 22.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 40, 3)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, -20, -1.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform3" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -20, -8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(10, 40, 14)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform4" type="CSGBox3D" parent="maps/map1/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -20, -26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="bridges" type="MeshInstance3D" parent="maps/map1"]
-
-[node name="platform5" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.5, -5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform31" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, -0.5, 7)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform34" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21, -0.5, 7)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, -18)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -0.5, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -0.5, -10)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.5, -1)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.5, 15)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform25" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -0.5, 19)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform26" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -0.5, 21)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform27" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -0.5, 20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -0.5, -1)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -0.5, -8.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -0.5, 4.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -0.5, 16.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, -0.5, 10.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform28" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -0.5, 18.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform29" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, -0.5, 24.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform30" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 26.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.5, -21)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform35" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.5, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -0.5, -15.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -0.5, -6)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, -7)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform32" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, 4.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform33" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, 11.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 5)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -0.5, -18.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform9" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -0.5, -18.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/map1/bridges"]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 19.133976, -0.5, -25.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 6)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="spawners" type="Node3D" parent="maps/map1"]
-
-[node name="StaticBody3D" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 3, 20)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D2" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 28)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D3" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 3, 24)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D4" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 27, 3, -26)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D5" parent="maps/map1/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -28, 3, -20)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="item_spawners" type="Node3D" parent="maps/map1"]
-
-[node name="coin_spawners" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -29)
-spawn_node = NodePath("../../../../items")
-
-[node name="coin_spawners2" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, 27.5)
-spawn_node = NodePath("../../../../items")
-
-[node name="coin_spawners3" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 1, 10.5)
-spawn_node = NodePath("../../../../items")
-
-[node name="coin_spawners4" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -19.5)
-spawn_node = NodePath("../../../../items")
-
-[node name="health_spawner" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -25)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="health_spawner2" parent="maps/map1/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 1, 25.5)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="map2" type="Node3D" parent="maps"]
+[node name="map2" parent="maps" unique_id=762539047 instance=ExtResource("9_264po")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70, 0)
 
-[node name="platforms" type="MeshInstance3D" parent="maps/map2"]
-
-[node name="platform" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 18)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -20, 25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -20, 25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, -27)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -20, -20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform25" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -20, -20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 6)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -17, 23)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 48, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -16, 24)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 50, 2)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -15, 22)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 52, 2)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -16, 17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 52, 1)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -20, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform29" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, -20, -14)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(7, 40, 32)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -20, 4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform26" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -20, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform30" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -20, 12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(6, 40, 33)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform27" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -20, -18)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform2" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 8, -19.5, -8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 41, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform3" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -8, -19.5, 8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 41, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform4" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -4.5, -7.9999995)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 11, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform5" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -20, 7.9999995)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -19.5, 8.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 45, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, -19.5, 13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(9, 45, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, -18.5, -8.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 43, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform28" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10.5, -18.5, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(9, 43, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -17, -19, 12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -12.5, -19, 14.999999)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(9, 42, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 17.5, -19, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/map2/platforms"]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 13, -19, -15.499999)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(9, 42, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="bridges" type="MeshInstance3D" parent="maps/map2"]
-
-[node name="bridge" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge2" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -0.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge3" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -2.2351742e-08, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge23" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.39999998, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge24" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.9, 3)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge26" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.9, 9)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge28" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 5.9, 14.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge29" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 5.9, 19)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge39" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5.9, 23)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge4" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.100000024, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge5" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -0.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge6" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge7" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.7484555e-07, -0.5, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge8" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.059797e-07, -0.5, -7)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge9" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.371139e-07, -0.100000024, -10)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge21" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.371139e-07, 0.39999998, -13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge31" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0.9, -17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge32" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 1.9, -17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge35" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0.9, -14)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge36" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 0.9, -20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge30" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.371139e-07, 0.9, -16)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge33" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, -1.1, -29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge40" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.5, -1.1, -29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge41" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15, -1.1, -29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge42" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.5, -1.1, -29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge43" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.5, -1.1, 26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge44" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19, -1.1, 26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge45" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.5, -1.1, 26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge46" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, -1.1, 26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge34" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, -0.6, 16)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge47" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, -0.6, 16)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge48" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.5, 0.39999998, 9.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge22" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.371139e-07, 0.39999998, 13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge25" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 1.4, 17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge27" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.0000005, 0.39999998, 17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge37" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.9, 17)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge38" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.9, 20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge10" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.371139e-07, -0.100000024, 10)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge11" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.059797e-07, -0.5, 7)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge12" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.7484555e-07, -0.5, 4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge13" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 2.828427, -0.5, -2.828427)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge14" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 4.9497476, -0.5, -4.9497476)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge15" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -4.9497476, -0.5, 4.9497476)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge16" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -2.828427, -0.5, 2.828427)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge17" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -2.8284273, -0.5, -2.8284268)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge18" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -4.9497476, -0.5, -4.9497476)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge19" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 4.9497476, -0.5, 4.9497476)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="bridge20" type="CSGBox3D" parent="maps/map2/bridges"]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 2.8284273, -0.5, 2.8284268)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 2)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="spawners" type="Node3D" parent="maps/map2"]
-
-[node name="StaticBody3D" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 8)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D2" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, -8)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D3" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, -8)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D4" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 8)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D5" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -27)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D6" parent="maps/map2/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, 25)
-enabled = false
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="item_spawners" type="Node3D" parent="maps/map2"]
-
-[node name="coin_spawners" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 11, 17)
-spawn_node = NodePath("../../../../items")
-value = 50
-
-[node name="coin_spawners2" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -29)
-spawn_node = NodePath("../../../../items")
-value = 25
-
-[node name="coin_spawners3" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 16)
-spawn_node = NodePath("../../../../items")
-value = 25
-
-[node name="health_spawner" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -11)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="health_spawner2" parent="maps/map2/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -5)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="map3" type="Node3D" parent="maps"]
+[node name="map3" parent="maps" unique_id=854013865 instance=ExtResource("10_1kice")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -140, 0)
 
-[node name="spawners" type="Node3D" parent="maps/map3"]
-
-[node name="StaticBody3D" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 19, -12.5)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D2" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 29)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D3" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 3, 0.5)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D4" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -30)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D5" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 19, 12.5)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="StaticBody3D6" parent="maps/map3/spawners" node_paths=PackedStringArray("player", "game_controller", "enemy_spawn_node", "temp_sound_node") instance=ExtResource("5_l5ub2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 13, 0)
-player = NodePath("../../../../consistant_nodes/Player")
-game_controller = NodePath("../../../..")
-enemy_spawn_node = NodePath("../../../../enemies")
-temp_sound_node = NodePath("../../../../temp_sounds")
-
-[node name="item_spawners" type="Node3D" parent="maps/map3"]
-
-[node name="coin_spawners" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 11, 0)
-spawn_node = NodePath("../../../../items")
-value = 50
-
-[node name="coin_spawners2" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 41)
-spawn_node = NodePath("../../../../items")
-value = 50
-
-[node name="coin_spawners3" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 2, 0)
-spawn_node = NodePath("../../../../items")
-value = 50
-
-[node name="coin_spawners4" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -34)
-spawn_node = NodePath("../../../../items")
-value = 50
-
-[node name="health_spawner" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -24)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="health_spawner2" parent="maps/map3/item_spawners" node_paths=PackedStringArray("spawn_node") instance=ExtResource("8_xkvjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 32)
-spawn_node = NodePath("../../../../items")
-value = 0
-spawn_interval = 15
-spawn_probability = 0.5
-spawn_type = 1
-
-[node name="platforms" type="MeshInstance3D" parent="maps/map3"]
-
-[node name="platform" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform33" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -20, -34)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform34" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -20, -30)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform35" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -20, -26)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform36" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -19, -22)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform37" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -20, -28)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform38" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -20, -24)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform39" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -19, -20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform40" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -18, -16)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(16, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 33)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(16, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -20, 29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(14, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -20, 29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 11)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -20, 19.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -19, 22.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -18.5, 16.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 43, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -18.5, 10.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 45, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform25" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -17.5, 13.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 45, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform26" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -17, 8.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 46, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -20, 29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 40, 11)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform27" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -20, 11.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform28" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -20, 11.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform30" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -20, -10.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform31" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -20, -10.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform29" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -20, 0.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform32" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -20, 0.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(8, 40, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -20, 29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(14, 40, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -12, 12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 56, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -12, -12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 56, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -12, 12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 56, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -12, -12.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 56, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, -15.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(11, 51, 8)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform4" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.5, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 41, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5, -8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 43, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform9" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5, 8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12, 43, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform5" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.5, 4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 41, 4)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform2" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -19, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -18, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 44, 20)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -18, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 44, 20)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform3" type="CSGBox3D" parent="maps/map3/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -19, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 42, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="bridges" type="MeshInstance3D" parent="maps/map3"]
-
-[node name="platform5" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, -8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 13)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform32" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 17.464466, 2, -17.535534)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform33" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 21, 3.5, -14)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform34" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 24.535534, 5, -10.464466)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform35" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 28.035534, 6.5, -6.964466)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform36" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 31.217514, 8, -3.7824855)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 1, 3)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 18)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 41)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 18)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 29)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 24)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 19)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform28" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -0.5, -20)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 10)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform29" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 10)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform30" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21, -0.5, -33)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 10)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform31" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, -0.5, -39)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 10)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform25" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 0.5, 0.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform26" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, 3.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform27" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, -2.5)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, -8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform9" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 8)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, 4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, 4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 9, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 9, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/map3/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, -4)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 1, 4)
-material = ExtResource("3_bk1rt")
-metadata/_edit_lock_ = true
-
-[node name="boss" type="Node3D" parent="maps"]
-
-[node name="platforms" type="MeshInstance3D" parent="maps/boss"]
-
-[node name="platform" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 51, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform2" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 52, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform3" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 53, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform4" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 54, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform5" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 55, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform6" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 56, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform7" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 57, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform8" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 58, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform9" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 59, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform10" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform11" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 5)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform12" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 9)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform13" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 12)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform14" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 15)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform15" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 17)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform16" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136, -80, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 60, 19)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.5, -7, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(42, 60, 19)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="boss_floor" type="CSGBox3D" parent="maps/boss/platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 288, -28.5, 0)
-use_collision = true
-size = Vector3(75, 103, 75)
-material = SubResource("StandardMaterial3D_hfkki")
-metadata/_edit_lock_ = true
-
-[node name="bridges" type="MeshInstance3D" parent="maps/boss"]
-
-[node name="platform5" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 19)
-material = ExtResource("3_bk1rt")
-
-[node name="platform6" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 18)
-material = ExtResource("3_bk1rt")
-
-[node name="platform7" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 17)
-material = ExtResource("3_bk1rt")
-
-[node name="platform8" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 16)
-material = ExtResource("3_bk1rt")
-
-[node name="platform9" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 15)
-material = ExtResource("3_bk1rt")
-
-[node name="platform10" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 14)
-material = ExtResource("3_bk1rt")
-
-[node name="platform11" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 13)
-material = ExtResource("3_bk1rt")
-
-[node name="platform12" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 12)
-material = ExtResource("3_bk1rt")
-
-[node name="platform13" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 11)
-material = ExtResource("3_bk1rt")
-
-[node name="platform14" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 10)
-material = ExtResource("3_bk1rt")
-
-[node name="platform17" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(4, 1, 9)
-material = ExtResource("3_bk1rt")
-
-[node name="platform15" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.5, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(14, 1, 10)
-material = ExtResource("3_bk1rt")
-
-[node name="platform16" type="CSGBox3D" parent="maps/boss/bridges"]
-transform = Transform3D(0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0, 1, 245.4433, 19.075, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(13.900001, 1, 10)
-material = ExtResource("3_bk1rt")
-
-[node name="castle" type="MeshInstance3D" parent="maps/boss"]
-
-[node name="platform16" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 31.5, -10)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 17, 10)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform23" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236.95, 22.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(1.1, 1.2, 12)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform17" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 31.5, 10)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 17, 10)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform19" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 252, 39.41421, 4.4142137)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 6, 4)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform20" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, -0.7071067, 0.70710677, 0, -0.70710677, -0.7071067, 252, 39.41421, -4.5857863)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(2, 6, 4)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform18" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 56.5, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 33, 30)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform24" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 48, 26.25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 50, 22.5)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform25" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 48, -26.25)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 50, 22.5)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform26" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.5, 48, -36)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(72, 50, 3)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform28" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 324, 48, 0)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(3, 50, 69)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform21" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(0.5, -0.8660254, 0, 0.8660254, 0.5, 0, 0, 0, 1, 243.97372, 34.432053, -5.45)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(28, 1, 0.90000004)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform22" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(0.5, -0.8660254, 0, 0.8660254, 0.5, 0, 0, 0, 1, 244.22372, 34.865063, 5.45)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(29, 1, 0.90000004)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="platform27" type="CSGBox3D" parent="maps/boss/castle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.5, 48, 36)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(72, 50, 3)
-material = ExtResource("10_kvpfn")
-metadata/_edit_lock_ = true
-
-[node name="arrow_indicator" type="MeshInstance3D" parent="maps/boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 17, 0)
+[node name="boss_map" parent="maps" unique_id=315349900 node_paths=PackedStringArray("boss_arena_center", "boss_related_animations") instance=ExtResource("11_kvuet")]
+boss_arena_center = NodePath("../../boss_arena_center")
+boss_related_animations = NodePath("../boss_related_animations")
+
+[node name="map_change_platform" type="StaticBody3D" parent="maps" unique_id=561159635]
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="maps/boss/arrow_indicator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-size = Vector3(0.4, 6, 1.5)
-material = ExtResource("10_vtaks")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="maps/boss/arrow_indicator"]
-transform = Transform3D(0, 8.742278e-08, -1.0000001, 0, -1, -8.7422784e-08, -1.0000001, 0, 0, 0, -1.6999989, 0)
-mesh = SubResource("PrismMesh_0tnpc")
-material = ExtResource("10_vtaks")
-
-[node name="door" type="MeshInstance3D" parent="maps/boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252, 33, 0)
-skeleton = NodePath("../castle")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="maps/boss/door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-size = Vector3(1, 18, 10)
-material = SubResource("StandardMaterial3D_kvuet")
-
-[node name="path_activation" type="Area3D" parent="maps/boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 11, 0)
-visible = false
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="maps/boss/path_activation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0)
-shape = SubResource("BoxShape3D_sgl2t")
-
-[node name="open_door" type="Area3D" parent="maps/boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236, 24, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="maps/boss/open_door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-shape = SubResource("BoxShape3D_qouja")
-
-[node name="boss_activation" type="Area3D" parent="maps/boss"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 256, 30, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="maps/boss/boss_activation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
-shape = SubResource("BoxShape3D_wljb1")
-debug_color = Color(1, 0, 1, 1)
-
-[node name="map_change_platform" type="StaticBody3D" parent="maps"]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="maps/map_change_platform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="maps/map_change_platform" unique_id=1317138063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 shape = SubResource("BoxShape3D_fxr6r")
 disabled = true
 
-[node name="change_map_animations" type="AnimationPlayer" parent="maps"]
+[node name="change_map_animations" type="AnimationPlayer" parent="maps" unique_id=1980645102]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_agxqc")
-}
+libraries/ = SubResource("AnimationLibrary_agxqc")
 
-[node name="boss_related_animations" type="AnimationPlayer" parent="maps"]
-libraries = {
-&"": SubResource("AnimationLibrary_kvpfn")
-}
+[node name="boss_related_animations" type="AnimationPlayer" parent="maps" unique_id=963811572]
+libraries/ = SubResource("AnimationLibrary_kvpfn")
 
-[node name="arrow_indicator_animation" type="AnimationPlayer" parent="maps"]
-libraries = {
-&"": SubResource("AnimationLibrary_trtic")
-}
-autoplay = "arrow_indication"
-
-[node name="boss_arena_center" type="Node3D" parent="."]
+[node name="boss_arena_center" parent="." unique_id=2097164157 node_paths=PackedStringArray("boss_related_animations") instance=ExtResource("12_trtic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 288, 23, 0)
-
-[node name="Boss" type="RigidBody3D" parent="boss_arena_center" node_paths=PackedStringArray("player", "animation_tree", "hurt_sound")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
-visible = false
-gravity_scale = 0.0
-script = ExtResource("13_trtic")
-player = NodePath("../../consistant_nodes/Player")
-animation_tree = NodePath("bat_model/AnimationTree")
-hurt_sound = NodePath("hurt_sound")
-metadata/boss = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="boss_arena_center/Boss"]
-shape = SubResource("SphereShape3D_trtic")
-debug_color = Color(0, 0, 0.69803923, 1)
-
-[node name="bat_model" parent="boss_arena_center/Boss" instance=ExtResource("12_dinhu")]
-
-[node name="Armature" parent="boss_arena_center/Boss/bat_model" index="0"]
-transform = Transform3D(-10, 0, 1.509958e-06, 0, 10, 0, -1.509958e-06, 0, -10, 0, 0, 0)
-
-[node name="Skeleton3D" parent="boss_arena_center/Boss/bat_model/Armature" index="0"]
-bones/0/position = Vector3(0, 0.019420244, 0)
-bones/1/rotation = Quaternion(0.116019435, 0.04773877, -0.67037195, 0.7313427)
-bones/2/rotation = Quaternion(0.14195013, 0.055477414, 0.35931745, 0.9206864)
-bones/3/rotation = Quaternion(0.17144749, 0.114309, 0.34084272, 0.9172598)
-bones/4/rotation = Quaternion(0.116019435, -0.04773877, 0.67037195, 0.7313427)
-bones/5/rotation = Quaternion(0.14195013, -0.055477414, -0.35931745, 0.9206864)
-bones/6/rotation = Quaternion(0.17144749, -0.114309, -0.34084272, 0.9172598)
-bones/8/rotation = Quaternion(3.368761e-08, 0.6916949, 0.72218984, 2.1952449e-08)
-bones/11/rotation = Quaternion(2.4982004e-08, 0.69169486, 0.7221899, 3.6134228e-08)
-
-[node name="bat" parent="boss_arena_center/Boss/bat_model/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_trtic")
-
-[node name="Area3D" type="Area3D" parent="boss_arena_center/Boss/bat_model"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="boss_arena_center/Boss/bat_model/Area3D"]
-shape = SubResource("SphereShape3D_ir15t")
-debug_color = Color(0.99767584, 0, 0.17080054, 0.41960785)
-
-[node name="hurt_sound" type="AudioStreamPlayer3D" parent="boss_arena_center/Boss"]
-stream = ExtResource("15_ir15t")
-volume_db = -5.0
-unit_size = 20.0
-pitch_scale = 0.8
-
-[node name="lights" type="Node" parent="boss_arena_center"]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="boss_arena_center/lights"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 288, 61, 1.1368684e-13)
-light_energy = 10.0
-spot_range = 60.0
-spot_attenuation = 0.7
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="boss_arena_center/lights"]
-transform = Transform3D(0.9961947, -3.809698e-09, 0.08715574, -0.08715574, -4.3545054e-08, 0.9961947, 0, -1, -4.371139e-08, 250, 45, -5.4)
-spot_range = 25.0
-spot_angle = 10.0
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="boss_arena_center/lights"]
-transform = Transform3D(0.9961947, -3.809698e-09, 0.08715574, -0.08715574, -4.3545054e-08, 0.9961947, 0, -1, -4.371139e-08, 250, 45, 5.4)
-spot_range = 25.0
-spot_angle = 10.0
+boss_related_animations = NodePath("../maps/boss_related_animations")
 
 [connection signal="body_entered" from="consistant_nodes/start_fade" to="consistant_nodes/Player" method="_on_start_fade_body_entered"]
 [connection signal="body_entered" from="consistant_nodes/death_area" to="consistant_nodes/Player" method="_on_world_borders_body_entered"]
-[connection signal="body_entered" from="maps/boss/path_activation" to="." method="_on_path_activation_body_entered"]
-[connection signal="body_entered" from="maps/boss/open_door" to="." method="_on_open_door_body_entered"]
-[connection signal="body_entered" from="maps/boss/boss_activation" to="." method="_on_boss_activation_body_entered"]
-
-[editable path="boss_arena_center/Boss/bat_model"]

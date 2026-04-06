@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://d0j822q7kciyd"]
+
+[ext_resource type="StyleBox" uid="uid://dbw4huqdrtwqi" path="res://styles/transparent_styleboxflat.tres" id="1_btmit"]
+[ext_resource type="Script" uid="uid://dy8sofwggeq5t" path="res://scripts/shop_upgrade.gd" id="2_rjesc"]
+
+[node name="gun_damage" type="PanelContainer" unique_id=1807217842 node_paths=PackedStringArray("upgrade_button", "name_label", "cost_lable", "value_lable")]
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_btmit")
+script = ExtResource("2_rjesc")
+upgrade_button = NodePath("HBoxContainer/upgrade_button")
+name_label = NodePath("HBoxContainer/VBoxContainer/description")
+cost_lable = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/cost")
+value_lable = NodePath("HBoxContainer/VBoxContainer/HBoxContainer/value")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1302476329]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="upgrade_button" type="Button" parent="HBoxContainer" unique_id=1630425167]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "    buy     "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1538701428]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="description" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=567476650]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1226998196]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="cost" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=926866152]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Coins: "
+horizontal_alignment = 1
+
+[node name="value" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1385319150]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Value: "
+horizontal_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/upgrade_button" to="." method="_on_upgrade_button_pressed"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bnuqladgqwuk8"]
+[gd_scene format=3 uid="uid://bnuqladgqwuk8"]
 
-[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://scripts/mob_script.gd" id="1_h8ps3"]
+[ext_resource type="Script" uid="uid://ce8bywbswd3jq" path="res://scripts/mobs/mob_script.gd" id="1_h8ps3"]
 [ext_resource type="PackedScene" uid="uid://c148jwmfcy6qw" path="res://scenes/sky_bat_projectile.tscn" id="2_ebxvl"]
 [ext_resource type="PackedScene" uid="uid://cgwj8s7jrwp72" path="res://scenes/shooter_bat_projectile.tscn" id="3_ebxvl"]
 [ext_resource type="PackedScene" uid="uid://ns1dsvni75v5" path="res://mob/bat/bat_model.tscn" id="3_wpivu"]

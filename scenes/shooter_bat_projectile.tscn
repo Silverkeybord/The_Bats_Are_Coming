@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgwj8s7jrwp72"]
+[gd_scene format=3 uid="uid://cgwj8s7jrwp72"]
 
-[ext_resource type="Script" uid="uid://ckayb5j1xab8t" path="res://scripts/shooter_bat_projectile.gd" id="1_ynaxo"]
+[ext_resource type="Script" uid="uid://ckayb5j1xab8t" path="res://scripts/mobs/shooter_bat_projectile.gd" id="1_ynaxo"]
 [ext_resource type="Material" uid="uid://dmilvgugsslod" path="res://material's/shooter_bat_projectile.tres" id="2_pgd71"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ynaxo"]

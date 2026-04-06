@@ -1,5 +1,7 @@
+class_name global_class
 extends Node
 
+const save_path := "user://bats_are_comeing_save_file.save"
 const GRAVITY := -22 # meters per second per second
 const WAVE_MULT_DIVIDER := 8.0
 const BOSS_WAVE := 26
@@ -90,7 +92,7 @@ const SHOP_INFO: Dictionary = {
 			"4": 5
 		}
 	},
-	"durability" : {
+	"pierce" : {
 		"levels": 4,
 		"cost" : {
 			"1": 250,
@@ -487,16 +489,34 @@ const ENEMY_KEYS: Array = [
 ]
 const AVAIBLE_SELECTABLE_WAVES: Array = [1, 5, 10, 15, 20, 25]
 
+var single_activation_vls: Dictionary = {
+	"intro": false,
+	"first_death": false,
+	"max_out_scale": false,
+	"ten_k_coins": false,
+	"first_upgrade": false,
+	"out_of_this_world": false,
+	"too_high": false,
+	"sees_boos": false,
+	"beat_the_game": false,
+	"beat_wave25": false,
+	"beat_wave20": false,
+	"beat_wave15": false,
+	"beat_wave10": false,
+	"beat_wave1": false
+}
 
 # shop upgrades and values
-var damage_level := 0
-var firerate_level := 0
-var hp_level := 0
-var scale_level := 0
-var durabilty_level := 0
+var shop_upgrades = {
+	"damage" : 0,
+	"health" : 0,
+	"firerate" : 0,
+	"bullet_scale" : 0,
+	"pierce" : 0
+}
 
 var damage := 1
-var durability := 1
+var pierce := 1
 var bullet_scale: Vector3 = Vector3(1, 1, 1)
 
 # player information
@@ -513,7 +533,7 @@ var total_enemies: int
 var mutation_probabilities: Dictionary
 
 # boss related varibles
-var going_to_boss := false
+var path_open := false
 var fighting_boss := false
 
 # wave information
@@ -548,3 +568,54 @@ func clear_items_and_mobs() -> void:
 	
 	for enemy in enemies:
 		enemy.die(self)
+
+
+func save_game():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	
+	var save_data = {
+		# shop upgrades
+		"shop_upgrades": shop_upgrades,
+		
+		# player currency
+		"coins": coins,
+		
+		# wave info
+		"current_wave": current_wave,
+		"highest_wave": highest_wave,
+		"base_stat_mult": base_stat_mult,
+		
+		"intro_done": intro_done,
+		
+		"single_activation_vls": single_activation_vls
+	}
+	
+	file.store_var(save_data)
+
+
+func load_game():
+	if !FileAccess.file_exists(save_path):
+		return
+	
+	
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	var data = file.get_var()
+	
+	shop_upgrades = data["shop_upgrades"]
+	
+	coins = data["coins"]
+	
+	current_wave = data["current_wave"]
+	highest_wave = data["highest_wave"]
+	base_stat_mult = data["base_stat_mult"]
+	
+	intro_done = data["intro_done"]
+	
+	single_activation_vls = data["single_activation_vls"]
+
+
+func reset_game():
+	print(reset_game)
+	if FileAccess.file_exists(save_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(save_path))
+	get_tree().quit()

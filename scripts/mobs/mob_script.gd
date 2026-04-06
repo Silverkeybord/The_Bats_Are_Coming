@@ -265,7 +265,6 @@ func _on_attack_timer_timeout() -> void:
 			player.position.z))
 		new_projectile.damage = damage
 		new_projectile.add_to_group("items")
-
 	
 	else:
 		attack_sound.stream = ATTACK_SOUNDS.pick_random()

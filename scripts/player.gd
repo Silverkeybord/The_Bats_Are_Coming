@@ -3,7 +3,7 @@ extends CharacterBody3D
 const V_CAMERA_MAX := deg_to_rad(88)
 const V_CAMERA_MIN := deg_to_rad(-88)
 
-const SPEED := 7.0
+const SPEED := 7.5
 const ACCELERATION := 40.0
 const DECELERATION := 30.0
 const INITIAL_JUMP_VELOCITY := 7.0
@@ -11,13 +11,27 @@ const JUMP_HOLD_ACCELERATION := 40.0
 const MAX_JUMP_VELOCITY := 8.5
 const COYOTE_TIME := 0.15
 
+const ARROW = " > "
 const COINS_TEXT := "Coins: "
 const VALUE_TEXT := "Value: "
-const MAX_LEVEL_TEXT := "MaX LeVeL :)"
 const WAVE_VISUAL_TEXT := "Wave "
+const FPS_TEXT := "FPS: "
+
+const LOAD_BUFFER := 0.5
+
+const WHITE_FPS := Color(1.0, 1.0, 1.0, 1.0)
+const YELLOW_FPS := Color(1.0, 1.0, 0.451, 1.0)
+const ORANGE_FPS := Color(1.0, 0.647, 0.0, 1.0)
+const RED_FPS := Color(1.0, 0.49, 0.451)
+
+const WHITE_THRESHOLD := 50
+const YELLOW_THRESHOLD := 40
+const ORANGE_THRESHOLD := 20
+const RED_THRESHOLD := 10
 
 const RESPAWN_POSITION := Vector3(0, 5, 0)
 const RESPAWN_CAMERA_ROTATION := Vector3(0, 0, 0)
+const PATH_OPEN_SPAWN_POSITION := Vector3(176, 26, 0)
 
 const AIM_DISTANCE := 200
 const WORLD_DAMAGE := 0.5 # percentage of damage interms of max hp
@@ -28,6 +42,7 @@ const OUT_OF_THIS_WORLD_REWARD := 100
 const MOBS_ALIVE_VL_THRESHOLD:= 30
 
 const BOSS_WAVE_TEXT := "Boss :o"
+const NO_SELECTED_WAVE := 25
 
 const VL_FIRST_DEATH_KEY := "first_death"
 const VL_DEATH_KEY := "death"
@@ -49,7 +64,7 @@ var max_hp := 10.0
 var hp := 0.0
 var damage := 1
 var firerate := 0.25
-var durability := 1
+var pierce := 1
 var bullet_scale := Vector3(1, 1, 1)
 
 var can_more_than_30_bats := false
@@ -63,6 +78,7 @@ var can_more_than_30_bats := false
 @export var effect_animations: AnimationPlayer
 @export var hurt_image: TextureRect
 @export var boss_button: Button
+@export var FPS_lable: Label
 
 @export_group("out of scene exports")
 @export var game_controller: Node3D
@@ -74,30 +90,12 @@ var can_more_than_30_bats := false
 @export_group("shop_ui")
 @export var shop_animations: AnimationPlayer
 
-@export_subgroup("Damage Upgrade")
-@export var damage_button: Button
-@export var damage_cost_label: Label
-@export var damage_value_label: Label
-
-@export_subgroup("Firerate Upgrade")
-@export var firerate_button: Button
-@export var firerate_cost_label: Label
-@export var firerate_value_label: Label
-
-@export_subgroup("Health Upgrade")
-@export var health_button: Button
-@export var health_cost_label: Label
-@export var health_value_label: Label
-
-@export_subgroup("Bullet Scale Upgrade")
-@export var bullet_scale_button: Button
-@export var bullet_scale_cost_label: Label
-@export var bullet_scale_value_label: Label
-
-@export_subgroup("Durability Upgrade")
-@export var durability_button: Button
-@export var durability_cost_label: Label
-@export var durability_value_label: Label
+@export_subgroup("Upgrades")
+@export var damage_upgrade: PanelContainer
+@export var hp_upgrade: PanelContainer
+@export var firerate_upgrade: PanelContainer
+@export var scale_upgrade: PanelContainer
+@export var pierce_upgrade: PanelContainer
 
 @export_group("Wave Selection")
 @export var wave_buttons: Node
@@ -109,54 +107,16 @@ func _ready() -> void:
 	shooting_timer.wait_time = firerate
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	_initial_shop_ui()
-
-
-func _initial_shop_ui() -> void:
-	var shop = Global.SHOP_INFO
-	
-	# Damage
-	var current_damage_value = shop["damage"]["value"]["0"]
-	var damage_cost = shop["damage"]["cost"]["1"]
-	damage_cost_label.text = COINS_TEXT + str(damage_cost)
-	damage_value_label.text = VALUE_TEXT + str(current_damage_value)
-	
-	# Firerate
-	var current_firerate_value = shop["firerate"]["value"]["0"]
-	var firerate_cost = shop["firerate"]["cost"]["1"]
-	firerate_cost_label.text = COINS_TEXT + str(firerate_cost)
-	firerate_value_label.text = VALUE_TEXT + str(current_firerate_value)
-	
-	# Health
-	var current_health_value = shop["health"]["value"]["0"]
-	var health_cost = shop["health"]["cost"]["1"]
-	health_cost_label.text = COINS_TEXT + str(health_cost)
-	health_value_label.text = VALUE_TEXT + str(current_health_value)
-	
-	# Bullet Scale
-	var current_bullet_scale_value = shop["bullet_scale"]["value"]["0"]
-	var bullet_scale_cost = shop["bullet_scale"]["cost"]["1"]
-	bullet_scale_cost_label.text = COINS_TEXT + str(bullet_scale_cost)
-	bullet_scale_value_label.text = VALUE_TEXT + str(current_bullet_scale_value)
-	
-	# Bullet Durability
-	var durability_value = shop["durability"]["value"]["0"]
-	var durability_cost = shop["durability"]["cost"]["1"]
-	durability_cost_label.text = COINS_TEXT + str(durability_cost)
-	durability_value_label.text = VALUE_TEXT + str(durability_value)
+	await get_tree().create_timer(LOAD_BUFFER).timeout
+	_check_wave_selection_unlocks()
 
 
 func _physics_process(delta: float) -> void:
 	if not Global.lock_movement:
-		# back and fourth movement with acceleration and decelleration
-		var input_direction_2D = Input.get_vector(
-			"left", "right", "forward", "back"
-			)
-		var direction = ((transform.basis * 
-						Vector3(input_direction_2D.x, 0, input_direction_2D.y))
-						.normalized())
-		
-		if direction:
+		var input_direction = Input.get_vector("left", "right", "forward", "back")
+		var direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+
+		if input_direction != Vector2.ZERO:
 			velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION * delta)
 			velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION * delta)
 		else:
@@ -198,7 +158,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if (Input.is_action_pressed("shoot") and 
 		shooting_timer.is_stopped() and
 		not Global.lock_movement):
@@ -208,24 +168,37 @@ func _process(_delta: float) -> void:
 		hp = 0
 		_update_hp()
 	
+	if Input.is_action_just_pressed("ui_text_select_all"):
+		Global.highest_wave = 26
+	
 	coins_label.text = COINS_TEXT + str(Global.coins)
 	
 	hurt_image.modulate.a = clamp(1.0 - (hp / max_hp) * HURT_THRESHOLD, 0.0, 1.0)
 	
 	_update_hp()
 	
-	#print(position.y)
+	var FPS = round(1/delta * 10) / 10
+	if FPS > WHITE_THRESHOLD:
+		FPS_lable.modulate = WHITE_FPS
+	elif FPS > YELLOW_THRESHOLD:
+		FPS_lable.modulate = YELLOW_FPS
+	elif FPS > ORANGE_THRESHOLD:
+		FPS_lable.modulate = ORANGE_FPS
+	elif FPS > RED_THRESHOLD:
+		FPS_lable.modulate = RED_FPS
+	
+	FPS_lable.text = FPS_TEXT + str(FPS)
 	
 	# voic lines stuff
 	if (Global.coins >= 10000 and 
-		not VoiceLines.single_activation_vls[VL_10K_COINS_KEY]):
+		not Global.single_activation_vls[VL_10K_COINS_KEY]):
 		
 		VoiceLines.play_vl(VL_10K_COINS_KEY)
 	
 	if Global.mobs_left >= MOBS_ALIVE_VL_THRESHOLD and can_more_than_30_bats:
 		can_more_than_30_bats = true
 		VoiceLines.play_vl(VL_MORE_THAN_30_BATS_KEY)
-		
+	
 	else:
 		can_more_than_30_bats = false
 	
@@ -235,13 +208,11 @@ func _process(_delta: float) -> void:
 		position.z <= -OUT_OF_THIS_WORLD_DISTANCE
 		):
 		
-		if (not VoiceLines.single_activation_vls[VL_OUT_OF_THIS_WORLD_KEY] and 
-			not Global.going_to_boss):
+		if (not Global.single_activation_vls[VL_OUT_OF_THIS_WORLD_KEY] and 
+			not Global.path_open):
 			
 			VoiceLines.play_vl(VL_OUT_OF_THIS_WORLD_KEY)
 			Global.coins += OUT_OF_THIS_WORLD_REWARD
-	
-	print(get_viewport().get_mouse_position())
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -253,6 +224,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _shoot_bullet() -> void:
+	print(Global.shop_upgrades)
+	
 	# Get the center of the screen (where the reticle is)
 	var viewport_center = get_viewport().get_visible_rect().size / 2
 	
@@ -283,7 +256,7 @@ func _shoot_bullet() -> void:
 
 
 func _on_world_borders_body_entered(body: Node3D) -> void:
-	if body == self:
+	if body == self and not Global.player_died:
 		hp -= max_hp * WORLD_DAMAGE
 		position = RESPAWN_POSITION
 		velocity = Vector3.ZERO
@@ -298,19 +271,28 @@ func _update_hp() -> void:
 	hp_bar.value = hp
 	hp_text_display.text = str(hp) + "/" + str(max_hp)
 	
-	if hp <= 0:
+	if hp <= 0 and not Global.player_died:
 		Global.clear_items_and_mobs()
 		
 		effect_animations.play("fade_in")
-		await effect_animations.animation_finished
 		
-		if not Global.player_died:
-			_died()
+		_died()
 
 
 func _died() -> void:
 	Global.player_died = true
-	position = RESPAWN_POSITION
+	Global.fighting_boss = false
+	Global.can_spawn_enemies = false
+	Global.save_game()
+	
+	await effect_animations.animation_finished
+	
+	if Global.player_died:
+		if not Global.single_activation_vls[VL_FIRST_DEATH_KEY]:
+			await VoiceLines.play_vl(VL_FIRST_DEATH_KEY)
+		else:
+			await VoiceLines.play_vl(VL_DEATH_KEY)
+	
 	player_cam.rotation = RESPAWN_CAMERA_ROTATION
 	hp = max_hp
 	velocity = Vector3.ZERO
@@ -319,18 +301,15 @@ func _died() -> void:
 	_check_wave_selection_unlocks()
 	game_controller.reset_wave_display()
 	Global.current_wave = Global.selected_wave
-	Global.can_spawn_enemies = false
+	
+	# if the path is open give the option to go straight to the boss or do more waves
+	if Global.path_open:
+		effect_animations.play("show_retry")
+		return
+	else: 
+		position = RESPAWN_POSITION
+	
 	Global.shop_open = true
-	
-	if Global.player_died:
-		if not VoiceLines.single_activation_vls[VL_FIRST_DEATH_KEY]:
-			await VoiceLines.play_vl(VL_FIRST_DEATH_KEY)
-		else:
-			await VoiceLines.play_vl(VL_DEATH_KEY)
-	
-	if Global.highest_wave >= 26:
-		boss_button.visible = true
-		boss_button.disabled = false
 	
 	effect_animations.play("fade_out")
 	shop_animations.play("open_shop")
@@ -340,133 +319,8 @@ func _died() -> void:
 	Global._unlock_mouse_movement()
 
 
-# -------------------------------------- Shop functions
-func _on_damage_button_pressed() -> void:
-	var damage_info = Global.SHOP_INFO["damage"]
-	var cost = damage_info["cost"][str(Global.damage_level + 1)]
-	if Global.coins < cost:
-		return
-	
-	Global.coins -= cost
-	Global.damage_level += 1
-	
-	var new_value = damage_info["value"][str(Global.damage_level)]
-	damage_value_label.text = VALUE_TEXT + str(new_value)
-	Global.damage = new_value
-	
-	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
-	
-	var max_level =  damage_info["levels"]
-	if Global.damage_level == max_level:
-		damage_button.queue_free()
-		damage_cost_label.text = MAX_LEVEL_TEXT
-	else:
-		var new_cost = damage_info["cost"][str(Global.damage_level + 1)]
-		damage_cost_label.text = COINS_TEXT + str(new_cost)
-
-
-func _on_firerate_button_pressed() -> void:
-	var firerate_info = Global.SHOP_INFO["firerate"]
-	var cost = firerate_info["cost"][str(Global.firerate_level + 1)]
-	if Global.coins < cost:
-		return
-	
-	Global.coins -= cost
-	Global.firerate_level += 1
-	
-	var new_value = firerate_info["value"][str(Global.firerate_level)]
-	firerate_value_label.text = VALUE_TEXT + str(new_value)
-	firerate = new_value
-	shooting_timer.wait_time = firerate
-	
-	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
-	
-	var max_level = firerate_info["levels"]
-	if Global.firerate_level == max_level:
-		firerate_button.queue_free()
-		firerate_cost_label.text = MAX_LEVEL_TEXT
-	else:
-		var new_cost = firerate_info["cost"][str(Global.firerate_level + 1)]
-		firerate_cost_label.text = COINS_TEXT + str(new_cost)
-
-
-func _on_health_button_pressed() -> void:
-	var health_info = Global.SHOP_INFO["health"]
-	var cost = health_info["cost"][str(Global.hp_level + 1)]
-	if Global.coins < cost:
-		return
-	
-	Global.coins -= cost
-	Global.hp_level += 1
-	
-	var new_value = health_info["value"][str(Global.hp_level)]
-	health_value_label.text = VALUE_TEXT + str(new_value)
-	max_hp = new_value
-	hp = max_hp
-	hp_bar.max_value = max_hp
-	hp_bar.value = max_hp
-	
-	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
-	
-	var max_level = health_info["levels"]
-	if Global.hp_level == max_level:
-		health_button.queue_free()
-		health_cost_label.text = MAX_LEVEL_TEXT
-	else:
-		var new_cost = health_info["cost"][str(Global.hp_level + 1)]
-		health_cost_label.text = COINS_TEXT + str(new_cost)
-
-
-func _on_bullet_scale_button_pressed() -> void:
-	var bullet_scale_info = Global.SHOP_INFO["bullet_scale"]
-	var cost = bullet_scale_info["cost"][str(Global.scale_level + 1)]
-	if Global.coins < cost:
-		return
-	
-	Global.coins -= cost
-	Global.scale_level += 1
-	
-	var new_value = bullet_scale_info["value"][str(Global.scale_level)]
-	bullet_scale_value_label.text = VALUE_TEXT + str(new_value)
-	Global.bullet_scale = Vector3(new_value, new_value, new_value)
-	
-	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
-	
-	var max_level = bullet_scale_info["levels"]
-	if Global.scale_level == max_level:
-		bullet_scale_button.queue_free()
-		bullet_scale_cost_label.text = MAX_LEVEL_TEXT
-		VoiceLines.play_vl(VL_MAX_SCALE_KEY)
-	else:
-		var new_cost = bullet_scale_info["cost"][str(Global.scale_level + 1)]
-		bullet_scale_cost_label.text = COINS_TEXT + str(new_cost)
-
-
-func _on_durability_button_pressed() -> void:
-	var durability_info = Global.SHOP_INFO["durability"]
-	var cost = durability_info["cost"][str(Global.durabilty_level + 1)]
-	if Global.coins < cost:
-		return
-	
-	Global.coins -= cost
-	Global.durabilty_level += 1
-	
-	var new_value = durability_info["value"][str(Global.durabilty_level)]
-	durability_value_label.text = VALUE_TEXT + str(new_value)
-	Global.durability = new_value
-	
-	VoiceLines.play_vl(VL_FIRST_UPGRADE_KEY)
-	
-	var max_level = durability_info["levels"]
-	if Global.durabilty_level == max_level:
-		durability_button.queue_free()
-		durability_cost_label.text = MAX_LEVEL_TEXT
-	else:
-		var new_cost = durability_info["cost"][str(Global.durabilty_level + 1)]
-		durability_cost_label.text = COINS_TEXT + str(new_cost)
-
-
 func _on_close_button_pressed() -> void:
+	_update_stats()
 	shop_animations.play("close_shop")
 	set_physics_process(true)
 	Global.shop_open = false
@@ -474,22 +328,33 @@ func _on_close_button_pressed() -> void:
 	game_controller.start_new_run()
 
 
+func _update_stats() -> void:
+	Global.damage = Global.SHOP_INFO["damage"]["value"][str(Global.shop_upgrades["damage"])]
+	max_hp = Global.SHOP_INFO["health"]["value"][str(Global.shop_upgrades["health"])]
+	hp = max_hp
+	hp_bar.max_value = max_hp
+	firerate = Global.SHOP_INFO["firerate"]["value"][str(Global.shop_upgrades["firerate"])]
+	shooting_timer.wait_time = firerate
+	var Bscale = Global.SHOP_INFO["bullet_scale"]["value"][str(Global.shop_upgrades["bullet_scale"])]
+	Global.bullet_scale = Vector3(Bscale, Bscale, Bscale)
+	Global.pierce = Global.SHOP_INFO["pierce"]["value"][str(Global.shop_upgrades["pierce"])]
+
+
 # --------------------------- wave selection funcions
 func _check_wave_selection_unlocks() -> void:
 	var unlocked_selectable_waves := 0
-	var buttons: Array = wave_buttons.get_children()
-	
-	for x in Global.AVAIBLE_SELECTABLE_WAVES:
-		if Global.highest_wave >= x:
-			unlocked_selectable_waves += 1
-		
-		else: 
-			break
+	var buttons: Array = wave_buttons.find_children("" ,"Button")
+	print(buttons)
+	unlocked_selectable_waves = floor(Global.highest_wave / 5.0) + 1
 	
 	for x in buttons:
 		if unlocked_selectable_waves > 0:
 			x.disabled = false
 			unlocked_selectable_waves -= 1
+	
+	if Global.highest_wave == Global.BOSS_WAVE:
+		boss_button.visible = true
+		boss_button.disabled = false
 
 
 func _on_wave_1_pressed() -> void:
@@ -525,4 +390,37 @@ func _on_wave_25_pressed() -> void:
 func _on_boss_pressed() -> void:
 	Global.selected_wave = Global.BOSS_WAVE
 	wave_label.text = BOSS_WAVE_TEXT
+
+
+# boss retrying
+func _on_yes_pressed() -> void:
+	Global.player_died = false
+	position = PATH_OPEN_SPAWN_POSITION
 	
+	effect_animations.play("hide_retry")
+	await effect_animations.animation_finished
+	
+	effect_animations.play("fade_out")
+	
+	Global._lock_mouse_movement()
+
+
+func _on_no_pressed() -> void:
+	position = RESPAWN_POSITION
+	
+	Global.shop_open = true
+	Global.path_open = false
+	Global.can_spawn_enemies = false
+	Global.selected_wave = NO_SELECTED_WAVE
+	
+	game_controller.boss_related_animations.play("close_path")
+	
+	effect_animations.play("hide_retry")
+	await effect_animations.animation_finished
+	
+	effect_animations.play("fade_out")
+	shop_animations.play("open_shop")
+	
+	await shop_animations.animation_finished
+	
+	Global._unlock_mouse_movement()

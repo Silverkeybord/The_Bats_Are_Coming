@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://4toi7ndrm7or"]
+[gd_scene format=3 uid="uid://4toi7ndrm7or"]
 
-[ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://scripts/spawner.gd" id="1_3fqj6"]
+[ext_resource type="Script" uid="uid://cks1xgftpf31x" path="res://scripts/mobs/spawner.gd" id="1_3fqj6"]
 [ext_resource type="PackedScene" uid="uid://cncj4mc0l4wa5" path="res://scenes/spawner_model.tscn" id="1_qnmfe"]
 [ext_resource type="PackedScene" uid="uid://bnuqladgqwuk8" path="res://scenes/mob.tscn" id="2_goea1"]
 

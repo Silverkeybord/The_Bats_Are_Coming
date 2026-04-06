@@ -12,11 +12,10 @@ const RANDOM_SPAWN_OFFSET := 0.2
 
 @export_group("out of scene exports")
 @export var mob_scene: PackedScene
-@export var player: CharacterBody3D
-@export var game_controller: Node3D
-@export var enemy_spawn_node: Node
-@export var temp_sound_node: Node
 
+@onready var enemy_spawn_node = get_tree().get_first_node_in_group("enemy_node")
+@onready var temp_sound_node = get_tree().get_first_node_in_group("temp_sounds")
+@onready var game_controller = get_tree().get_first_node_in_group("game_controller")
 
 func _ready() -> void:
 	add_to_group("spawners")
@@ -52,7 +51,7 @@ func _on_timer_timeout() -> void:
 		
 		
 		var new_mob = mob_scene.instantiate()
-		new_mob.player = player
+		new_mob.player = get_tree().get_first_node_in_group("player")
 		new_mob.game_controller = game_controller
 		new_mob.position = mob_spawn.global_position
 		new_mob.type = selection

@@ -30,7 +30,7 @@ const VOICE_LINES := {
 		preload("res://sounds/SFX/fahhhhhhhhhhhhhh.mp3"),
 		preload("res://sounds/SFX/fail-sound-effect.mp3"),
 		preload("res://sounds/SFX/window-knock.mp3"),
-		#preload("res://sounds/SFX/indian-song.mp3"),
+		#preload("es://sounds/SFX/indian-song.mp3"),
 	],
 	"good_run": preload("res://sounds/VL/that was a good run.mp3"),
 	"more_than_30_bats": preload("res://sounds/VL/shoot the bats.mp3"),
@@ -40,33 +40,16 @@ const VOICE_LINES := {
 	"1h": preload("res://sounds/VL/played for 1h.mp3")
 }
 
-var single_activation_vls: Dictionary = {
-	"intro": false,
-	"first_death": false,
-	"max_out_scale": false,
-	"ten_k_coins": false,
-	"first_upgrade": false,
-	"out_of_this_world": false,
-	"too_high": false,
-	"sees_boos": false,
-	"beat_the_game": false,
-	"beat_wave25": false,
-	"beat_wave20": false,
-	"beat_wave15": false,
-	"beat_wave10": false,
-	"beat_wave1": false
-}
-
 
 func play_vl(vl: String):
 	if playing:
 		return
 	
-	if vl in single_activation_vls:
-		if single_activation_vls[vl] == true:
+	if vl in Global.single_activation_vls:
+		if Global.single_activation_vls[vl] == true:
 			return
 		
-		single_activation_vls[vl] = true
+		Global.single_activation_vls[vl] = true
 		stream = VOICE_LINES[vl]
 		self.play()
 	

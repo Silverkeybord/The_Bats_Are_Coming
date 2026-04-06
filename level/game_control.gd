@@ -36,7 +36,7 @@ const VL_GOOD_RUN_KEY := "good_run"
 const GOOD_RUN_REQUIRMENTS := 200 # coins required then times by global mult
 
 var active_spawners: Node3D
-var active_coin_spawners: Node3D
+var active_item_spawners: Node3D
 var active_map = maps.MAP1
 var current_map = maps.MAP1
 
@@ -44,70 +44,85 @@ var path_open := false
 
 @export_group("map exports")
 @export var change_map_animations: AnimationPlayer
-@export var bat_flight_plane_2: Area3D
-@export var bat_flight_plane_3: Area3D
+@export var bat_flight_plane : Node
 
-@export_group("spawners")
-@export var map_1_spawners: Node3D
-@export var map_2_spawners: Node3D
-@export var map_3_spawners: Node3D
-@export var map_1_coin_spawners: Node3D
-@export var map_2_coin_spawners: Node3D
-@export var map_3_coin_spawners: Node3D
+@export_group("maps")
+@export var map1 : Node
+@export var map2 : Node
+@export var map3 : Node
+@export var boss_map : Node
 
 @export_group("UI")
-@export var wave_visuals_animations: AnimationPlayer
-@export var main_wave_label: Label
-@export var next_animations_wave: Label
-@export var previous_animations_wave: Label
-@export var mob_counter: Label
-@export var center_wave: Label
+@export var _2D_nodes : Node
 
 @export_group("boss related")
-@export var arrow_indicator: MeshInstance3D
-@export var path_activation_area: Area3D
-@export var boss_related_animations: AnimationPlayer
-@export var boss: Node3D
+@export var boss_arena_center : Node3D
+@export var boss_related_animations : AnimationPlayer
+
+@onready var boss = boss_arena_center.boss
+
+@onready var arrow_indicator = boss_map.arrow_indicator
+@onready var path_activation_area = boss_map.path_activation_area
+
+@onready var wave_visuals_animations = _2D_nodes.wave_visuals_animations
+@onready var main_wave_label = _2D_nodes.main_wave_label
+@onready var next_animations_wave = _2D_nodes.next_animations_wave
+@onready var previous_animations_wave = _2D_nodes.previous_animations_wave
+@onready var mob_counter = _2D_nodes.mob_counter
+@onready var center_wave = _2D_nodes.center_wave
 
 
 func _ready() -> void:
-	await get_tree().process_frame
-	await VoiceLines.play_vl(VL_INTRO_KEY)
-	
+	Global.load_game()
+	await Global.load_game()
 	var player = get_tree().get_first_node_in_group("player")
-	player.effect_animations.play(INTRO_FADEOUT)
 	
-	Global._lock_mouse_movement()
-	start_new_run()
-	
-	await player.effect_animations.animation_finished
-	Global.intro_done = true
+	if Global.intro_done:
+		print("im back baby")
+		player.effect_animations.play(INTRO_FADEOUT)
+		
+		await player.effect_animations.animation_finished
+		Global._unlock_mouse_movement()
+		
+		player.shop_animations.play("open_shop")
+		
+	else:
+		print("firt time :O")
+		await get_tree().process_frame
+		await VoiceLines.play_vl(VL_INTRO_KEY)
+		
+		player.effect_animations.play(INTRO_FADEOUT)
+		Global._lock_mouse_movement()
+		start_new_run()
+		
+		await player.effect_animations.animation_finished
+		Global.intro_done = true
 
 
 func start_new_run() -> void:
 	# starting all new wave setup
 	if Global.player_died:
 		Global.current_wave = Global.selected_wave
+		Global.player_died = false
 	
 	Global.base_stat_mult = 1 + (Global.current_wave / Global.WAVE_MULT_DIVIDER)
-	Global.player_died = false
 	
 	
 	# voiceline conditions
 	if (Global.current_wave == 11 and not 
-		VoiceLines.single_activation_vls[VL_BEAT_WAVE10_KEY]):
+		Global.single_activation_vls[VL_BEAT_WAVE10_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE10_KEY)
 	
 	if (Global.current_wave == 16 and not 
-		VoiceLines.single_activation_vls[VL_BEAT_WAVE15_KEY]):
+		Global.single_activation_vls[VL_BEAT_WAVE15_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE15_KEY)
 	
 	if (Global.current_wave == 21 and not 
-		VoiceLines.single_activation_vls[VL_BEAT_WAVE20_KEY]):
+		Global.single_activation_vls[VL_BEAT_WAVE20_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE20_KEY)
 	
 	if (Global.current_wave == 26 and not 
-		VoiceLines.single_activation_vls[VL_BEAT_WAVE25_KEY]):
+		Global.single_activation_vls[VL_BEAT_WAVE25_KEY]):
 		VoiceLines.play_vl(VL_BEAT_WAVE25_KEY)
 	
 	if (Global.coins_made_this_run >= GOOD_RUN_REQUIRMENTS * Global.base_stat_mult
@@ -127,7 +142,7 @@ func start_new_run() -> void:
 	
 	_set_active_map_and_spawners()
 	
-	if Global.current_wave == 26:
+	if Global.selected_wave == 26:
 		_boss_wave_start()
 	else:
 		_normal_wave_start()
@@ -140,7 +155,7 @@ func _normal_wave_start() -> void:
 	center_wave.text = CENTER_WAVE_TEXT
 	
 	Global.mutation_probabilities = (
-		Global.WAVE_INFO[current_wave_text]["mutation_probilities"])
+	Global.WAVE_INFO[current_wave_text]["mutation_probilities"])
 	
 	Global.base_stat_mult = 1 + roundi(Global.current_wave / Global.WAVE_MULT_DIVIDER)
 	Global.can_spawn_enemies = true
@@ -154,6 +169,8 @@ func _normal_wave_start() -> void:
 	# if on the correct threshold and voice lines at certian waves
 	wave_visuals_animations.play("next_wave")
 	
+	if Global.path_open:
+		boss_related_animations.play("close path")
 	
 	# changes wave and mob values while they are not visible in the animation
 	await get_tree().create_timer(TIME_BEFORE_TEXT_CHANGE).timeout
@@ -165,7 +182,7 @@ func _normal_wave_start() -> void:
 	
 	# enables the current maps spawners 
 	var spawners = active_spawners.get_children()
-	var coin_spawners = active_coin_spawners.get_children()
+	var coin_spawners = active_item_spawners.get_children()
 	
 	for coin_spawner in coin_spawners:
 		coin_spawner.enabled = true
@@ -180,6 +197,7 @@ func _normal_wave_start() -> void:
 func _boss_wave_start() -> void:
 	arrow_indicator.visible = true
 	path_activation_area.monitoring = true
+	print(path_activation_area.monitoring)
 	
 	center_wave.text = CENTER_WAVE_TEXT + str(Global.current_wave - 1)
 	
@@ -232,22 +250,22 @@ func _set_active_map_and_spawners() -> void:
 	
 	match active_map:
 		maps.MAP1:
-			active_spawners = map_1_spawners
-			active_coin_spawners = map_1_coin_spawners
-			bat_flight_plane_2.set_deferred("monitorable", false)
-			bat_flight_plane_3.set_deferred("monitorable", false)
+			active_spawners = map1.spawners
+			active_item_spawners = map1.item_spawners
+			bat_flight_plane.map2.set_deferred("monitorable", false)
+			bat_flight_plane.map3.set_deferred("monitorable", false)
 
 		maps.MAP2:
-			active_spawners = map_2_spawners
-			active_coin_spawners = map_2_coin_spawners
-			bat_flight_plane_2.set_deferred("monitorable", true)
-			bat_flight_plane_3.set_deferred("monitorable", false)
+			active_spawners = map2.spawners
+			active_item_spawners = map2.item_spawners
+			bat_flight_plane.map2.set_deferred("monitorable", true)
+			bat_flight_plane.map3.set_deferred("monitorable", false)
 
 		maps.MAP3:
-			active_spawners = map_3_spawners
-			active_coin_spawners = map_3_coin_spawners
-			bat_flight_plane_2.set_deferred("monitorable", false)
-			bat_flight_plane_3.set_deferred("monitorable", true)
+			active_spawners = map3.spawners
+			active_item_spawners = map3.item_spawners
+			bat_flight_plane.map2.set_deferred("monitorable", false)
+			bat_flight_plane.map3.set_deferred("monitorable", true)
 
 
 func mob_died() -> void:
@@ -278,25 +296,3 @@ func _clear_items() -> void:
 	
 	for item in items_alive:
 		item.queue_free()
-
-
-# boss related functions
-func _on_path_activation_body_entered(body: Node3D) -> void:
-	if body in get_tree().get_nodes_in_group("player") and not path_open:
-		path_open = true
-		boss_related_animations.play("open_path")
-		Global.going_to_boss = true
-
-
-func _on_open_door_body_entered(body: Node3D) -> void:
-	if body in get_tree().get_nodes_in_group("player"):
-		boss_related_animations.play("open_door")
-
-
-func _on_boss_activation_body_entered(body: Node3D) -> void:
-	if body in get_tree().get_nodes_in_group("player") and not Global.fighting_boss:
-		Global.fighting_boss = true
-		boss_related_animations.play("close_door")
-		await boss_related_animations.animation_finished
-		boss_related_animations.play("descend_boss")
-		boss.start_boss()

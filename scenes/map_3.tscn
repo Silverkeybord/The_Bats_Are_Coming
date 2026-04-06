@@ -1,0 +1,722 @@
+[gd_scene format=3 uid="uid://cwisdvs1ksisg"]
+
+[ext_resource type="PackedScene" uid="uid://4toi7ndrm7or" path="res://scenes/spawner.tscn" id="1_c6pw2"]
+[ext_resource type="Script" uid="uid://b5g78fx0jqlyi" path="res://scripts/maps/maps.gd" id="1_s43yw"]
+[ext_resource type="PackedScene" uid="uid://b0cwv528153vi" path="res://scenes/item_spawner.tscn" id="2_s43yw"]
+[ext_resource type="Texture2D" uid="uid://bos7rridjkps1" path="res://level/checkboard.png" id="3_ryx0p"]
+[ext_resource type="Material" uid="uid://c0x4onlgqxge5" path="res://material's/yellow.tres" id="4_vtpsr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfkki"]
+albedo_color = Color(0.09803922, 0.62352943, 0.40392157, 1)
+albedo_texture = ExtResource("3_ryx0p")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="map3" type="Node3D" unique_id=854013865 node_paths=PackedStringArray("spawners", "item_spawners")]
+script = ExtResource("1_s43yw")
+spawners = NodePath("spawners")
+item_spawners = NodePath("item_spawners")
+
+[node name="spawners" type="Node3D" parent="." unique_id=1122505999]
+
+[node name="StaticBody3D" parent="spawners" unique_id=293147112 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 19, -12.5)
+
+[node name="StaticBody3D2" parent="spawners" unique_id=1749284901 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 29)
+
+[node name="StaticBody3D3" parent="spawners" unique_id=1388642424 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 3, 0.5)
+
+[node name="StaticBody3D4" parent="spawners" unique_id=338966114 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -30)
+
+[node name="StaticBody3D5" parent="spawners" unique_id=983771041 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 19, 12.5)
+
+[node name="StaticBody3D6" parent="spawners" unique_id=431151124 instance=ExtResource("1_c6pw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 13, 0)
+
+[node name="item_spawners" type="Node3D" parent="." unique_id=1239322787]
+
+[node name="coin_spawners" parent="item_spawners" unique_id=1683920185 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 11, 0)
+value = 50
+
+[node name="coin_spawners2" parent="item_spawners" unique_id=54044996 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 41)
+value = 50
+
+[node name="coin_spawners3" parent="item_spawners" unique_id=2145183497 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 2, 0)
+value = 50
+
+[node name="coin_spawners4" parent="item_spawners" unique_id=84415916 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -34)
+value = 50
+
+[node name="health_spawner" parent="item_spawners" unique_id=672402124 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -24)
+value = 0
+spawn_interval = 15
+spawn_probability = 0.5
+spawn_type = 1
+
+[node name="health_spawner2" parent="item_spawners" unique_id=1957296088 instance=ExtResource("2_s43yw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 32)
+value = 0
+spawn_interval = 15
+spawn_probability = 0.5
+spawn_type = 1
+
+[node name="platforms" type="MeshInstance3D" parent="." unique_id=574994278]
+
+[node name="platform" type="CSGBox3D" parent="platforms" unique_id=927185078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform33" type="CSGBox3D" parent="platforms" unique_id=1771461956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -20, -34)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform34" type="CSGBox3D" parent="platforms" unique_id=832256446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -20, -30)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform35" type="CSGBox3D" parent="platforms" unique_id=518674145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -20, -26)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform36" type="CSGBox3D" parent="platforms" unique_id=1543361139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -19, -22)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform37" type="CSGBox3D" parent="platforms" unique_id=1393817218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -20, -28)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform38" type="CSGBox3D" parent="platforms" unique_id=737482519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -20, -24)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform39" type="CSGBox3D" parent="platforms" unique_id=2006827733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -19, -20)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform40" type="CSGBox3D" parent="platforms" unique_id=2044098894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -18, -16)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform15" type="CSGBox3D" parent="platforms" unique_id=964414382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform18" type="CSGBox3D" parent="platforms" unique_id=318208264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 33)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(16, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform16" type="CSGBox3D" parent="platforms" unique_id=2121224734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -20, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform19" type="CSGBox3D" parent="platforms" unique_id=486792138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -20, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 40, 11)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform21" type="CSGBox3D" parent="platforms" unique_id=499210959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -20, 19.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 42, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform22" type="CSGBox3D" parent="platforms" unique_id=1172911523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -19, 22.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 42, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform23" type="CSGBox3D" parent="platforms" unique_id=31332145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -18.5, 16.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 43, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform24" type="CSGBox3D" parent="platforms" unique_id=661771201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -18.5, 10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 45, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform25" type="CSGBox3D" parent="platforms" unique_id=659046935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -17.5, 13.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 45, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform26" type="CSGBox3D" parent="platforms" unique_id=1877934506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -17, 8.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 46, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform20" type="CSGBox3D" parent="platforms" unique_id=2014275105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -20, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 40, 11)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform27" type="CSGBox3D" parent="platforms" unique_id=2071445891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -20, 11.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform28" type="CSGBox3D" parent="platforms" unique_id=1309462883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -20, 11.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform30" type="CSGBox3D" parent="platforms" unique_id=1103149551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, -20, -10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform31" type="CSGBox3D" parent="platforms" unique_id=543170159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, -20, -10.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform29" type="CSGBox3D" parent="platforms" unique_id=938727435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -20, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform32" type="CSGBox3D" parent="platforms" unique_id=871852877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -20, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(8, 40, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform17" type="CSGBox3D" parent="platforms" unique_id=1516177109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -20, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(14, 40, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform11" type="CSGBox3D" parent="platforms" unique_id=869917253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -12, 12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 56, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform12" type="CSGBox3D" parent="platforms" unique_id=969976393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -12, -12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 56, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform13" type="CSGBox3D" parent="platforms" unique_id=1913545602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -12, 12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 56, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform14" type="CSGBox3D" parent="platforms" unique_id=618847486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -12, -12.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 56, 5)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform10" type="CSGBox3D" parent="platforms" unique_id=758045913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, -15.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(11, 51, 8)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform4" type="CSGBox3D" parent="platforms" unique_id=1827791370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.5, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 41, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform8" type="CSGBox3D" parent="platforms" unique_id=1479849587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 43, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform9" type="CSGBox3D" parent="platforms" unique_id=1176745866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.5, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12, 43, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform5" type="CSGBox3D" parent="platforms" unique_id=1643774915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.5, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 41, 4)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform2" type="CSGBox3D" parent="platforms" unique_id=470878876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -19, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 42, 12)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform6" type="CSGBox3D" parent="platforms" unique_id=475516818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -18, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 44, 20)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform7" type="CSGBox3D" parent="platforms" unique_id=164743267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -18, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 44, 20)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="platform3" type="CSGBox3D" parent="platforms" unique_id=1814845261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -19, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 42, 12)
+material = SubResource("StandardMaterial3D_hfkki")
+metadata/_edit_lock_ = true
+
+[node name="bridges" type="MeshInstance3D" parent="." unique_id=376442234]
+
+[node name="platform5" type="CSGBox3D" parent="bridges" unique_id=733348581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform6" type="CSGBox3D" parent="bridges" unique_id=99387228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform7" type="CSGBox3D" parent="bridges" unique_id=1927198621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform17" type="CSGBox3D" parent="bridges" unique_id=1019251109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 13)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform24" type="CSGBox3D" parent="bridges" unique_id=208199629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform32" type="CSGBox3D" parent="bridges" unique_id=1191840854]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 17.464466, 2, -17.535534)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform33" type="CSGBox3D" parent="bridges" unique_id=154763712]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 21, 3.5, -14)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform34" type="CSGBox3D" parent="bridges" unique_id=2112656294]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 24.535534, 5, -10.464466)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform35" type="CSGBox3D" parent="bridges" unique_id=1250176760]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 28.035534, 6.5, -6.964466)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform36" type="CSGBox3D" parent="bridges" unique_id=1606422363]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 31.217514, 8, -3.7824855)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3, 1, 3)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform18" type="CSGBox3D" parent="bridges" unique_id=528667471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 18)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform20" type="CSGBox3D" parent="bridges" unique_id=184763911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 41)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform19" type="CSGBox3D" parent="bridges" unique_id=481072642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 18)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform21" type="CSGBox3D" parent="bridges" unique_id=1716090291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 29)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform22" type="CSGBox3D" parent="bridges" unique_id=1763281812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 24)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform23" type="CSGBox3D" parent="bridges" unique_id=1154954117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 19)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform28" type="CSGBox3D" parent="bridges" unique_id=2116424857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -0.5, -20)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform29" type="CSGBox3D" parent="bridges" unique_id=1042024268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -25)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform30" type="CSGBox3D" parent="bridges" unique_id=1397219682]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21, -0.5, -33)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform31" type="CSGBox3D" parent="bridges" unique_id=1115265693]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, -0.5, -39)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 10)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform25" type="CSGBox3D" parent="bridges" unique_id=158490999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 0.5, 0.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform26" type="CSGBox3D" parent="bridges" unique_id=648614010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, 3.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform27" type="CSGBox3D" parent="bridges" unique_id=1818436470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -0.5, -2.5)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform8" type="CSGBox3D" parent="bridges" unique_id=1909543095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, -8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform9" type="CSGBox3D" parent="bridges" unique_id=117443156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 8)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform10" type="CSGBox3D" parent="bridges" unique_id=1950215030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 6, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform11" type="CSGBox3D" parent="bridges" unique_id=641423525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform12" type="CSGBox3D" parent="bridges" unique_id=563743916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 7, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform13" type="CSGBox3D" parent="bridges" unique_id=130505910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, 4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform15" type="CSGBox3D" parent="bridges" unique_id=499449241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 9, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform16" type="CSGBox3D" parent="bridges" unique_id=1896764529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 9, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true
+
+[node name="platform14" type="CSGBox3D" parent="bridges" unique_id=1189587747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 8, -4)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(2, 1, 4)
+material = ExtResource("4_vtpsr")
+metadata/_edit_lock_ = true

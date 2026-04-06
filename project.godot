@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="YTshooter"
 run/main_scene="uid://dp7sxe5xl5shk"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -24,8 +28,8 @@ VoiceLines="*res://scripts/voice_lines.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
+window/size/mode=3
+window/stretch/aspect="expand"
 
 [file_customization]
 
@@ -34,6 +38,7 @@ folder_colors={
 "res://scenes/": "blue",
 "res://scripts/": "gray",
 "res://sounds/": "green",
+"res://styles/": "teal",
 "res://textres/": "yellow"
 }
 
@@ -45,6 +50,10 @@ player=""
 spawners="they spawn the enemies"
 coin_spawners="they spawn the coins"
 items=""
+enemy_node=""
+items_node=""
+temp_sounds=""
+game_controller=""
 
 [input]
 
